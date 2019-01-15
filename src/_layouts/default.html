@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% include title.html %}
+  <link rel="stylesheet" href="{{ site.baseurl }}assets/css/main.css">
+  <link rel="icon" type="image/png" href="assets/static/favicon.png">
+</head>
+
+<body>
+  {% include header.html %}
+  <main>    
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="{{ site.baseurl }}assets/js/vendor.js"></script>
+  <script src="{{ site.baseurl }}assets/js/main.js"></script>
+</body>
+</html>
