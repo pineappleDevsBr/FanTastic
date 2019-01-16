@@ -1,7 +1,8 @@
-Uma estrutura Webpack default criada por Matheus Porto, usada para projetos pessoais.<br />
+FanTastic - Uma fantástica ferramenta de estatistica<br />
 -------------------------------------------------------------------------------------------
+Um projeto em desenvolvimento, por um grupo de alunos da Faculdade de Tecnologia de Franca, grupo intitulado como [pineappleDevs](https://leandrocesarr.github.io/pineappleDevs_institucional/) &copy;
 
-#### GitHub Matheus Porto: [https://github.com/matheusportoo](https://github.com/matheusportoo)
+#### Stack desenvolvida por Matheus Porto: [https://github.com/matheusportoo](https://github.com/matheusportoo)
 
 Pacotes a serem instalados: 
 > Node.js<br />
@@ -9,16 +10,6 @@ Pacotes a serem instalados:
 > Ruby <br />
 > Yarn <br />
 > SASS (via ruby gem install) <br />
-
----
-No terminal:
----
-
-### Clonar o repositótio
-
-```sh
-$ git clone https://github.com/FernandoSouzaMarques/webpack-default.git
-```
 
 
 ### Instalação
