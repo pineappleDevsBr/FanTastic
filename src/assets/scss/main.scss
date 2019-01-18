@@ -1,10 +1,11 @@
 // Tools
-
+@import '1-tools/t-container';
 // Settings
 @import '2-settings/s-colors';
 @import '2-settings/s-typography';
 
 // Vendors
+@import '3-vendors/v-imports';
 
 // Animations
 
@@ -13,3 +14,5 @@
 // Components
 
 // Sections
+@import '7-sections/s-home';
+@import '7-sections/s-form';
