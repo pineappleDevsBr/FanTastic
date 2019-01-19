@@ -11,9 +11,11 @@
 
 <body>
   <div id="container">
-    <div data-anchor="Page 1" class="home">{% include header.html %}</div>
+    <div data-anchor="Page 1" class="header">
+      {% include header.html %}
+    </div>
     <div data-anchor="Page 2" class="form">
-      <main class="pao">
+      <main>
         {{ content }}
       </main>
     </div>

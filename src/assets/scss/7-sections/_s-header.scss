@@ -1,0 +1,40 @@
+.header {
+  background: $gd-blue-shaft;
+  text-align: center;
+  position: relative;
+}
+
+.header__octocat {
+  font-size: 0;
+  position: absolute;
+  background: url(../static/octocat.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 120px;
+  top: 0;
+  right: 0;
+}
+
+.header__wrapp {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  font-size: 0;
+  width: calc(100% - 30px);
+}
+
+@include respond-to(tablet) {
+  .header__wrapp {
+    max-width: 700px;
+  }
+}
+
+@include respond-to(mobile) {
+  .header__octocat {
+    right: -10px;
+    width: 75px;
+    height: 75px;
+  }
+}

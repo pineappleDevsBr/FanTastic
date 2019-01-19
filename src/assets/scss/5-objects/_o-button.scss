@@ -1,0 +1,30 @@
+.o-button {
+  &--arrow-down {
+    background: url(../static/arrow-down.png);
+    background-repeat: no-repeat;
+    border: none;
+    width: 93px;
+    height: 91px;
+    display: inline-block;
+    margin: 0 auto;
+    cursor: pointer;
+
+    &:hover {
+      animation: animateButton 2s infinite;
+    }
+  }
+}
+
+@keyframes animateButton {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

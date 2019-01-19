@@ -1,0 +1,17 @@
+.o-subtitle {
+  margin-top: 0;
+  font-size: 50px;
+  font-family: $font-family-main;
+}
+
+@include respond-to(tablet) {
+  .o-subtitle {
+    font-size: 40px;
+  }
+}
+
+@include respond-to(mobile) {
+  .o-subtitle {
+    font-size: 30px;
+  }
+}
