@@ -1,8 +1,3 @@
-import Pageable from 'pageable';
+// import SwitchTab from './components/switchTab';
 
-new Pageable('#container', { // eslint-disable-line no-new
-  animation: 700,
-  events: {
-    mouse: false,
-  },
-});
+// SwitchTab.create('[data-form]');

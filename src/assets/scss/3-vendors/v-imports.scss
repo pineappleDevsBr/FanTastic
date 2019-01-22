@@ -1,8 +1,2 @@
-@import '~pageable/src/pageable';
 @import '~normalize.css';
 
-@include respond-to(mobile) {
-  .pg-pips {
-    display: none;
-  }
-}

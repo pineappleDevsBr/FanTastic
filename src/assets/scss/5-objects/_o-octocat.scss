@@ -1,0 +1,18 @@
+.o-octocat {
+  font-size: 0;
+  position: absolute;
+  background: url(../static/octocat.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 120px;
+  height: 120px;
+  top: 0;
+  right: 0;
+}
+
+@include respond-to(mobile) {
+  .o-octocat {
+    width: 75px;
+    height: 75px;
+  }
+}

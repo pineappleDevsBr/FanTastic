@@ -1,1 +1,1 @@
-webpackJsonp([0],[function(n,e,t){t(1),n.exports=t(4)},function(n,e,t){"use strict";var o=t(2);new(function(n){return n&&n.__esModule?n:{default:n}}(o).default)("#container",{animation:700,events:{mouse:!1}})},,,function(n,e,t){}],[0]);
+webpackJsonp([0],[function(n,t,c){c(1),n.exports=c(2)},function(n,t,c){"use strict"},function(n,t,c){}],[0]);

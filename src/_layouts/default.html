@@ -10,17 +10,17 @@
 </head>
 
 <body>
-  <div id="container">
-    <div data-anchor="Page 1" class="header">
-      {% include header.html %}
-    </div>
-    <div data-anchor="Page 2" class="form">
-      <main>
-        {{ content }}
-      </main>
-    </div>
-  <!-- {% include footer.html %} -->
+
+  <div class="s-header">
+    {% include header.html %}
   </div>
+  <div class="s-form">
+    <main>
+      {% include sections/form.html %}
+    </main>
+  </div>
+  <!-- {% include footer.html %} -->
+
   <script src="{{ site.baseurl }}assets/js/vendor.js"></script>
   <script src="{{ site.baseurl }}assets/js/main.js"></script>
 </body>

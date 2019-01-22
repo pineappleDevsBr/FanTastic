@@ -7,7 +7,7 @@
     height: 91px;
     display: inline-block;
     margin: 0 auto;
-    cursor: pointer;
+    outline: none;
 
     &:hover {
       animation: animateButton 2s infinite;

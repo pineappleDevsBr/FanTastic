@@ -4223,11 +4223,6 @@ p-map@^1.1.1:
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-1.1.1.tgz#05f5e4ae97a068371bc2a5cc86bfbdbc19c4ae7a"
   integrity sha1-BfXkrpegaDcbwqXMhr+9vBnErno=
 
-pageable@^0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/pageable/-/pageable-0.6.2.tgz#b5bcf3fed81d97a59be983c9ba75add2cdc8731a"
-  integrity sha512-VZqDvlcFI4Gzr6uEqhGAfMaHCLDaAluJkk2cH29IAd/0d9Wi5gcs+wjPox/EnllBDViFGvKvIpncgo/7EpubnQ==
-
 pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"

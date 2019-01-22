@@ -5,3 +5,10 @@
   font-family: $font-family-main;
   color: $color-white;
 }
+
+@include respond-to(mobile) {
+  .o-description {
+    font-size: 16px;
+    margin-bottom: 10vw;
+  }
+}

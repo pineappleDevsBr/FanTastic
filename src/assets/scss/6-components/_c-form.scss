@@ -1,0 +1,42 @@
+.c-form-wrapp {
+  background: $color-white;
+  max-width: 1350px;
+  height: calc(100vh - 80px);
+  margin: 50px auto 30px;
+}
+
+.c-form__tabs {
+  display: flex;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  justify-content: space-around;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
+.c-form__tab {
+  flex: 1;
+  color: $color-gray;
+  font-size: 24px;
+  font-weight: $font-weight-medium;
+  font-family: $font-family-main;
+  padding: 20px 10px;
+}
+
+.c-form__boxes {
+  position: relative;
+}
+
+.c-form__box {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.is-active {
+  .c-form__box {
+    opacity: 1;
+    z-index: 2;
+  }
+}
