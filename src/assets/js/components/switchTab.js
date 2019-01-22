@@ -14,21 +14,16 @@ class SwitchTab {
   }
 
   setupListeners() {
-    for (let i = 0; i < this.tabsList.length; i + 1) {
+    for (let i = 0; i < this.tabsList.length; i += 1) {
       const index = i;
-      this.tabsList[i].addEventListener('click', this.toggleClass.bind(index));
+      this.tabsList[i].addEventListener('click', this.toggleClass.bind(this, index));
     }
   }
 
   toggleClass(index) {
-    if (this.currentIndex === -1) {
-      this.boxesList[index].classList.add('is-active');
-      this.currentIndex = index;
-    } else {
-      this.boxesList[this.currentIndex].classList.remove('is-active');
-      this.boxesList[index].classList.add('is-active');
-      this.currentIndex = index;
-    }
+    this.boxesList[this.currentIndex].classList.remove('is-active');
+    this.boxesList[index].classList.add('is-active');
+    this.currentIndex = index;
   }
 }
 

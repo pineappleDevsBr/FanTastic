@@ -50,6 +50,7 @@
     "webpack-shell-plugin": "^0.5.0"
   },
   "dependencies": {
+    "jump.js": "^1.0.2",
     "normalize.css": "^7.0.0"
   }
 }

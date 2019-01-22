@@ -22,6 +22,7 @@
   font-weight: $font-weight-medium;
   font-family: $font-family-main;
   padding: 20px 10px;
+  cursor: pointer;
 }
 
 .c-form__boxes {
@@ -35,8 +36,12 @@
 }
 
 .is-active {
-  .c-form__box {
-    opacity: 1;
-    z-index: 2;
+  opacity: 1;
+  z-index: 2;
+}
+
+@include respond-to(mobile) {
+  .c-form__tab {
+    font-size: 15px;
   }
 }
