@@ -1,8 +1,10 @@
 .c-form-wrapp {
-  background: $color-white;
   max-width: 1350px;
   height: calc(100vh - 80px);
   margin: 50px auto 30px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: white;
 }
 
 .c-form__tabs {
@@ -10,37 +12,74 @@
   margin: 0;
   padding-left: 0;
   list-style: none;
-  justify-content: space-around;
   text-align: center;
-  border-bottom: 1px solid black;
+  background: $color-gray-ease;
 }
 
 .c-form__tab {
   flex: 1;
-  color: $color-gray;
+  color: $color-white;
   font-size: 24px;
   font-weight: $font-weight-medium;
   font-family: $font-family-main;
   padding: 20px 10px;
   cursor: pointer;
+  position: relative;
+
+  &::before {
+    content: "";
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &.is-active {
+    background: white;
+    color: $color-gray;
+
+    &:nth-child(1) {
+      border-top-right-radius: 10px;
+    }
+
+    &:nth-child(2) {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    &:nth-child(3) {
+      border-top-left-radius: 10px;
+    }
+  }
+}
+
+.c-form__tab-title {
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .c-form__boxes {
   position: relative;
+  width: 100%;
+  height: calc(100% - 89px);
+  padding-top: 15px;
 }
 
 .c-form__box {
   position: absolute;
   opacity: 0;
   z-index: -1;
+  width: calc(100% - 140px);
+  padding: 0 70px 15px;
+  height: calc(100% - 30px);
+  overflow-y: scroll;
+
+  &.is-active {
+    opacity: 1;
+    z-index: 2;
+  }
 }
 
-.is-active {
-  opacity: 1;
-  z-index: 2;
-}
-
-@include respond-to(mobile) {
+@include respond-to(mobile-tablet) {
   .c-form__tab {
     font-size: 15px;
   }

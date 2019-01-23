@@ -21,6 +21,8 @@ class SwitchTab {
   }
 
   toggleClass(index) {
+    this.tabsList[this.currentIndex].classList.remove('is-active');
+    this.tabsList[index].classList.add('is-active');
     this.boxesList[this.currentIndex].classList.remove('is-active');
     this.boxesList[index].classList.add('is-active');
     this.currentIndex = index;

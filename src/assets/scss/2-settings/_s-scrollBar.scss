@@ -7,6 +7,19 @@ body::-webkit-scrollbar-track {
   background-color: #766e63;
 }
 
-body::-webkit-scrollbar-thumb {
+.c-form__box::-webkit-scrollbar-thumb {
+  background-color: #424143;
+}
+
+.c-form__box::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.c-form__box::-webkit-scrollbar-track {
+  background-color: #766e63;
+}
+
+.c-form__box::-webkit-scrollbar-thumb {
   background-color: #424143;
 }
