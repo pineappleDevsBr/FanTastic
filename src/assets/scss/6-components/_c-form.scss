@@ -59,9 +59,10 @@
 
 .c-form__boxes {
   position: relative;
-  width: 100%;
+  width: calc(100% - 10px);
   height: calc(100% - 89px);
   padding-top: 15px;
+  margin-right: 10px;
 }
 
 .c-form__box {

@@ -1,17 +1,57 @@
 .o-button {
-  &--arrow-down {
-    background: url(../static/arrow-down.png);
-    background-repeat: no-repeat;
-    border: none;
-    width: 93px;
-    height: 91px;
-    display: inline-block;
-    margin: 0 auto;
-    outline: none;
-    cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
 
-    &:hover {
-      animation: animateButton 2s infinite;
+.o-button--arrow-down {
+  @extend .o-button;
+
+  background: url(../static/arrow-down.png);
+  background-repeat: no-repeat;
+  width: 93px;
+  height: 91px;
+  display: inline-block;
+  margin: 0 auto;
+
+  &:hover {
+    animation: animateButton 2s infinite;
+  }
+}
+
+.o-button--calculate {
+  @extend .o-button;
+
+  background: $gd-purple-shaft;
+  color: $color-white;
+  padding: 10px 20px;
+  line-height: 1;
+  border-radius: 10px;
+
+  .o-button__text {
+    text-transform: uppercase;
+    vertical-align: middle;
+
+    &::after {
+      content: "";
+      vertical-align: middle;
+      background: url(../static/arrow-single.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      margin-left: 5px;
+      transition: all 0.5s ease-out;
+    }
+  }
+
+  &:hover {
+    .o-button__text::after {
+      transform: rotate(90deg);
+      animation: animateButton-calculate 1.5s infinite;
+      animation-delay: 0.5s;
     }
   }
 }
@@ -27,5 +67,19 @@
 
   100% {
     transform: translateY(0);
+  }
+}
+
+@keyframes animateButton-calculate {
+  0% {
+    transform: translateY(0) rotate(90deg);
+  }
+
+  50% {
+    transform: translateY(5px) rotate(90deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(90deg);
   }
 }

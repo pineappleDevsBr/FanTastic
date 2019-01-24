@@ -3,3 +3,4 @@ import JumpButton from './components/jumpButton';
 
 SwitchTab.create('[data-form]');
 JumpButton.create('[data-button-home]', '.s-form');
+JumpButton.create('[data-button-form]', '.s-result');
