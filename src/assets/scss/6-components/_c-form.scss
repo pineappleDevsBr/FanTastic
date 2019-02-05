@@ -85,3 +85,17 @@
     font-size: 15px;
   }
 }
+
+@include respond-to(mobile) {
+  .c-form__box {
+    padding-right: 20px;
+    padding-left: 20px;
+    width: calc(100% - 40px);
+  }
+}
+
+@media all and (max-width: 320px) {
+  .c-form__tab {
+    font-size: 12px;
+  }
+}

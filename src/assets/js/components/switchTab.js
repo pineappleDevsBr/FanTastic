@@ -1,10 +1,10 @@
 class SwitchTab {
   constructor(elm) {
     this.elm = document.querySelector(elm);
-    this.tabs = this.elm.querySelector('[data-tab]');
-    this.boxes = this.elm.querySelector('[data-box]');
-    this.tabsList = this.tabs.querySelectorAll('li');
-    this.boxesList = this.boxes.querySelectorAll('div');
+    this.tabs = this.elm.querySelector('[data-list-tab]');
+    this.boxes = this.elm.querySelector('[data-list-box]');
+    this.tabsList = this.tabs.querySelectorAll('[data-tab]');
+    this.boxesList = this.boxes.querySelectorAll('[data-box]');
     this.currentIndex = 0;
     this.setup();
   }

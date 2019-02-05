@@ -3,6 +3,40 @@
   background: none;
   outline: none;
   cursor: pointer;
+
+  &--calculate {
+    background: $gd-purple-shaft;
+    color: $color-white;
+    padding: 10px 20px;
+    line-height: 1;
+    border-radius: 10px;
+
+    .o-button__text {
+      text-transform: uppercase;
+      vertical-align: middle;
+
+      &::after {
+        content: "";
+        vertical-align: middle;
+        background: url(../static/arrow-single.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 17px;
+        height: 17px;
+        margin-left: 5px;
+        transition: all 0.5s ease-out;
+      }
+    }
+
+    &:hover {
+      .o-button__text::after {
+        transform: rotate(90deg);
+        animation: animateButton-calculate 1.5s infinite;
+        animation-delay: 0.5s;
+      }
+    }
+  }
 }
 
 .o-button--arrow-down {
@@ -17,42 +51,6 @@
 
   &:hover {
     animation: animateButton 2s infinite;
-  }
-}
-
-.o-button--calculate {
-  @extend .o-button;
-
-  background: $gd-purple-shaft;
-  color: $color-white;
-  padding: 10px 20px;
-  line-height: 1;
-  border-radius: 10px;
-
-  .o-button__text {
-    text-transform: uppercase;
-    vertical-align: middle;
-
-    &::after {
-      content: "";
-      vertical-align: middle;
-      background: url(../static/arrow-single.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-      display: inline-block;
-      width: 17px;
-      height: 17px;
-      margin-left: 5px;
-      transition: all 0.5s ease-out;
-    }
-  }
-
-  &:hover {
-    .o-button__text::after {
-      transform: rotate(90deg);
-      animation: animateButton-calculate 1.5s infinite;
-      animation-delay: 0.5s;
-    }
   }
 }
 
