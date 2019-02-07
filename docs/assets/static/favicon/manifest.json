@@ -2,7 +2,7 @@
  "name": "FanTastic",
  "short_name": "FanTastic",
  "lang": "pt-BR",
- "start_url": "/",
+ "start_url": "https://leandrocesarr.github.io/FanTastic/",
  "background_color": "#157bb1",
  "theme_color": "#ffffff",
  "display": "standalone",
