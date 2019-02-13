@@ -60,28 +60,64 @@
   </ul>
 
   <div class="c-form__boxes" data-list-box>
-    <div class="c-form__box is-active" data-box>
-  <div class="o-label--input">
-    <label for="teste1" class="o-label-title">Label generico</label>
-    <input type="text" id="teste1" class="o-label-input">
-  </div>
-  
+    <form class="c-form__box is-active" data-box>
+
   <div class="o-label--radio-holder">
-    <h2>Label Escolha</h2>
+    <h3>Tipo de variavel</h3>
     <div class="o-label--radio">
-      <input type="radio" id="teste2" class="o-label-radio">
-      <label for="teste2" class="o-label-title">Pick me</label>
+      <input type="radio" id="ordinal" name="type" class="o-label-radio" required="true">
+      <label for="ordinal" class="o-label-title">Qualitativa Ordinal</label>
     </div>
     
     <div class="o-label--radio">
-      <input type="radio" id="teste3" class="o-label-radio">
-      <label for="teste3" class="o-label-title">Pick me</label>
+      <input type="radio" id="nominal" name="type" class="o-label-radio">
+      <label for="nominal" class="o-label-title">Qualitativa Nominal</label>
+    </div>
+
+    <div class="o-label--radio">
+      <input type="radio" id="descritiva" name="type" class="o-label-radio">
+      <label for="descritiva" class="o-label-title">Quantitativa Discritiva</label>
+    </div>
+
+    <div class="o-label--radio">
+      <input type="radio" id="continua" name="type" class="o-label-radio">
+      <label for="continua" class="o-label-title">Quantitativa Continua</label>
     </div>
   </div>
-  <button class="o-button o-button--calculate" data-button-form>
+
+  <div class="o-label--input">
+    <label for="order" class="o-label-title">Ordenação das variveis ordinais</label>
+    <input type="text" id="order" class="o-label-input">
+  </div>
+
+  <div class="o-label--radio-holder">
+    <h3>Processo</h3>
+    <div class="o-label--radio">
+      <input type="radio" id="amostra" name="processo" class="o-label-radio">
+      <label for="amostra" class="o-label-title">Amostra</label>
+    </div>
+    
+    <div class="o-label--radio">
+      <input type="radio" id="censo" name="processo" class="o-label-radio">
+      <label for="censo" class="o-label-title">Censo</label>
+    </div>
+  </div>
+
+  <div class="o-label--input">
+    <label for="name" class="o-label-title">Nome da variavel</label>
+    <input type="text" id="name" class="o-label-input">
+  </div>
+
+  <div class="o-label--input o-label--data">
+    <label for="data" class="o-label-title">Dados</label>
+    <input type="text" id="data" class="o-label-input">
+    <button class="o-label-data">Escolha um arquivo</button>  
+  </div>
+
+  <button type="submit" class="o-button o-button--calculate" data-button-form>
     <span class="o-button__text">Calcular</span>
   </button>
-</div>
+</form>
 
     <div class="c-form__box" data-box>
   <input type="text"><br /><br />

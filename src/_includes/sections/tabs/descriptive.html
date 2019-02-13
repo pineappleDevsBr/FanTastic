@@ -1,0 +1,58 @@
+<form class="c-form__box is-active" data-box>
+
+  <div class="o-label--radio-holder">
+    <h3>Tipo de variavel</h3>
+    <div class="o-label--radio">
+      <input type="radio" id="ordinal" name="type" class="o-label-radio" required="true">
+      <label for="ordinal" class="o-label-title">Qualitativa Ordinal</label>
+    </div>
+    
+    <div class="o-label--radio">
+      <input type="radio" id="nominal" name="type" class="o-label-radio">
+      <label for="nominal" class="o-label-title">Qualitativa Nominal</label>
+    </div>
+
+    <div class="o-label--radio">
+      <input type="radio" id="descritiva" name="type" class="o-label-radio">
+      <label for="descritiva" class="o-label-title">Quantitativa Discritiva</label>
+    </div>
+
+    <div class="o-label--radio">
+      <input type="radio" id="continua" name="type" class="o-label-radio">
+      <label for="continua" class="o-label-title">Quantitativa Continua</label>
+    </div>
+  </div>
+
+  <div class="o-label--input">
+    <label for="order" class="o-label-title">Ordenação das variveis ordinais</label>
+    <input type="text" id="order" class="o-label-input">
+  </div>
+
+  <div class="o-label--radio-holder">
+    <h3>Processo</h3>
+    <div class="o-label--radio">
+      <input type="radio" id="amostra" name="processo" class="o-label-radio">
+      <label for="amostra" class="o-label-title">Amostra</label>
+    </div>
+    
+    <div class="o-label--radio">
+      <input type="radio" id="censo" name="processo" class="o-label-radio">
+      <label for="censo" class="o-label-title">Censo</label>
+    </div>
+  </div>
+
+  <div class="o-label--input">
+    <label for="name" class="o-label-title">Nome da variavel</label>
+    <input type="text" id="name" class="o-label-input">
+  </div>
+
+  <div class="o-label--input o-label--data">
+    <label for="data" class="o-label-title">Dados</label>
+    <input type="text" id="data" class="o-label-input">
+    <button class="o-label-data">Escolha um arquivo</button>  
+  </div>
+
+  <button type="submit" class="o-button o-button--calculate" data-button-form>
+    <span class="o-button__text">Calcular</span>
+  </button>
+</form>
