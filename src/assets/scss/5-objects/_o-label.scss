@@ -1,3 +1,7 @@
+.o-label--radio-holder {
+  padding-bottom: 20px;
+}
+
 .o-label--input {
   padding: 10px 0;
 
@@ -58,5 +62,11 @@
     .o-label-input {
       width: 100%;
     }
+  }
+}
+
+@include respond-to((max-width: 988px)) {
+  .o-label--radio-holder {
+    max-width: 500px;
   }
 }
