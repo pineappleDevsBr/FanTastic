@@ -5,6 +5,7 @@ class Continue {
     this.vet = vet;
     this.At = null;
     this.k = [];
+    this.result = null;
     this.setup();
   }
 
@@ -16,7 +17,8 @@ class Continue {
   }
 
   oraganizedArray() {
-    this.vet = new Order(this.vet, "crescent");
+    this.vet = Order.create(this.vet, 'crescent');
+    console.log(this.vet);
   }
 
   amplitude() {
@@ -25,32 +27,31 @@ class Continue {
   }
 
   classes() {
-    this.K = [parseInt(Math.sqrt(this.vet.length))-1,parseInt(Math.sqrt(this.vet.length)),parseInt(Math.sqrt(this.vet.length))+1];
+    this.K = [parseInt(Math.sqrt(this.vet.length))-1,parseInt(Math.sqrt(this.vet.length)),parseInt(Math.sqrt(this.vet.length))+1]; // eslint-disable-line
     console.log(this.K);
   }
 
   interval() {
-    let D = At+1;
-    let Result = null;
-    console.log(D);
+    let D = this.At + 1;
     let i = 0;
-    while( i == 0) {
-      for(let j = 0; j < 3; j += 1){
-        if (D % K[j] === 0){
-          Result = D / K[j];
-          console.log(D + '/' + K[j] + '=' + Result);
+    console.log(D);
+    while (i === 0) {
+      for (let j = 0; j < 3; j += 1) {
+        if (D % this.K[j] === 0) {
+          this.result = D / this.K[j];
+          console.log(D, this.K[j], this.result);
           i += 1;
-          break
+          break;
         }
       }
-      D++;
+      D += 1;
     }
   }
 }
 
 export default{
-  create() {
-    return new Continue();
+  create(vet) {
+    return new Continue(vet);
   },
 };
 

@@ -1,7 +1,7 @@
 // import Ordinal from './components/modules/descriptive/ordinal';
 // import Nominal from './components/modules/descriptive/nominal';
 // import Discreta from './components/modules/descriptive/discreta';
-// import Continue from './modules/descriptive/continue';
+import Continue from './modules/descriptive/continue';
 
 class Descriptive {
   constructor() {
@@ -42,17 +42,8 @@ class Descriptive {
       evt.preventDefault();
       this.recoverData();
       this.convertArray();
-      // this.choiceTypeVariable();
-      console.log(this.result);
+      this.choiceTypeVariable();
     });
-  }
-
-  convertArray() {
-    this.data = this.data.split(';');
-    console.log(this.data);
-
-    this.dataConverted = this.data.map(num => parseInt(num, 10));
-    console.log(this.dataConverted);
   }
 
   recoverData() {
@@ -63,17 +54,22 @@ class Descriptive {
     this.orderOrdinal = this.elm.querySelector('[data-order]').value;
   }
 
-  // choiceTypeVariable() {
-  //   if (this.listRadio[0].checked === true) {
-  //     this.result = new Ordinal(this.dataConverted, this.orderOrdinal);
-  //   } else if (this.listRadio[1].checked === true) {
-  //     this.result = new Nominal(this.dataConverted);
-  //   } else if (this.listRadio[2].checked === true) {
-  //     this.result = new Discreta(this.dataConverted);
-  //   } else if (this.listRadio[3].checked === true) {
-  //     this.result = new Continue(this.dataConverted);
-  //   }
-  // }
+  convertArray() {
+    this.data = this.data.split(';');
+    this.dataConverted = this.data.map(num => parseInt(num, 10));
+  }
+
+  choiceTypeVariable() {
+    if (this.listRadio[0].checked === true) {
+      // this.result = new Ordinal(this.dataConverted, this.orderOrdinal);
+    } else if (this.listRadio[1].checked === true) {
+      // this.result = new Nominal(this.dataConverted);
+    } else if (this.listRadio[2].checked === true) {
+      // this.result = new Discreta(this.dataConverted);
+    } else if (this.listRadio[3].checked === true) {
+      this.result = Continue.create(this.dataConverted);
+    }
+  }
 }
 
 export default{
