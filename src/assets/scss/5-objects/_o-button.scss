@@ -7,17 +7,17 @@
   text-transform: uppercase;
   text-align: center;
 
-  &:hover {
-    box-shadow: 0 0 2px $color-black;
-    text-shadow: 0 0 2px $color-white;
-  }
-
   &--calculate {
     background: $gd-purple-shaft;
     color: $color-white;
     line-height: 1;
     border-radius: 10px;
     padding: 10px 20px;
+
+    &:hover {
+      box-shadow: 0 0 2px $color-black;
+      text-shadow: 0 0 1px $color-white;
+    }
   }
 
   &--arrow-down {
@@ -37,6 +37,13 @@
 
   &--file {
     display: inline-block;
+
+    &:hover {
+      .o-button_label {
+        box-shadow: 0 0 2px $color-black;
+        text-shadow: 0 0 1px $color-white;
+      }
+    }
 
     input {
       display: none;

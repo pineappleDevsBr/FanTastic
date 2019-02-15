@@ -18,6 +18,10 @@
     padding-top: 10px;
     border-bottom: 1px solid $color-gray-ease;
     font-size: 18px;
+
+    &:disabled {
+      border-radius: 10px;
+    }
   }
 }
 

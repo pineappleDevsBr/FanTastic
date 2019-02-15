@@ -41,9 +41,17 @@ class Continue {
           console.log(D + '/' + K[j] + '=' + Result);
           i += 1;
           break
-        }  
+        }
       }
       D++;
     }
   }
 }
+
+export default{
+  create() {
+    return new Continue();
+  },
+};
+
+export const Class = Continue;
