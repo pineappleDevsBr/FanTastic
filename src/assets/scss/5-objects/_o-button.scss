@@ -84,7 +84,8 @@
 }
 
 @include respond-to((max-width: 412px)) {
-  .o-button,
+  .o-button--calculate,
+  .o-button--file,
   .o-button--file > .o-button_label {
     margin-bottom: 10px;
     display: block;

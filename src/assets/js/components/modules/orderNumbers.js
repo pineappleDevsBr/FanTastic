@@ -1,14 +1,27 @@
 class Order {
-  constructor(vet, type){
+  constructor(vet, type, orderWords){
     this.vet = vet;
     this.type = type;
+    this.orderWords = orderWords;
     this.setup();
     return this.vet;
   }
   setup(){
+    this.chooseOrder()
+  }
 
-    if(this.type === "crescent") {this.orderCrescent()}
-    else if (this.type === "descreasing") {this.orderDescreasing()}
+  chooseOrder() {
+    if (this.orderWords === undefined) { //organizar dados quantitativos
+
+      if(this.type === "crescent") {this.orderCrescent()}
+      else if (this.type === "descreasing") {this.orderDescreasing()}
+
+    } else if (this.orderWords !== undefined) { //organizar dados qualitativos
+      this.organizerWords();
+    }
+  }
+
+  organizerWords() {
     
   }
 
