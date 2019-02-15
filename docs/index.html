@@ -60,15 +60,14 @@
   </ul>
 
   <div class="c-form__boxes" data-list-box>
-    <form class="c-form__box is-active" data-box>
+    <form class="c-form__box is-active" data-box data-descriptive>
 
-  <div class="o-label--radio-holder">
+  <div class="o-label--radio-holder" data-radios>
     <h3>Tipo de variavel</h3>
     <div class="o-label--radio">
-      <input type="radio" id="ordinal" name="type" class="o-label-radio" required="true">
+      <input type="radio" id="ordinal" name="type" class="o-label-radio" checked="checked">
       <label for="ordinal" class="o-label-title">Qualitativa Ordinal</label>
     </div>
-    
     <div class="o-label--radio">
       <input type="radio" id="nominal" name="type" class="o-label-radio">
       <label for="nominal" class="o-label-title">Qualitativa Nominal</label>
@@ -93,7 +92,7 @@
   <div class="o-label--radio-holder">
     <h3>Processo</h3>
     <div class="o-label--radio">
-      <input type="radio" id="amostra" name="processo" class="o-label-radio">
+      <input type="radio" id="amostra" name="processo" class="o-label-radio" checked="true">
       <label for="amostra" class="o-label-title">Amostra</label>
     </div>
     
@@ -105,22 +104,20 @@
 
   <div class="o-label--input">
     <label for="name" class="o-label-title">Nome da variavel</label>
-    <input type="text" id="name" class="o-label-input">
+    <input type="text" id="name" class="o-label-input" required="true">
   </div>
 
   <div class="o-label--input o-label--data">
     <label for="data" class="o-label-title">Dados</label>
-    <input type="text" id="data" class="o-label-input">
+    <input type="text" id="data" class="o-label-input" required="true" data-dados>
   </div>
 
   <div class="o-button o-button--file">
     <input type="file" id="file"></input>  
-    <label for="file">Escolha o arquivo</label>
+    <label class="o-button_label" for="file">Escolha o arquivo</label>
   </div>
 
-  <button type="submit" class="o-button o-button--calculate">
-    <span class="o-button__text">Calcular</span>
-  </button>
+  <button type="submit" class="o-button o-button--calculate" data-button-descriptive>Calcular</button>
 </form>
 
     <div class="c-form__box" data-box>

@@ -3,40 +3,21 @@
   background: none;
   outline: none;
   cursor: pointer;
-  padding: 10px 20px;
   position: relative;
+  text-transform: uppercase;
+  text-align: center;
+
+  &:hover {
+    box-shadow: 0 0 2px $color-black;
+    text-shadow: 0 0 2px $color-white;
+  }
 
   &--calculate {
     background: $gd-purple-shaft;
     color: $color-white;
     line-height: 1;
     border-radius: 10px;
-
-    .o-button__text {
-      text-transform: uppercase;
-      vertical-align: middle;
-
-      &::after {
-        content: "";
-        vertical-align: middle;
-        background: url(../static/arrow-single.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: inline-block;
-        width: 17px;
-        height: 17px;
-        margin-left: 5px;
-        transition: all 0.5s ease-out;
-      }
-    }
-
-    &:hover {
-      .o-button__text::after {
-        transform: rotate(90deg);
-        animation: animateButton-calculate 1.5s infinite;
-        animation-delay: 0.5s;
-      }
-    }
+    padding: 10px 20px;
   }
 
   &--arrow-down {
@@ -51,6 +32,25 @@
 
     &:hover {
       animation: animateButton 2s infinite;
+    }
+  }
+
+  &--file {
+    display: inline-block;
+
+    input {
+      display: none;
+    }
+
+    .o-button_label {
+      display: inline-block;
+      background: $gd-purple-shaft;
+      color: $color-white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      line-height: 1;
+      cursor: pointer;
+      box-sizing: border-box;
     }
   }
 }
@@ -83,8 +83,10 @@
   }
 }
 
-@include respond-to((max-width: 400px)) {
-  .o-button {
+@include respond-to((max-width: 412px)) {
+  .o-button,
+  .o-button--file > .o-button_label {
+    margin-bottom: 10px;
     display: block;
     width: 100%;
   }
