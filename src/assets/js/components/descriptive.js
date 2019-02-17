@@ -6,6 +6,7 @@ import Continue from './modules/descriptive/continue';
 class Descriptive {
   constructor() {
     this.button = document.querySelector('[data-button-descriptive]');
+    this.buttonFile = document.querySelector('[data-button-file]');
     this.elm = null;
     this.radioHolder = null;
     this.listRadio = null;
@@ -38,12 +39,28 @@ class Descriptive {
   }
 
   setupListener() {
+    this.buttonFile.addEventListener('change', () => { this.readFile(); });
     this.button.addEventListener('click', (evt) => {
       evt.preventDefault();
       this.recoverData();
       this.convertArray();
       this.choiceTypeVariable();
     });
+  }
+
+  readFile() {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      const file = this.buttonFile.files[0];
+      const inputFile = document.querySelector('[data-dados]');
+      const regExp = [/.txt/, /.csv/];
+      if (regExp[0].test(file.name) || regExp[1].test(file.name)) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          inputFile.value = reader.result;
+        };
+        reader.readAsText(file);
+      } else (alert('Escolha um arquivo no formato .txt ou .csv'));
+    } else { alert('Seu navegador nao suporta essa funcionalidade :('); }
   }
 
   recoverData() {
@@ -55,15 +72,15 @@ class Descriptive {
   }
 
   convertArray() {
-    this.data = this.data.split(';');
+    this.data = this.data.split(/,|;/);
     this.dataConverted = this.data.map(num => parseInt(num, 10));
   }
 
   choiceTypeVariable() {
     if (this.listRadio[0].checked === true) {
-      // this.result = new Ordinal(this.dataConverted, this.orderOrdinal);
+      // this.result = new Ordinal(this.dataConverted);
     } else if (this.listRadio[1].checked === true) {
-      // this.result = new Nominal(this.dataConverted);
+      // this.result = new Nominal(this.dataConverted, this.orderOrdinal);
     } else if (this.listRadio[2].checked === true) {
       // this.result = new Discreta(this.dataConverted);
     } else if (this.listRadio[3].checked === true) {

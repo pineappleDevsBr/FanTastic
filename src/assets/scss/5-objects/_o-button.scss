@@ -29,10 +29,8 @@
     height: 91px;
     display: inline-block;
     margin: 0 auto;
-
-    &:hover {
-      animation: animateButton 2s infinite;
-    }
+    animation: animateButton 2s infinite;
+    animation-delay: 5s;
   }
 
   &--file {
@@ -99,3 +97,4 @@
     width: 100%;
   }
 }
+
