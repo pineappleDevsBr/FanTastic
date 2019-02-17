@@ -13,6 +13,7 @@ class Continue {
     this.amplitude();
     this.classes();
     this.interval();
+    this.moda();
   }
 
   oraganizedArray() {
@@ -31,19 +32,36 @@ class Continue {
 
   interval() {
     let D = At+1;
-    let Result = null;
+    let intervalNumber = null;
     console.log(D);
     let i = 0;
     while( i == 0) {
       for(let j = 0; j < 3; j += 1){
         if (D % K[j] === 0){
-          Result = D / K[j];
-          console.log(D + '/' + K[j] + '=' + Result);
+          intervalNumber = D / K[j];
+          console.log(D + '/' + K[j] + '=' + intervalNumber);
           i += 1;
           break
         }
       }
       D++;
+    }
+  }
+
+  moda() {
+    let x = this.vet[0];
+
+    while(x <= this.vet[this.vet.length - 1] ) {
+      y = x + this.intervalNumber;
+
+      for (let i = 0; i < vet.length; i += 1) {
+        if (( vet[i] >= x) && (vet[i] < y)) {
+          //Aqui vai entrar a moda, o objeto
+        }
+      
+      }
+
+      x += intervalNumber;
     }
   }
 }
