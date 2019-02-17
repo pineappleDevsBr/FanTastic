@@ -1,4 +1,4 @@
-import Order from '../orderNumbers';
+import Order from '../common/orderNumbers';
 
 class Continue {
   constructor(vet) {
