@@ -1,4 +1,4 @@
-// import Ordinal from './components/modules/descriptive/ordinal';
+import Ordinal from './modules/descriptive/ordinal';
 // import Nominal from './components/modules/descriptive/nominal';
 // import Discreta from './components/modules/descriptive/discreta';
 import Continue from './modules/descriptive/continue';
@@ -11,6 +11,7 @@ class Descriptive {
     this.radioHolder = null;
     this.listRadio = null;
     this.data = null;
+    this.dataName = null;
     this.orderOrdinal = null;
     this.result = null;
     this.dataConverted = [];
@@ -29,7 +30,7 @@ class Descriptive {
 
     for (let i = 0; i < labels.length; i += 1) {
       labels[i].addEventListener('click', () => {
-        if (labels[i].getAttribute('id') === 'nominal') {
+        if (labels[i].getAttribute('id') === 'ordinal') {
           orderOrdinal.removeAttribute('disabled');
         } else {
           orderOrdinal.setAttribute('disabled', true);
@@ -52,7 +53,7 @@ class Descriptive {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
       const file = this.buttonFile.files[0];
       const inputFile = document.querySelector('[data-dados]');
-      const regExp = [/.txt/, /.csv/];
+      const regExp = [/^.txt/, /^.csv/];
       if (regExp[0].test(file.name) || regExp[1].test(file.name)) {
         const reader = new FileReader();
         reader.onload = () => {
@@ -68,17 +69,18 @@ class Descriptive {
     this.radioHolder = this.elm.querySelector('[data-radios]');
     this.listRadio = this.radioHolder.querySelectorAll('input');
     this.data = this.elm.querySelector('[data-dados]').value;
+    this.dataName = this.elm.querySelector('[data-name]').value;
     this.orderOrdinal = this.elm.querySelector('[data-order]').value;
   }
 
   convertArray() {
     this.data = this.data.split(/,|;/);
-    this.dataConverted = this.data.map(num => parseInt(num, 10));
+    this.dataConverted = this.data.map(num => parseFloat(num, 10));
   }
 
   choiceTypeVariable() {
     if (this.listRadio[0].checked === true) {
-      // this.result = new Ordinal(this.dataConverted);
+      this.result = Ordinal.create(this.data, this.dataName);
     } else if (this.listRadio[1].checked === true) {
       // this.result = new Nominal(this.dataConverted, this.orderOrdinal);
     } else if (this.listRadio[2].checked === true) {

@@ -65,12 +65,12 @@
   <div class="o-label--radio-holder" data-radios>
     <h3>Tipo de variavel</h3>
     <div class="o-label--radio">
-      <input type="radio" id="ordinal" name="type" class="o-label-radio" checked="checked">
-      <label for="ordinal" class="o-label-title">Qualitativa Ordinal</label>
+      <input type="radio" id="nominal" name="type" class="o-label-radio" checked="checked">
+      <label for="nominal" class="o-label-title">Qualitativa Nominal</label>
     </div>
     <div class="o-label--radio">
-      <input type="radio" id="nominal" name="type" class="o-label-radio">
-      <label for="nominal" class="o-label-title">Qualitativa Nominal</label>
+      <input type="radio" id="ordinal" name="type" class="o-label-radio">
+      <label for="ordinal" class="o-label-title">Qualitativa Ordinal</label>
     </div>
 
     <div class="o-label--radio">
@@ -104,7 +104,7 @@
 
   <div class="o-label--input">
     <label for="name" class="o-label-title">Nome da variavel</label>
-    <input type="text" id="name" class="o-label-input" required="true">
+    <input type="text" id="name" class="o-label-input" required="true" data-name>
   </div>
 
   <div class="o-label--input o-label--data">
@@ -147,7 +147,7 @@
 
   </div>
   <div class="s-form s-result">
-    <div class="c-form-wrapp"></div>
+    <div class="c-form-wrapp test-dot" id="testDot"></div>
   </div>
   <!-- <footer class="footer">
 	&copy; PinneapleDevs | 2018
