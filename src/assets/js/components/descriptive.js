@@ -1,4 +1,4 @@
-import Ordinal from './modules/descriptive/ordinal';
+import Nominal from './modules/descriptive/nominal';
 // import Nominal from './components/modules/descriptive/nominal';
 // import Discreta from './components/modules/descriptive/discreta';
 import Continue from './modules/descriptive/continue';
@@ -80,9 +80,9 @@ class Descriptive {
 
   choiceTypeVariable() {
     if (this.listRadio[0].checked === true) {
-      this.result = Ordinal.create(this.data, this.dataName);
+      this.result = Nominal.create(this.data, this.dataName);
     } else if (this.listRadio[1].checked === true) {
-      // this.result = new Nominal(this.dataConverted, this.orderOrdinal);
+      // this.result = new Ordinal(this.dataConverted, this.orderOrdinal);
     } else if (this.listRadio[2].checked === true) {
       // this.result = new Discreta(this.dataConverted);
     } else if (this.listRadio[3].checked === true) {
