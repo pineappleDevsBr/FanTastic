@@ -1,3 +1,4 @@
+import Jump from 'jump.js';
 import Nominal from './modules/descriptive/nominal';
 // import Nominal from './components/modules/descriptive/nominal';
 // import Discreta from './components/modules/descriptive/discreta';
@@ -7,6 +8,7 @@ class Descriptive {
   constructor() {
     this.button = document.querySelector('[data-button-descriptive]');
     this.buttonFile = document.querySelector('[data-button-file]');
+    this.holderResult = document.querySelector('[data-result-holder]');
     this.elm = null;
     this.radioHolder = null;
     this.listRadio = null;
@@ -46,6 +48,7 @@ class Descriptive {
       this.recoverData();
       this.convertArray();
       this.choiceTypeVariable();
+      this.appendResult();
     });
   }
 
@@ -80,13 +83,27 @@ class Descriptive {
 
   choiceTypeVariable() {
     if (this.listRadio[0].checked === true) {
-      this.result = Nominal.create(this.data, this.dataName);
+      this.result = Nominal.create(this.data, this.dataName).nominalResult;
     } else if (this.listRadio[1].checked === true) {
       // this.result = new Ordinal(this.dataConverted, this.orderOrdinal);
     } else if (this.listRadio[2].checked === true) {
       // this.result = new Discreta(this.dataConverted);
     } else if (this.listRadio[3].checked === true) {
       this.result = Continue.create(this.dataConverted);
+    }
+  }
+
+  appendResult() {
+    if (this.result !== undefined) {
+      if (this.holderResult.className.indexOf('is-active') === -1) {
+        this.holderResult.classList.add('is-active');
+      }
+
+      this.holderResult.firstElementChild.innerHTML = '';
+      this.holderResult.firstElementChild.innerHTML = this.result;
+      setTimeout(() => {
+        Jump('.s-section--result');
+      }, 300);
     }
   }
 }

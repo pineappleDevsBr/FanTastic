@@ -4,6 +4,6 @@ import Descriptive from './components/descriptive';
 
 SwitchTab.create('[data-form]');
 SwitchTab.create('[data-dropdown]');
-JumpButton.create('[data-button-home]', '.s-form');
+JumpButton.create('[data-button-home]', '.s-section--form');
 
 Descriptive.create();

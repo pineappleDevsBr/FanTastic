@@ -1,0 +1,19 @@
+.s-section {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 0 15px;
+
+  &--form {
+    background: $gd-purple-shaft;
+  }
+
+  &--result {
+    background: $gd-green-shaft;
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+}

@@ -1,6 +1,5 @@
 import doT from 'dot';
 import Moda from '../common/moda';
-import JumpButton from '../../jumpButton';
 // import nominalMarkup from './nominal-markup.html';
 
 class Nominal {
@@ -8,8 +7,9 @@ class Nominal {
     this.data = vet;
     this.name = name;
     this.nominalTemplate = doT.template('<h1>{{=it.name}}<table border="1">{{~it.array :value:index}}<tr><td>{{=value.number}}</td><td>{{=value.cont}}</td></tr>{{~}}</table></h1>');
-    this.nominalResult = null;
+    this.nominalResult = '';
     this.setup();
+    return this.nominalResult;
   }
 
   setup() {
@@ -23,9 +23,6 @@ class Nominal {
 
   createResult() {
     this.nominalResult = this.nominalTemplate({ name: this.name, array: this.data });
-    const poa = document.getElementById('testDot');
-    poa.innerHTML = this.nominalResult;
-    JumpButton.create('[data-button-descriptive]', '.test-dot');
   }
 }
 
