@@ -19,7 +19,7 @@ class Continue {
   }
 
   oraganizedArray() {
-    this.vet = Order.create(this.vet, 'crescent');
+    this.vet = Order.create(this.vet, 'crescent').getResult();
     console.log(this.vet);
   }
 

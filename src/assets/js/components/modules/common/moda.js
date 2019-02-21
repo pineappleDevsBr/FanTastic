@@ -3,7 +3,6 @@ class Moda {
     this.data = vet;
     this.dataObj = [];
     this.setup();
-    return this.dataObj;
   }
 
   setup() {
@@ -21,6 +20,10 @@ class Moda {
       }
       if (haveNumber === 0) { this.dataObj.push(obj); }
     }
+  }
+
+  getResult() {
+    return this.dataObj;
   }
 }
 

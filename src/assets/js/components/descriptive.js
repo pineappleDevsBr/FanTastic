@@ -83,7 +83,7 @@ class Descriptive {
 
   choiceTypeVariable() {
     if (this.listRadio[0].checked === true) {
-      this.result = Nominal.create(this.data, this.dataName).nominalResult;
+      this.result = Nominal.create(this.data, this.dataName).getResult();
     } else if (this.listRadio[1].checked === true) {
       // this.result = new Ordinal(this.dataConverted, this.orderOrdinal);
     } else if (this.listRadio[2].checked === true) {
@@ -103,7 +103,7 @@ class Descriptive {
       this.holderResult.firstElementChild.innerHTML = this.result;
       setTimeout(() => {
         Jump('.s-section--result');
-      }, 300);
+      }, 500);
     }
   }
 }

@@ -4,7 +4,6 @@ class Order {
     this.type = type;
     this.orderWords = orderWords;
     this.setup();
-    return this.vet;
   }
 
   setup() {
@@ -46,6 +45,10 @@ class Order {
         }
       }
     }
+  }
+
+  getResult() {
+    return this.vet;
   }
 }
 
