@@ -99,8 +99,8 @@ class Descriptive {
         this.holderResult.classList.add('is-active');
       }
 
-      this.holderResult.firstElementChild.innerHTML = '';
-      this.holderResult.firstElementChild.innerHTML = this.result;
+      this.holderResult.firstElementChild.firstElementChild.innerHTML = '';
+      this.holderResult.firstElementChild.firstElementChild.innerHTML = this.result;
       setTimeout(() => {
         Jump('.s-section--result');
       }, 500);

@@ -1,6 +1,6 @@
 import doT from 'dot';
+import Chart from 'chart.js';
 import Moda from '../common/moda';
-// import nominalMarkup from './nominal-markup.html';
 
 class Nominal {
   constructor(vet, name) {
@@ -11,6 +11,7 @@ class Nominal {
     this.accumulatedFrequncy = [];
     this.accumulatedFrequncyPercentage = [];
     this.dynamicTable = [];
+    this.canvas = document.querySelector('[data-canvas]');
     this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table>');
     this.nominalResult = '';
     this.setup();
@@ -19,7 +20,8 @@ class Nominal {
   setup() {
     this.organizerData();
     this.generateFrequency();
-    this.createResult();
+    this.createTable();
+    this.createChart();
   }
 
   organizerData() {
@@ -30,14 +32,14 @@ class Nominal {
     let cont = 0;
 
     for (let i = 0; i < this.dataModa.length; i += 1) {
-      this.simpleFrequencyPercentage[i] = ((this.dataModa[i].cont / this.data.length) * 100);
+      this.simpleFrequencyPercentage[i] = ((this.dataModa[i].cont / this.data.length) * 100).toFixed(2); // eslint-disable-line
       this.accumulatedFrequncy[i] = this.dataModa[i].cont + cont;
-      this.accumulatedFrequncyPercentage[i] = (this.accumulatedFrequncy[i] / this.data.length) * 100; // eslint-disable-line
+      this.accumulatedFrequncyPercentage[i] = ((this.accumulatedFrequncy[i] / this.data.length) * 100).toFixed(2); // eslint-disable-line
       cont = this.dataModa[i].cont + cont;
     }
   }
 
-  createResult() {
+  createTable() {
     for (let i = 0; i < this.dataModa.length; i += 1) {
       const obj = {
         number: this.dataModa[i].number,
@@ -51,6 +53,23 @@ class Nominal {
     }
 
     this.nominalResult = this.nominalTemplate({ name: this.name, dynamicTable: this.dynamicTable });
+  }
+
+  createChart() {
+    const labelsName = [];
+
+    this.dataModa.forEach((obj, index) => { labelsName[index] = obj.number; });
+
+    this.canvas.innerHTML = '';
+    const nominalChart = new Chart(this.canvas, { // eslint-disable-line
+      type: 'pie',
+      data: {
+        labels: labelsName,
+        datasets: [{
+          data: this.simpleFrequencyPercentage,
+        }],
+      },
+    });
   }
 
   getResult() {
