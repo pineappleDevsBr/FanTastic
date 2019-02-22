@@ -1,6 +1,6 @@
 FanTastic - Uma fantástica ferramenta de estatistica<br />
 -------------------------------------------------------------------------------------------
-Um projeto em desenvolvimento, por um grupo de alunos da Faculdade de Tecnologia de Franca, grupo intitulado como [pineappleDevs](https://leandrocesarr.github.io/pineappleDevs_institucional/) &copy;
+Um projeto em desenvolvimento, por um grupo de alunos da Faculdade de Tecnologia de Franca, grupo intitulado como [pineappleDevs](https://pineappledevsbr.github.io/pineappleDevs_institucional/) &copy;
 
 #### Stack desenvolvida por Matheus Porto: [https://github.com/matheusportoo](https://github.com/matheusportoo)
 
