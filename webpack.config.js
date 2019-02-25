@@ -9,11 +9,15 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 let config = {
   context: path.resolve(__dirname, './src'),
-  entry: ['./assets/js/main.js', './assets/scss/main.scss'],
+  entry: {
+    //'js/pwabuilder-sw.js': ['./assets/js/pwabuilder.js'],
+    'js/main.js': ['./assets/js/main.js'],
+    'css/main.css': ['./assets/scss/main.scss']
+  },
   devtool: isDev ? 'eval-cheap-module-source-map' : 'none',
   output: {
     path: path.resolve(__dirname, 'docs/assets'),
-    filename: 'js/main.js',
+    filename: './[name]',
     publicPath: 'assets/'
   },
   module: {

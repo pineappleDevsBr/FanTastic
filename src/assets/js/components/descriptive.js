@@ -89,7 +89,7 @@ class Descriptive {
     } else if (this.listRadio[2].checked === true) {
       // this.result = new Discreta(this.dataConverted);
     } else if (this.listRadio[3].checked === true) {
-      this.result = Continue.create(this.dataConverted);
+      this.result = Continue.create(this.dataConverted, this.dataName).getResult();
     }
   }
 
