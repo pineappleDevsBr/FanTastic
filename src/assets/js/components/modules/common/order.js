@@ -18,9 +18,9 @@ class Order {
     }
   }
 
-  //  organizerWords() {
-  //  console.log(this.type);
-  //  }
+  organizerWords() {
+    console.log(this.vet);
+  }
 
   orderCrescent() {
     for (let i = 0; i < this.vet.length; i += 1) {

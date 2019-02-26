@@ -11,7 +11,7 @@ class Nominal {
     this.accumulatedFrequncy = [];
     this.accumulatedFrequncyPercentage = [];
     this.dynamicTable = [];
-    this.canvas = document.querySelector('[data-canvas]');
+    this.canvasHolder = document.querySelector('[data-canvas]');
     this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table>');
     this.nominalResult = '';
     this.setup();
@@ -57,11 +57,12 @@ class Nominal {
 
   createChart() {
     const labelsName = [];
+    const canvas = document.createElement('canvas');
+    this.canvasHolder.innerHTML = '';
 
     this.dataModa.forEach((obj, index) => { labelsName[index] = obj.number; });
 
-    this.canvas.innerHTML = '';
-    const nominalChart = new Chart(this.canvas, { // eslint-disable-line
+    const nominalChart = new Chart(canvas, { // eslint-disable-line
       type: 'pie',
       data: {
         labels: labelsName,
@@ -70,6 +71,8 @@ class Nominal {
         }],
       },
     });
+
+    this.canvasHolder.appendChild(canvas);
   }
 
   getResult() {

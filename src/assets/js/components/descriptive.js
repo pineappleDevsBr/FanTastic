@@ -1,6 +1,6 @@
 import Jump from 'jump.js';
 import Nominal from './modules/descriptive/nominal';
-// import Nominal from './components/modules/descriptive/nominal';
+import Ordinal from './modules/descriptive/ordinal';
 // import Discreta from './components/modules/descriptive/discreta';
 import Continue from './modules/descriptive/continue';
 
@@ -36,6 +36,7 @@ class Descriptive {
           orderOrdinal.removeAttribute('disabled');
         } else {
           orderOrdinal.setAttribute('disabled', true);
+          orderOrdinal.value = '';
         }
       });
     }
@@ -46,9 +47,7 @@ class Descriptive {
     this.button.addEventListener('click', (evt) => {
       evt.preventDefault();
       this.recoverData();
-      this.convertArray();
-      this.choiceTypeVariable();
-      this.appendResult();
+      this.validateData();
     });
   }
 
@@ -56,7 +55,7 @@ class Descriptive {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
       const file = this.buttonFile.files[0];
       const inputFile = document.querySelector('[data-dados]');
-      const regExp = [/^.txt/, /^.csv/];
+      const regExp = [/.txt$/, /.csv$/];
       if (regExp[0].test(file.name) || regExp[1].test(file.name)) {
         const reader = new FileReader();
         reader.onload = () => {
@@ -77,15 +76,34 @@ class Descriptive {
   }
 
   convertArray() {
-    this.data = this.data.split(/,|;/);
+    this.data = this.data.split(/;/);
+    this.orderOrdinal = this.orderOrdinal.split(/;/);
     this.dataConverted = this.data.map(num => parseFloat(num, 10));
+  }
+
+  validateData() {
+    if (this.listRadio[1].checked === true) {
+      if (this.data === '' || this.dataName === '' || this.orderOrdinal === '' ) { // eslint-disable-line
+        alert('preencha todos os campos');
+      } else {
+        this.convertArray();
+        this.choiceTypeVariable();
+        this.appendResult();
+      }
+    } else if (this.data === '' || this.dataName === '') {
+      alert('preencha todos os campos');
+    } else {
+      this.convertArray();
+      this.choiceTypeVariable();
+      this.appendResult();
+    }
   }
 
   choiceTypeVariable() {
     if (this.listRadio[0].checked === true) {
       this.result = Nominal.create(this.data, this.dataName).getResult();
     } else if (this.listRadio[1].checked === true) {
-      // this.result = new Ordinal(this.dataConverted, this.orderOrdinal);
+      this.result = Ordinal.create(this.data, this.dataName, this.orderOrdinal).getResult();
     } else if (this.listRadio[2].checked === true) {
       // this.result = new Discreta(this.dataConverted);
     } else if (this.listRadio[3].checked === true) {

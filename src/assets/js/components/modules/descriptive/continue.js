@@ -1,6 +1,6 @@
 /* eslint-disable */
 import doT from 'dot';
-import Order from '../common/orderNumbers';
+import Order from '../common/order';
 import Moda from '../common/moda';
 
 class Continue {
