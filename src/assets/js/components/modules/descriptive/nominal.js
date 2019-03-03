@@ -1,5 +1,7 @@
-import doT from 'dot';
-import Chart from 'chart.js';
+/* eslint-disable import/no-unresolved */
+
+import doT from 'dot'; //eslint-disable-line
+import Chart from 'chart.js'; //eslint-disable-line
 import Moda from '../common/moda';
 
 class Nominal {

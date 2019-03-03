@@ -1,5 +1,4 @@
-/* eslint-disable */
-import doT from 'dot';
+import doT from 'dot'; // eslint-disable-line
 import Order from '../common/order';
 import Moda from '../common/moda';
 
@@ -27,9 +26,11 @@ class Continue {
     this.amplitude();
     this.classes();
     this.valueInterval();
-    this.moda();
+    this.createModa();
     this.interval();
     this.generateFrequency();
+    this.media();
+    this.moda();
     this.createTable();
   }
 
@@ -60,14 +61,13 @@ class Continue {
     }
   }
 
-  moda() {
+  createModa() {
     let x = this.vet[0];
     let y = null;
     while (x <= this.vet[this.vet.length - 1]) {
       y = x + this.intervalNumber;
       for (let i = 0; i < this.vet.length; i += 1) {
         if ((this.vet[i] >= x) && (this.vet[i] < y)) {
-          // Aqui vai entrar a moda, o objeto
           this.dataModa = Moda.create(this.vet).getResult();
         }
       }
@@ -75,42 +75,30 @@ class Continue {
     }
   }
 
-//15;15;16;17;17;18;18;18;19;19;19;19;20;21;21;23;23;24;24;24;25;29;34
-
-  interval(){
-    console.log(this.dataModa);
-    let valorInicial= this.dataModa[0].number;
+  interval() {
+    let valorInicial = this.dataModa[0].number;
     let cont = this.dataModa[0].cont;
-    let valorFinal= valorInicial + this.intervalNumber;
+    let valorFinal = valorInicial + this.intervalNumber;
 
-    for(let i = 1; i < this.dataModa.length; i += 1) {
-      if (this.dataModa[i].number >= valorFinal){
-        const obj = new Object;
+    for (let i = 1; i < this.dataModa.length; i += 1) {
+      if (this.dataModa[i].number >= valorFinal) {
+        const obj = new Object(); // eslint-disable-line
         obj.valorInicial = valorInicial;
         obj.valorFinal = valorFinal;
         obj.cont = cont;
         this.vetInterval.push(obj);
-
-        
         valorInicial = valorFinal;
-        console.log('valorInicial: ' + valorInicial);
-        valorFinal= valorInicial + this.intervalNumber;
-        console.log('valorFinal: '+valorFinal);
+        valorFinal = valorInicial + this.intervalNumber;
         cont = this.dataModa[i].cont;
-        console.log('i: ' + i);
-      }
-
-      else if (this.dataModa[i].number < valorFinal) {
+      } else if (this.dataModa[i].number < valorFinal) {
         cont += this.dataModa[i].cont;
       }
     }
-    const obj = new Object;
+    const obj = new Object(); // eslint-disable-line
     obj.valorInicial = valorInicial;
     obj.valorFinal = valorFinal;
     obj.cont = cont;
     this.vetInterval.push(obj);
-
-    console.log(this.vetInterval);
   }
 
   generateFrequency() {
@@ -122,6 +110,30 @@ class Continue {
       this.accumulatedFrequncyPercentage[i] = ((this.accumulatedFrequncy[i] / this.vet.length) * 100).toFixed(2); // eslint-disable-line
       cont = this.vetInterval[i].cont + cont;
     }
+  }
+
+  media() {
+    let mediaparcial = null;
+    for (let i = 0; i < this.vetInterval.length; i += 1) {
+      mediaparcial += ((this.vetInterval[i].valorFinal + this.vetInterval[i].valorInicial) / 2) * this.vetInterval[i].cont; // eslint-disable-line
+      console.log(mediaparcial); // eslint-disable-line
+    }
+
+    const media = mediaparcial / this.vet.length;
+    console.log(media); // eslint-disable-line
+  }
+
+  moda() {
+    let maior = null;
+    let posicao = null;
+    for (let i = 0; i < this.vetInterval.length; i += 1) {
+      if (this.vetInterval[i].cont > maior) {
+        maior = this.vetInterval[i].cont;
+        posicao = i;
+      }
+    }
+    const moda = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
+    console.log( 'Moda: ' + moda); // eslint-disable-line
   }
 
   createTable() {
