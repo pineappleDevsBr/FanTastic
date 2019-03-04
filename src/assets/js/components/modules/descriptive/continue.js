@@ -31,6 +31,7 @@ class Continue {
     this.generateFrequency();
     this.media();
     this.moda();
+    this.mediana();
     this.createTable();
   }
 
@@ -116,11 +117,10 @@ class Continue {
     let mediaparcial = null;
     for (let i = 0; i < this.vetInterval.length; i += 1) {
       mediaparcial += ((this.vetInterval[i].valorFinal + this.vetInterval[i].valorInicial) / 2) * this.vetInterval[i].cont; // eslint-disable-line
-      console.log(mediaparcial); // eslint-disable-line
     }
 
     const media = mediaparcial / this.vet.length;
-    console.log(media); // eslint-disable-line
+    console.log (media); //eslint-disable-line
   }
 
   moda() {
@@ -133,7 +133,31 @@ class Continue {
       }
     }
     const moda = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
-    console.log( 'Moda: ' + moda); // eslint-disable-line
+  }
+
+  mediana() {
+    const posicao = this.vet.length / 2;
+    let I = null;
+    let find = null;
+    let facAnt = null;
+    for (let i = 0; i < this.vet.length; i += 1) {
+      if (posicao == i) { // eslint-disable-line
+        const aux = this.vet[i];
+        for (let j = 0; j < this.vetInterval.length; j += 1) {
+          if ((aux >= this.vetInterval[j].valorInicial) && (aux < this.vetInterval[j].valorFinal)) {
+            I = this.vetInterval[j].valorInicial;
+            find = this.vetInterval[j].cont;
+            if (j - 1 < 0) {
+              facAnt = 0;
+            } else {
+              facAnt = this.vetInterval[j - 1].cont;
+            }
+          }
+        }
+      }
+    }
+    const mediana = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(3); //eslint-disable-line
+    console.log(mediana); //eslint-disable-line
   }
 
   createTable() {
