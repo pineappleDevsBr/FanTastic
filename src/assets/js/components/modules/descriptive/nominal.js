@@ -14,7 +14,9 @@ class Nominal {
     this.accumulatedFrequncyPercentage = [];
     this.dynamicTable = [];
     this.canvasHolder = document.querySelector('[data-canvas]');
-    this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table>');
+    this.moda = null;
+    this.mediana = null;
+    this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Media :{{=it.media}}</p>');
     this.nominalResult = '';
     this.setup();
   }
@@ -22,12 +24,24 @@ class Nominal {
   setup() {
     this.organizerData();
     this.generateFrequency();
+    this.createModaMediana();
     this.createTable();
     this.createChart();
   }
 
   organizerData() {
     this.dataModa = Moda.create(this.data).getResult();
+  }
+
+  createModaMediana() {
+    // Mediana
+    if (this.data.length % 2 === 0) {
+      this.media = [this.data[((this.data.length / 2) - 1)], this.data[(this.data.length / 2)]];
+    } else {
+      this.media = this.data[parseInt((this.data.length / 2), 10)];
+    }
+
+    // Moda
   }
 
   generateFrequency() {
@@ -44,6 +58,7 @@ class Nominal {
   createTable() {
     for (let i = 0; i < this.dataModa.length; i += 1) {
       const obj = {
+        index: i + 1,
         number: this.dataModa[i].number,
         cont: this.dataModa[i].cont,
         fr: this.simpleFrequencyPercentage[i],
@@ -54,7 +69,7 @@ class Nominal {
       this.dynamicTable.push(obj);
     }
 
-    this.nominalResult = this.nominalTemplate({ name: this.name, dynamicTable: this.dynamicTable });
+    this.nominalResult = this.nominalTemplate({ name: this.name, media: this.media, dynamicTable: this.dynamicTable }); // eslint-disable-line
   }
 
   createChart() {

@@ -3,6 +3,7 @@ class Order {
     this.vet = vet;
     this.type = type;
     this.orderWords = orderWords;
+    this.vetLetter = [];
     this.setup();
   }
 
@@ -19,7 +20,14 @@ class Order {
   }
 
   organizerWords() {
-    console.log(this.vet);
+    for (let i = 0; i < this.orderWords.length; i += 1) {
+      for (let j = 0; j < this.vet.length; j += 1) {
+        if (this.orderWords[i] === this.vet[j]) {
+          this.vetLetter.push(this.vet[j]);
+        }
+      }
+    }
+    this.vet = this.vetLetter;
   }
 
   orderCrescent() {
