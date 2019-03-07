@@ -76,6 +76,16 @@ class Descriptive {
   }
 
   convertArray() {
+    const regExpArray = /;$/;
+
+    if (regExpArray.test(this.data)) {
+      this.data = this.data.replace(/;$/, '');
+    }
+
+    if (regExpArray.test(this.orderOrdinal)) {
+      this.orderOrdinal = this.orderOrdinal.replace(/;$/, '');
+    }
+
     this.data = this.data.split(/;/);
     this.orderOrdinal = this.orderOrdinal.split(/;/);
     this.dataConverted = this.data.map(num => parseFloat(num, 10));
