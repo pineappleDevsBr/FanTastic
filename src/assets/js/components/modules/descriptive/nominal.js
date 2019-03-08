@@ -1,8 +1,7 @@
-/* eslint-disable import/no-unresolved */
-
-import doT from 'dot'; //eslint-disable-line
-import Chart from 'chart.js'; //eslint-disable-line
+import doT from 'dot';
+import Chart from 'chart.js';
 import Moda from '../common/moda';
+import Median from '../common/median';
 
 class Nominal {
   constructor(vet, name) {
@@ -16,7 +15,7 @@ class Nominal {
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.moda = null;
     this.mediana = null;
-    this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Media :{{=it.media}}</p>');
+    this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p>');
     this.nominalResult = '';
     this.setup();
   }
@@ -35,13 +34,10 @@ class Nominal {
 
   createModaMediana() {
     // Mediana
-    if (this.data.length % 2 === 0) {
-      this.media = [this.data[((this.data.length / 2) - 1)], this.data[(this.data.length / 2)]];
-    } else {
-      this.media = this.data[parseInt((this.data.length / 2), 10)];
-    }
+    this.mediana = Median.create(this.data).getResult();
 
     // Moda
+    this.moda = Moda.create(this.data).getModa();
   }
 
   generateFrequency() {
@@ -69,7 +65,7 @@ class Nominal {
       this.dynamicTable.push(obj);
     }
 
-    this.nominalResult = this.nominalTemplate({ name: this.name, media: this.media, dynamicTable: this.dynamicTable }); // eslint-disable-line
+    this.nominalResult = this.nominalTemplate({ name: this.name, mediana: this.mediana, moda: this.moda, dynamicTable: this.dynamicTable }); // eslint-disable-line
   }
 
   createChart() {

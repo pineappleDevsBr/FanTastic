@@ -2,6 +2,7 @@ import doT from 'dot';
 import Chart from 'chart.js';
 import Order from '../common/order';
 import Moda from '../common/moda';
+import Median from '../common/median';
 
 class Ordinal {
   constructor(vet, name, order) {
@@ -16,7 +17,7 @@ class Ordinal {
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.moda = null;
     this.mediana = null;
-    this.ordinalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Media :{{=it.media}}</p>');
+    this.ordinalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p>');
     this.ordinalResult = null;
     this.setup();
   }
@@ -46,11 +47,11 @@ class Ordinal {
   }
 
   createModaMediana() {
-    if (this.data.length % 2 === 0) {
-      this.media = [this.data[((this.data.length / 2) - 1)], this.data[(this.data.length / 2)]];
-    } else {
-      this.media = this.data[parseInt((this.data.length / 2), 10)];
-    }
+    // Mediana
+    this.mediana = Median.create(this.data).getResult();
+
+    // Moda
+    this.moda = Moda.create(this.data).getModa();
   }
 
   createTable() {
@@ -67,7 +68,7 @@ class Ordinal {
       this.dynamicTable.push(obj);
     }
 
-    this.ordinalResult = this.ordinalTemplate({ name: this.name, media: this.media, dynamicTable: this.dynamicTable }); // eslint-disable-line
+    this.ordinalResult = this.ordinalTemplate({ name: this.name, mediana: this.mediana, moda: this.moda, dynamicTable: this.dynamicTable }); // eslint-disable-line
   }
 
   createChart() {

@@ -1,13 +1,13 @@
 .o-octocat {
   font-size: 0;
   position: absolute;
-  background: url(../static/octocat.svg);
+  background: url(../static/octocat-light.png);
   background-size: contain;
   background-repeat: no-repeat;
   width: 80px;
   height: 80px;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 10px;
 }
 
 @include respond-to(mobile) {
