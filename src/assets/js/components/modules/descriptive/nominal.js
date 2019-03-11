@@ -34,7 +34,7 @@ class Nominal {
 
   createModaMediana() {
     // Mediana
-    this.mediana = Median.create(this.data).getResult();
+    this.mediana = Median.create(this.data, 'word').getResult();
 
     // Moda
     this.moda = Moda.create(this.data).getModa();

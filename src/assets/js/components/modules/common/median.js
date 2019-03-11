@@ -1,13 +1,18 @@
 class Median {
-  constructor(vet) {
+  constructor(vet, type) {
     this.data = vet;
+    this.type = type;
     this.result = null;
     this.setup();
   }
 
   setup() {
     if (this.data.length % 2 === 0) {
-      this.result = [this.data[((this.data.length / 2) - 1)], this.data[(this.data.length / 2)]];
+      if (this.type === 'word') {
+        this.result = [this.data[((this.data.length / 2) - 1)], this.data[(this.data.length / 2)]];
+      } else if (this.type === 'number') {
+        this.result = (this.data[((this.data.length / 2) - 1)] + this.data[(this.data.length / 2)]) / 2; // eslint-disable-line
+      }
     } else {
       this.result = this.data[parseInt((this.data.length / 2), 10)];
     }
@@ -19,8 +24,8 @@ class Median {
 }
 
 export default{
-  create(vet) {
-    return new Median(vet);
+  create(vet, type) {
+    return new Median(vet, type);
   },
 };
 
