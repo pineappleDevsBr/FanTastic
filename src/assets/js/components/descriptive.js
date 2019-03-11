@@ -1,7 +1,7 @@
 import Jump from 'jump.js';
 import Nominal from './modules/descriptive/nominal';
 import Ordinal from './modules/descriptive/ordinal';
-// import Discreta from './components/modules/descriptive/discreta';
+import Discreet from './modules/descriptive/discreet';
 import Continue from './modules/descriptive/continue';
 
 class Descriptive {
@@ -115,7 +115,7 @@ class Descriptive {
     } else if (this.listRadio[1].checked === true) {
       this.result = Ordinal.create(this.data, this.dataName, this.orderOrdinal).getResult();
     } else if (this.listRadio[2].checked === true) {
-      // this.result = new Discreta(this.dataConverted);
+      this.result = Discreet.create(this.dataConverted, this.dataName).getResult();
     } else if (this.listRadio[3].checked === true) {
       this.result = Continue.create(this.dataConverted, this.dataName).getResult();
     }

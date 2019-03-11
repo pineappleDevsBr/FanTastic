@@ -11,7 +11,7 @@ class Median {
       if (this.type === 'word') {
         this.result = [this.data[((this.data.length / 2) - 1)], this.data[(this.data.length / 2)]];
       } else if (this.type === 'number') {
-        this.result = (this.data[((this.data.length / 2) - 1)] + this.data[(this.data.length / 2)]) / 2; // eslint-disable-line
+        this.result = parseFloat((this.data[((this.data.length / 2) - 1)] + this.data[(this.data.length / 2)]) / 2); // eslint-disable-line
       }
     } else {
       this.result = this.data[parseInt((this.data.length / 2), 10)];

@@ -1,15 +1,14 @@
 import doT from 'dot';
 import Chart from 'chart.js';
-import Order from '../common/order';
 import Moda from '../common/moda';
 import Median from '../common/median';
+import Order from '../common/order';
 
-class Ordinal {
-  constructor(vet, name, order) {
+class Discreet {
+  constructor(vet, name) {
     this.data = vet;
-    this.name = name;
-    this.order = order;
     this.dataModa = [];
+    this.name = name;
     this.simpleFrequencyPercentage = [];
     this.accumulatedFrequncy = [];
     this.accumulatedFrequncyPercentage = [];
@@ -17,8 +16,9 @@ class Ordinal {
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.moda = null;
     this.mediana = null;
-    this.ordinalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p>');
-    this.ordinalResult = null;
+    this.media = null;
+    this.discreetTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p> <p>Media: {{=it.media}}</p>');
+    this.discreetResult = '';
     this.setup();
   }
 
@@ -31,8 +31,25 @@ class Ordinal {
   }
 
   organizerData() {
-    this.data = Order.create(this.data, 'crescent', this.order).getResult();
+    this.data = Order.create(this.data, 'crescent').getResult();
     this.dataModa = Moda.create(this.data).getResult();
+  }
+
+  createModaMediana() {
+    // Mediana
+    this.mediana = Median.create(this.data, 'number').getResult();
+
+    // Moda
+    this.moda = Moda.create(this.data).getModa();
+
+    // Media
+    let media = 0;
+
+    for (let i = 0; i < this.dataModa.length; i += 1) {
+      media += this.dataModa[i].number * this.dataModa[i].cont;
+    }
+
+    this.media = media / this.data.length;
   }
 
   generateFrequency() {
@@ -44,14 +61,6 @@ class Ordinal {
       this.accumulatedFrequncyPercentage[i] = ((this.accumulatedFrequncy[i] / this.data.length) * 100).toFixed(2); // eslint-disable-line
       cont = this.dataModa[i].cont + cont;
     }
-  }
-
-  createModaMediana() {
-    // Mediana
-    this.mediana = Median.create(this.data, 'word').getResult();
-
-    // Moda
-    this.moda = Moda.create(this.data).getModa();
   }
 
   createTable() {
@@ -68,7 +77,7 @@ class Ordinal {
       this.dynamicTable.push(obj);
     }
 
-    this.ordinalResult = this.ordinalTemplate({ name: this.name, mediana: this.mediana, moda: this.moda, dynamicTable: this.dynamicTable }); // eslint-disable-line
+    this.discreetResult = this.discreetTemplate({ name: this.name, media: this.media, mediana: this.mediana, moda: this.moda, dynamicTable: this.dynamicTable }); // eslint-disable-line
   }
 
   createChart() {
@@ -78,7 +87,7 @@ class Ordinal {
 
     this.dataModa.forEach((obj, index) => { labelsName[index] = obj.number; });
 
-    const ordinalChart = new Chart(canvas, { // eslint-disable-line
+    const discreetChart = new Chart(canvas, { // eslint-disable-line
       type: 'pie',
       data: {
         labels: labelsName,
@@ -92,14 +101,14 @@ class Ordinal {
   }
 
   getResult() {
-    return this.ordinalResult;
+    return this.discreetResult;
   }
 }
 
 export default{
-  create(vet, name, order) {
-    return new Ordinal(vet, name, order);
+  create(vet, name) {
+    return new Discreet(vet, name);
   },
 };
 
-export const Class = Ordinal;
+export const Class = Discreet;
