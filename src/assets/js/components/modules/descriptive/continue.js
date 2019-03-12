@@ -186,21 +186,15 @@ class Continue {
     const canvas = document.createElement('canvas');
     this.canvasHolder.innerHTML = '';
 
-    this.dataModa.forEach((obj, index) => { labelsName[index] = obj.number; });
+    this.vetInterval.forEach((obj, index) => { labelsName[index] = `de ${obj.valorInicial} até ${obj.valorFinal}`; });
 
     const continueChart = new Chart(canvas, { // eslint-disable-line
       type: 'bar',
       data: {
         labels: labelsName,
         datasets: [{
-          label: 'Bar Dataset',
-          data: [0, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
-        }, {
-          label: 'Line Dataset',
-          data: [0, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
-
-          // Changes this dataset to become a line
-          type: 'line',
+          label: '',
+          data: this.simpleFrequencyPercentage,
         }],
       },
     });
