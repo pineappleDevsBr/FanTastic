@@ -1,4 +1,5 @@
 import doT from 'dot'; // eslint-disable-line
+import Chart from 'chart.js';
 import Order from '../common/order';
 import Moda from '../common/moda';
 
@@ -15,6 +16,7 @@ class Continue {
     this.accumulatedFrequncy = [];
     this.accumulatedFrequncyPercentage = [];
     this.dynamicTable = [];
+    this.canvasHolder = document.querySelector('[data-canvas]');
     this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} - {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table>');
     this.continueResult = '';
     this.vetInterval = [];
@@ -33,6 +35,7 @@ class Continue {
     this.moda();
     this.mediana();
     this.createTable();
+    this.createChart();
   }
 
   oraganizedArray() {
@@ -177,6 +180,34 @@ class Continue {
 
     this.continueResult = this.continueTemplate({ name: this.name, dynamicTable: this.dynamicTable }); // eslint-disable-line
   }
+
+  createChart() {
+    const labelsName = [];
+    const canvas = document.createElement('canvas');
+    this.canvasHolder.innerHTML = '';
+
+    this.dataModa.forEach((obj, index) => { labelsName[index] = obj.number; });
+
+    const continueChart = new Chart(canvas, { // eslint-disable-line
+      type: 'bar',
+      data: {
+        labels: labelsName,
+        datasets: [{
+          label: 'Bar Dataset',
+          data: [0, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+        }, {
+          label: 'Line Dataset',
+          data: [0, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+
+          // Changes this dataset to become a line
+          type: 'line',
+        }],
+      },
+    });
+
+    this.canvasHolder.appendChild(canvas);
+  }
+
   getResult() {
     return this.continueResult;
   }
