@@ -1,25 +1,28 @@
-import doT from 'dot'; // eslint-disable-line
+import doT from 'dot';
 import Chart from 'chart.js';
 import Order from '../common/order';
 import Moda from '../common/moda';
 
 class Continue {
   constructor(vet, name) {
-    this.vet = vet;
-    this.dataModa = [];
     this.At = null;
-    this.k = [];
     this.result = null;
     this.intervalNumber = null;
-    this.name = name;
+    this.valueMediana = null;
+    this.valueModa = null;
+    this.valueMedia = null;
+    this.dataModa = [];
+    this.k = [];
     this.simpleFrequencyPercentage = [];
     this.accumulatedFrequncy = [];
     this.accumulatedFrequncyPercentage = [];
     this.dynamicTable = [];
-    this.canvasHolder = document.querySelector('[data-canvas]');
-    this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} - {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table>');
-    this.continueResult = '';
     this.vetInterval = [];
+    this.vet = vet;
+    this.name = name;
+    this.canvasHolder = document.querySelector('[data-canvas]');
+    this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><br/><p>Moda: {{=value.moda}}</p><p>Média: {{=value.media}}</p><p>Mediana: {{=value.mediana}}</p>');
+    this.continueResult = '';
     this.setup();
   }
 
@@ -122,8 +125,7 @@ class Continue {
       mediaparcial += ((this.vetInterval[i].valorFinal + this.vetInterval[i].valorInicial) / 2) * this.vetInterval[i].cont; // eslint-disable-line
     }
 
-    const media = mediaparcial / this.vet.length;
-    console.log (media); //eslint-disable-line
+    this.valueMedia = mediaparcial / this.vet.length;
   }
 
   moda() {
@@ -135,7 +137,7 @@ class Continue {
         posicao = i;
       }
     }
-    const moda = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
+    this.valueModa = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
   }
 
   mediana() {
@@ -159,8 +161,7 @@ class Continue {
         }
       }
     }
-    const mediana = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(3); //eslint-disable-line
-    console.log(mediana); //eslint-disable-line
+    this.valueMediana = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(3); //eslint-disable-line
   }
 
   createTable() {
@@ -173,6 +174,9 @@ class Continue {
         fr: this.simpleFrequencyPercentage[i],
         fa: this.accumulatedFrequncy[i],
         fac: this.accumulatedFrequncyPercentage[i],
+        moda: this.valueModa,
+        media: this.valueMedia,
+        mediana: this.valueMediana,
       };
 
       this.dynamicTable.push(obj);
@@ -186,7 +190,7 @@ class Continue {
     const canvas = document.createElement('canvas');
     this.canvasHolder.innerHTML = '';
 
-    this.vetInterval.forEach((obj, index) => { labelsName[index] = `de ${obj.valorInicial} até ${obj.valorFinal}`; });
+    this.vetInterval.forEach((obj, index) => { labelsName[index] = `${obj.valorInicial} |- ${obj.valorFinal}`; });
 
     const continueChart = new Chart(canvas, { // eslint-disable-line
       type: 'bar',
