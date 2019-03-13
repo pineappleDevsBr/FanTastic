@@ -6,11 +6,5 @@
 }
 
 .s-header-wrapp {
-  padding-top: 5vw;
-}
-
-@include respond-to(mobile) {
-  .s-header-wrapp {
-    padding-top: 20vw;
-  }
+  padding-top: 15px;
 }

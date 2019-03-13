@@ -61,6 +61,23 @@
   }
 }
 
+.o-label-range__holder {
+  display: block;
+}
+
+.o-label-range {
+  display: inline-block;
+  width: 60%;
+  vertical-align: middle;
+}
+
+.o-label-range-value {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 20px;
+}
+
 @include respond-to(mobile) {
   .o-label--input {
     .o-label-input {

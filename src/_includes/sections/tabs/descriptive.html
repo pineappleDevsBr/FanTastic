@@ -1,5 +1,18 @@
 <form class="c-form__box is-active" data-box data-descriptive>
 
+  <div class="o-label--radio-holder">
+    <h3>Processo</h3>
+    <div class="o-label--radio">
+      <input type="radio" id="amostra" name="processo" class="o-label-radio" checked="true">
+      <label for="amostra" class="o-label-title">Amostra</label>
+    </div>
+
+    <div class="o-label--radio">
+      <input type="radio" id="censo" name="processo" class="o-label-radio">
+      <label for="censo" class="o-label-title">Censo</label>
+    </div>
+  </div>
+
   <div class="o-label--radio-holder" data-radios>
     <h3>Tipo de variavel</h3>
     <div class="o-label--radio">
@@ -26,29 +39,43 @@
     <label for="order" class="o-label-title">Ordenação das variveis ordinais</label>
     <input type="text" id="order" class="o-label-input" placeholder=" Ex: bom; pessimo; regular" disabled="true" data-order>
   </div>
-
-  <div class="o-label--radio-holder">
-    <h3>Processo</h3>
+  
+  <div class="o-label--radio-holder" data-separatriz>
+    <h3>Medida separatriz</h3>
     <div class="o-label--radio">
-      <input type="radio" id="amostra" name="processo" class="o-label-radio" checked="true">
-      <label for="amostra" class="o-label-title">Amostra</label>
+      <input type="radio" data-value="25" id="quartil" name="separatriz" class="o-label-radio" checked="checked">
+      <label for="quartil" class="o-label-title">Quartil</label>
+    </div>
+    <div class="o-label--radio">
+      <input type="radio" data-value="20" id="quintil" name="separatriz" class="o-label-radio">
+      <label for="quintil" class="o-label-title">Quintil</label>
     </div>
 
     <div class="o-label--radio">
-      <input type="radio" id="censo" name="processo" class="o-label-radio">
-      <label for="censo" class="o-label-title">Censo</label>
+      <input type="radio" data-value="10" id="decil" name="separatriz" class="o-label-radio">
+      <label for="decil" class="o-label-title">Decil</label>
+    </div>
+
+    <div class="o-label--radio">
+      <input type="radio" data-value="1" id="porcentil" name="separatriz" class="o-label-radio">
+      <label for="porcentil" class="o-label-title">Porcentil</label>
+    </div>
+    
+    <div class="o-label-range__holder">
+      <span class="o-label-range-value" data-range-value>Value: 0</span>
+      <input type="range" class="o-label-range" step="25" min="0" max="100" value="0" data-range>
     </div>
   </div>
 
   <div class="o-label--input">
-    <label for="name" class="o-label-title">Nome da variavel</label>
-    <input type="text" id="name" class="o-label-input" required="true" data-name>
-  </div>
-
-  <div class="o-label--input o-label--data">
-    <label for="data" class="o-label-title">Dados</label>
-    <input type="text" id="data" class="o-label-input" required="true" data-dados>
-  </div>
+      <label for="name" class="o-label-title">Nome da variavel</label>
+      <input type="text" id="name" class="o-label-input" required="true" data-name>
+    </div>
+  
+    <div class="o-label--input o-label--data">
+      <label for="data" class="o-label-title">Dados</label>
+      <input type="text" id="data" class="o-label-input" required="true" data-dados>
+    </div>
 
   <div class="o-button o-button--file">
     <input type="file" id="file" accept=".csv,.txt" data-button-file></input>

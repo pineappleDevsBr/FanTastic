@@ -22,7 +22,26 @@ class Descriptive {
 
   setup() {
     Descriptive.disableLabel();
+    Descriptive.changeRange();
     this.setupListener();
+  }
+
+  static changeRange() {
+    const rangeList = document.querySelector('[data-separatriz]');
+    const rangeLabels = Array.from(rangeList.querySelectorAll('[type=radio]'));
+    const range = document.querySelector('[data-range]');
+    const value = document.querySelector('[data-range-value]');
+
+    rangeLabels.forEach((elm) => {
+      elm.addEventListener('click', () => {
+        range.setAttribute('step', elm.getAttribute('data-value'));
+        value.innerHTML = `Value: ${range.value}`;
+      });
+    });
+
+    range.addEventListener('input', () => {
+      value.innerHTML = `Value: ${range.value}`;
+    });
   }
 
   static disableLabel() {

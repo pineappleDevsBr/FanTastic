@@ -1,0 +1,62 @@
+.c-accessibility-bar {
+  background: $color-white;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-top: -10px;
+  top: -5px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-accessibility-bar__holder {
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+.c-accessibility-bar__title {
+  margin: 0;
+}
+
+.c-accessibility-bar__contrast-title,
+.c-accessibility-bar__contrast-button,
+.c-accessibility-bar__font-title,
+.c-accessibility-bar__font-button {
+  display: inline-block;
+  margin: 0;
+}
+
+.c-accessibility__bar-contrast-button {
+  position: relative;
+  height: 16px;
+  width: 30px;
+  border: 2px solid red;
+  border-radius: 10px;
+  background: none;
+  transition: all 0.3s ease-out;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    right: 2px;
+    transform: translateX(0);
+    top: 1px;
+    background: red;
+    border-radius: 100%;
+    transition: all 0.3s ease-out;
+  }
+
+  &.is-active {
+    border-color: green;
+
+    &::before {
+      transform: translateX(-12px);
+      background: green;
+    }
+  }
+}
