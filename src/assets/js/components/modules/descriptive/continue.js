@@ -34,6 +34,8 @@ class Continue {
     this.createModa();
     this.interval();
     this.generateFrequency();
+    this.separatrizGeral();
+    this.separatriz();
     this.media();
     this.moda();
     this.mediana();
@@ -119,6 +121,43 @@ class Continue {
     }
   }
 
+  separatrizGeral(valuePosicao) {
+    const posicao = valuePosicao;
+    let I = null;// eslint-disable-line
+    let find = null;// eslint-disable-line
+    let facAnt = null;// eslint-disable-line
+    for (let i = 0; i < this.vet.length; i += 1) {
+      if (posicao == i) { // eslint-disable-line
+        const aux = this.vet[i];
+        for (let j = 0; j < this.vetInterval.length; j += 1) {
+          if ((aux >= this.vetInterval[j].valorInicial) && (aux < this.vetInterval[j].valorFinal)) {
+            I = this.vetInterval[j].valorInicial;
+            find = this.vetInterval[j].cont;
+            if (j - 1 < 0) {
+              facAnt = 0;
+            } else {
+              facAnt = this.vetInterval[j - 1].cont;
+            }
+          }
+        }
+      }
+    }
+    this.result = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(2); //eslint-disable-line
+  }
+
+  separatriz() {
+    const posicao = (28 / 100) * this.vet.length;
+    this.separatrizGeral(posicao);
+    const teste = this.result;
+    console.log(teste);
+  }
+
+  mediana() {
+    const posicao = this.vet.length / 2;
+    this.separatrizGeral(posicao);
+    this.valueMediana = this.result;
+  }
+
   media() {
     let mediaparcial = null;
     for (let i = 0; i < this.vetInterval.length; i += 1) {
@@ -140,29 +179,6 @@ class Continue {
     this.valueModa = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
   }
 
-  mediana() {
-    const posicao = this.vet.length / 2;
-    let I = null;
-    let find = null;
-    let facAnt = null;
-    for (let i = 0; i < this.vet.length; i += 1) {
-      if (posicao == i) { // eslint-disable-line
-        const aux = this.vet[i];
-        for (let j = 0; j < this.vetInterval.length; j += 1) {
-          if ((aux >= this.vetInterval[j].valorInicial) && (aux < this.vetInterval[j].valorFinal)) {
-            I = this.vetInterval[j].valorInicial;
-            find = this.vetInterval[j].cont;
-            if (j - 1 < 0) {
-              facAnt = 0;
-            } else {
-              facAnt = this.vetInterval[j - 1].cont;
-            }
-          }
-        }
-      }
-    }
-    this.valueMediana = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(3); //eslint-disable-line
-  }
 
   createTable() {
     for (let i = 0; i < this.vetInterval.length; i += 1) {
@@ -197,7 +213,7 @@ class Continue {
       data: {
         labels: labelsName,
         datasets: [{
-          label: '',
+          label: 'Frequencia Relativa',
           data: this.simpleFrequencyPercentage,
         }],
       },
