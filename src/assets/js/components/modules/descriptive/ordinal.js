@@ -5,10 +5,12 @@ import Moda from '../common/moda';
 import Median from '../common/median';
 
 class Ordinal {
-  constructor(vet, name, order) {
+  constructor(vet, name, order, separatriz) {
     this.data = vet;
     this.name = name;
     this.order = order;
+    this.separatrizItems = separatriz;
+    this.separatrizResult = null;
     this.dataModa = [];
     this.simpleFrequencyPercentage = [];
     this.accumulatedFrequncy = [];
@@ -17,7 +19,7 @@ class Ordinal {
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.moda = null;
     this.mediana = null;
-    this.ordinalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p>');
+    this.ordinalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p><p>Medida separatriz: {{=it.separatriz}}</p>');
     this.ordinalResult = null;
     this.setup();
   }
@@ -26,6 +28,7 @@ class Ordinal {
     this.organizerData();
     this.generateFrequency();
     this.createModaMediana();
+    this.createSeparatriz();
     this.createTable();
     this.createChart();
   }
@@ -54,6 +57,11 @@ class Ordinal {
     this.moda = Moda.create(this.data).getModa();
   }
 
+  createSeparatriz() {
+    this.separatrizResult = this.data[Math.round((this.data.length * (this.separatrizItems.range / 100))) - 1] // eslint-disable-line
+    this.separatrizResult = `${this.separatrizItems.isChecked}: ${this.separatrizResult}`;
+  }
+
   createTable() {
     for (let i = 0; i < this.dataModa.length; i += 1) {
       const obj = {
@@ -68,7 +76,7 @@ class Ordinal {
       this.dynamicTable.push(obj);
     }
 
-    this.ordinalResult = this.ordinalTemplate({ name: this.name, mediana: this.mediana, moda: this.moda, dynamicTable: this.dynamicTable }); // eslint-disable-line
+    this.ordinalResult = this.ordinalTemplate({ name: this.name, mediana: this.mediana, moda: this.moda, separatriz: this.separatrizResult, dynamicTable: this.dynamicTable }); // eslint-disable-line
   }
 
   createChart() {
@@ -97,8 +105,8 @@ class Ordinal {
 }
 
 export default{
-  create(vet, name, order) {
-    return new Ordinal(vet, name, order);
+  create(vet, name, order, separatriz) {
+    return new Ordinal(vet, name, order, separatriz);
   },
 };
 
