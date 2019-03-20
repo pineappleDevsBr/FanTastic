@@ -34,7 +34,6 @@ class Continue {
     this.createModa();
     this.interval();
     this.generateFrequency();
-    this.separatrizGeral();
     this.separatriz();
     this.media();
     this.moda();
@@ -127,7 +126,7 @@ class Continue {
     let find = null;// eslint-disable-line
     let facAnt = null;// eslint-disable-line
     for (let i = 0; i < this.vet.length; i += 1) {
-      if (posicao == i) { // eslint-disable-line
+      if (parseInt(posicao) == i) { // eslint-disable-line
         const aux = this.vet[i];
         for (let j = 0; j < this.vetInterval.length; j += 1) {
           if ((aux >= this.vetInterval[j].valorInicial) && (aux < this.vetInterval[j].valorFinal)) {
@@ -136,20 +135,28 @@ class Continue {
             if (j - 1 < 0) {
               facAnt = 0;
             } else {
-              facAnt = this.vetInterval[j - 1].cont;
+              facAnt = this.accumulatedFrequncy[j - 1];
             }
           }
         }
       }
     }
+    console.log('I SG: ' + I); // eslint-disable-line
+    console.log('posicao SG: ' + posicao); // eslint-disable-line
+    console.log('facAnt SG: ' + facAnt); // eslint-disable-line
+    console.log('find SG: ' + find); // eslint-disable-line
+    console.log('intervalNumber SG: ' + this.intervalNumber); // eslint-disable-line
+
     this.result = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(2); //eslint-disable-line
   }
 
   separatriz() {
-    const posicao = (28 / 100) * this.vet.length;
+    const posicao = Number((94 / 100) * this.vet.length).toFixed(2);
+    console.log('posição: ' + posicao); //eslint-disable-line
     this.separatrizGeral(posicao);
     const teste = this.result;
-    console.log(teste);
+    console.log('Vet.lenght: ' + this.vet.length); //eslint-disable-line
+    console.log('P94: ' + teste, isFinite(teste));// eslint-disable-line
   }
 
   mediana() {
