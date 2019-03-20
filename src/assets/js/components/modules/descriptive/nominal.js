@@ -4,8 +4,10 @@ import Moda from '../common/moda';
 import Median from '../common/median';
 
 class Nominal {
-  constructor(vet, name) {
+  constructor(vet, name, separatriz) {
     this.data = vet;
+    this.separatrizItems = separatriz;
+    this.separatrizResult = null;
     this.dataModa = [];
     this.name = name;
     this.simpleFrequencyPercentage = [];
@@ -15,7 +17,7 @@ class Nominal {
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.moda = null;
     this.mediana = null;
-    this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p>');
+    this.nominalTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p><p>Medida separatriz: {{=it.separatriz}}</p>');
     this.nominalResult = '';
     this.setup();
   }
@@ -24,6 +26,7 @@ class Nominal {
     this.organizerData();
     this.generateFrequency();
     this.createModaMediana();
+    this.createSeparatriz();
     this.createTable();
     this.createChart();
   }
@@ -51,6 +54,11 @@ class Nominal {
     }
   }
 
+  createSeparatriz() {
+    this.separatrizResult = this.data[Math.round((this.data.length * (this.separatrizItems.range / 100))) - 1] // eslint-disable-line
+    this.separatrizResult = `${this.separatrizItems.isChecked}: ${this.separatrizResult}`;
+  }
+
   createTable() {
     for (let i = 0; i < this.dataModa.length; i += 1) {
       const obj = {
@@ -65,7 +73,7 @@ class Nominal {
       this.dynamicTable.push(obj);
     }
 
-    this.nominalResult = this.nominalTemplate({ name: this.name, mediana: this.mediana, moda: this.moda, dynamicTable: this.dynamicTable }); // eslint-disable-line
+    this.nominalResult = this.nominalTemplate({ name: this.name, mediana: this.mediana, moda: this.moda, separatriz: this.separatrizResult, dynamicTable: this.dynamicTable }); // eslint-disable-line
   }
 
   createChart() {
@@ -94,8 +102,8 @@ class Nominal {
 }
 
 export default{
-  create(vet, name) {
-    return new Nominal(vet, name);
+  create(vet, name, separatriz) {
+    return new Nominal(vet, name, separatriz);
   },
 };
 

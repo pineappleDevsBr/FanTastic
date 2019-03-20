@@ -11,6 +11,8 @@ class Descriptive {
     this.holderResult = document.querySelector('[data-result-holder]');
     this.elm = null;
     this.radioHolder = null;
+    this.separatrisHolder = null;
+    this.separatrisItems = null;
     this.listRadio = null;
     this.data = null;
     this.dataName = null;
@@ -89,9 +91,28 @@ class Descriptive {
     this.elm = document.querySelector('[data-descriptive]');
     this.radioHolder = this.elm.querySelector('[data-radios]');
     this.listRadio = this.radioHolder.querySelectorAll('input');
+    this.separatrisHolder = this.elm.querySelector('[data-separatriz]');
+
+    this.separatrisItems = {
+      radios: Array.from(this.separatrisHolder.querySelectorAll('input[type=radio]')),
+      range: this.separatrisHolder.querySelector('input[type=range]').value,
+      isChecked: null,
+    };
+    this.separatrisItems.isChecked = this.wichyChecked();
+
     this.data = this.elm.querySelector('[data-dados]').value;
     this.dataName = this.elm.querySelector('[data-name]').value;
     this.orderOrdinal = this.elm.querySelector('[data-order]').value;
+  }
+
+  wichyChecked() {
+    let checked = null;
+
+    this.separatrisItems.radios.forEach((elm) => {
+      if (elm.checked === true) { checked = elm.id; }
+    });
+
+    return checked;
   }
 
   convertArray() {
@@ -130,13 +151,13 @@ class Descriptive {
 
   choiceTypeVariable() {
     if (this.listRadio[0].checked === true) {
-      this.result = Nominal.create(this.data, this.dataName).getResult();
+      this.result = Nominal.create(this.data, this.dataName, this.separatrisItems).getResult();
     } else if (this.listRadio[1].checked === true) {
-      this.result = Ordinal.create(this.data, this.dataName, this.orderOrdinal).getResult();
+      this.result = Ordinal.create(this.data, this.dataName, this.orderOrdinal, this.separatrisItems).getResult(); // eslint-disable-line
     } else if (this.listRadio[2].checked === true) {
-      this.result = Discreet.create(this.dataConverted, this.dataName).getResult();
+      this.result = Discreet.create(this.dataConverted, this.dataName, this.separatrisItems).getResult(); // eslint-disable-line
     } else if (this.listRadio[3].checked === true) {
-      this.result = Continue.create(this.dataConverted, this.dataName).getResult();
+      this.result = Continue.create(this.dataConverted, this.dataName, this.separatrisItems).getResult(); // eslint-disable-line
     }
   }
 
