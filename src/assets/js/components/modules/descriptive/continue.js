@@ -4,13 +4,14 @@ import Order from '../common/order';
 import Moda from '../common/moda';
 
 class Continue {
-  constructor(vet, name) {
+  constructor(vet, name, separatriz) {
     this.At = null;
     this.result = null;
     this.intervalNumber = null;
     this.valueMediana = null;
     this.valueModa = null;
     this.valueMedia = null;
+    this.separatrizResult = null;
     this.dataModa = [];
     this.k = [];
     this.simpleFrequencyPercentage = [];
@@ -20,6 +21,7 @@ class Continue {
     this.vetInterval = [];
     this.vet = vet;
     this.name = name;
+    this.separatrizItems = separatriz;
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><br/><p>Moda: {{=value.moda}}</p><p>Média: {{=value.media}}</p><p>Mediana: {{=value.mediana}}</p>');
     this.continueResult = '';
@@ -141,22 +143,14 @@ class Continue {
         }
       }
     }
-    console.log('I SG: ' + I); // eslint-disable-line
-    console.log('posicao SG: ' + posicao); // eslint-disable-line
-    console.log('facAnt SG: ' + facAnt); // eslint-disable-line
-    console.log('find SG: ' + find); // eslint-disable-line
-    console.log('intervalNumber SG: ' + this.intervalNumber); // eslint-disable-line
-
     this.result = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(2); //eslint-disable-line
   }
 
   separatriz() {
-    const posicao = Number((94 / 100) * this.vet.length).toFixed(2);
-    console.log('posição: ' + posicao); //eslint-disable-line
+    const posicao = Number((this.separatrizItems.range / 100) * this.vet.length).toFixed(2);
     this.separatrizGeral(posicao);
     const teste = this.result;
-    console.log('Vet.lenght: ' + this.vet.length); //eslint-disable-line
-    console.log('P94: ' + teste, isFinite(teste));// eslint-disable-line
+    console.log('Separatriz: ' + teste); // eslint-disable-line
   }
 
   mediana() {
@@ -171,7 +165,7 @@ class Continue {
       mediaparcial += ((this.vetInterval[i].valorFinal + this.vetInterval[i].valorInicial) / 2) * this.vetInterval[i].cont; // eslint-disable-line
     }
 
-    this.valueMedia = mediaparcial / this.vet.length;
+    this.valueMedia = (mediaparcial / this.vet.length).toFixed(2);
   }
 
   moda() {
@@ -185,7 +179,6 @@ class Continue {
     }
     this.valueModa = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
   }
-
 
   createTable() {
     for (let i = 0; i < this.vetInterval.length; i += 1) {
@@ -225,6 +218,11 @@ class Continue {
         }],
       },
     });
+    Chart.scaleService.updateScaleDefaults('linear', {
+      ticks: {
+        min: 0,
+      },
+    });
 
     this.canvasHolder.appendChild(canvas);
   }
@@ -236,8 +234,8 @@ class Continue {
 
 
 export default{
-  create(vet, name) {
-    return new Continue(vet, name);
+  create(vet, name, separatriz) {
+    return new Continue(vet, name, separatriz);
   },
 };
 
