@@ -2,9 +2,10 @@ import doT from 'dot';
 import Chart from 'chart.js';
 import Order from '../common/order';
 import Moda from '../common/moda';
+import StandardDeviation from '../common/standardDeviation';
 
 class Continue {
-  constructor(vet, name, separatriz) {
+  constructor(vet, name, separatriz, process) {
     this.At = null;
     this.result = null;
     this.intervalNumber = null;
@@ -12,6 +13,7 @@ class Continue {
     this.valueModa = null;
     this.valueMedia = null;
     this.separatrizResult = null;
+    this.standardDeviationResult = null;
     this.dataModa = [];
     this.k = [];
     this.simpleFrequencyPercentage = [];
@@ -22,8 +24,9 @@ class Continue {
     this.vet = vet;
     this.name = name;
     this.separatrizItems = separatriz;
+    this.process = process;
     this.canvasHolder = document.querySelector('[data-canvas]');
-    this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><br/><p>Moda: {{=value.moda}}</p><p>Média: {{=value.media}}</p><p>Mediana: {{=value.mediana}}</p>');
+    this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><br/><p>Moda: {{=value.moda}}</p><p>Média: {{=value.media}}</p><p>Mediana: {{=value.mediana}}</p><p>Desvio Padrão: {{=it.desvioPadrao}}</p>');
     this.continueResult = '';
     this.setup();
   }
@@ -40,6 +43,7 @@ class Continue {
     this.media();
     this.moda();
     this.mediana();
+    this.standardDeviation();
     this.createTable();
     this.createChart();
   }
@@ -150,7 +154,6 @@ class Continue {
     const posicao = Number((this.separatrizItems.range / 100) * this.vet.length).toFixed(2);
     this.separatrizGeral(posicao);
     const teste = this.result;
-    console.log('Separatriz: ' + teste); // eslint-disable-line
   }
 
   mediana() {
@@ -180,6 +183,19 @@ class Continue {
     this.valueModa = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
   }
 
+  standardDeviation() {
+    const medias = [];
+    this.vetInterval.forEach((elm, i) => {
+      medias[i] = {
+        number: (elm.valorInicial + elm.valorFinal) / 2,
+        cont: this.dataModa[i].cont,
+      };
+    });
+    this.standardDeviationResult = StandardDeviation.create(medias, this.valueMedia, this.process).getResult(); // eslint-disable-line
+
+    this.calcVar = (this.standardDeviationResult / this.valueMedia) * 100;
+  }
+
   createTable() {
     for (let i = 0; i < this.vetInterval.length; i += 1) {
       const obj = {
@@ -193,12 +209,13 @@ class Continue {
         moda: this.valueModa,
         media: this.valueMedia,
         mediana: this.valueMediana,
+        desvioPadrao: this.standardDeviationResult,
       };
 
       this.dynamicTable.push(obj);
     }
 
-    this.continueResult = this.continueTemplate({ name: this.name, dynamicTable: this.dynamicTable }); // eslint-disable-line
+    this.continueResult = this.continueTemplate({ name: this.name, dynamicTable: this.dynamicTable, desvioPadrao: this.standardDeviationResult, }); // eslint-disable-line
   }
 
   createChart() {
@@ -234,8 +251,8 @@ class Continue {
 
 
 export default{
-  create(vet, name, separatriz) {
-    return new Continue(vet, name, separatriz);
+  create(vet, name, separatriz, process) {
+    return new Continue(vet, name, separatriz, process);
   },
 };
 
