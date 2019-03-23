@@ -3,22 +3,26 @@ class StandardDeviation {
     this.data = dataModa;
     this.media = media;
     this.process = process;
+    this.dataLength = 0;
     this.result = null;
     this.setup();
   }
 
   setup() {
     this.data.forEach((elm) => {
-      this.result += Math.pow((elm.number - this.media), 2) * elm.cont ;
+      this.result += ((elm.number - this.media) ** 2) * elm.cont;
+      this.dataLength += elm.cont;
     });
 
+    console.log(this.dataLength);
+
     if (this.process === 'amostra') {
-      this.result = this.result / (this.data.length - 1); 
-    } else if (this.process === 'populacao') {
-      this.result = this.result / this.data.length;
+      this.result = this.result / (this.dataLength - 1);
+    } else if (this.process === 'censo') {
+      this.result = this.result / this.dataLength;
     }
 
-    this.result = Math.sqrt(this.result);
+    this.result = Math.sqrt(this.result).toFixed(2);
   }
 
   getResult() {

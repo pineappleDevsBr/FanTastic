@@ -3,12 +3,15 @@ import Chart from 'chart.js';
 import Moda from '../common/moda';
 import Median from '../common/median';
 import Order from '../common/order';
+import StandardDeviation from '../common/standardDeviation';
 
 class Discreet {
-  constructor(vet, name, separatriz) {
+  constructor(vet, name, separatriz, process) {
     this.data = vet;
     this.dataModa = [];
     this.name = name;
+    this.process = process;
+    this.standardDeviationResult = null;
     this.separatrizItems = separatriz;
     this.separatrizResult = null;
     this.simpleFrequencyPercentage = [];
@@ -19,7 +22,7 @@ class Discreet {
     this.moda = null;
     this.mediana = null;
     this.media = null;
-    this.discreetTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p> <p>Media: {{=it.media}}</p><p>Medida separatriz: {{=it.separatriz}}</p>');
+    this.discreetTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p> <p>Media: {{=it.media}}</p><p>Medida separatriz: {{=it.separatriz}}</p><p>Desvio Padrão: {{=it.desvioPadrao}}</p>');
     this.discreetResult = '';
     this.setup();
   }
@@ -29,6 +32,7 @@ class Discreet {
     this.generateFrequency();
     this.createModaMediana();
     this.createSeparatriz();
+    this.standardDeviation();
     this.createTable();
     this.createChart();
   }
@@ -36,7 +40,6 @@ class Discreet {
   organizerData() {
     this.data = Order.create(this.data, 'crescent').getResult();
     this.dataModa = Moda.create(this.data).getResult();
-    console.log(this.data);
   }
 
   createModaMediana() {
@@ -72,6 +75,10 @@ class Discreet {
     this.separatrizResult = `${this.separatrizItems.isChecked}: ${this.separatrizResult}`;
   }
 
+  standardDeviation() {
+    this.standardDeviationResult = StandardDeviation.create(this.dataModa, this.media, this.process).getResult(); // eslint-disable-line
+  }
+
   createTable() {
     for (let i = 0; i < this.dataModa.length; i += 1) {
       const obj = {
@@ -86,7 +93,15 @@ class Discreet {
       this.dynamicTable.push(obj);
     }
 
-    this.discreetResult = this.discreetTemplate({ name: this.name, media: this.media, mediana: this.mediana, moda: this.moda, separatriz: this.separatrizResult, dynamicTable: this.dynamicTable }); // eslint-disable-line
+    this.discreetResult = this.discreetTemplate({
+      name: this.name,
+      media: this.media,
+      mediana: this.mediana,
+      moda: this.moda,
+      desvioPadrao: this.standardDeviationResult,
+      separatriz: this.separatrizResult,
+      dynamicTable: this.dynamicTable,
+    });
   }
 
   createChart() {
@@ -115,8 +130,8 @@ class Discreet {
 }
 
 export default{
-  create(vet, name, separatriz) {
-    return new Discreet(vet, name, separatriz);
+  create(vet, name, separatriz, process) {
+    return new Discreet(vet, name, separatriz, process);
   },
 };
 

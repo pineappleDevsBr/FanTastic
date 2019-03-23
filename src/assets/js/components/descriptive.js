@@ -14,6 +14,8 @@ class Descriptive {
     this.separatrisHolder = null;
     this.separatrisItems = null;
     this.listRadio = null;
+    this.processList = null;
+    this.processChecked = null;
     this.data = null;
     this.dataName = null;
     this.orderOrdinal = null;
@@ -92,6 +94,13 @@ class Descriptive {
     this.radioHolder = this.elm.querySelector('[data-radios]');
     this.listRadio = this.radioHolder.querySelectorAll('input');
     this.separatrisHolder = this.elm.querySelector('[data-separatriz]');
+    this.processList = Array.from(this.elm.querySelector('[data-process]').querySelectorAll('input[type=radio]'));
+
+    this.processList.forEach((elm) => {
+      if (elm.checked === true) {
+        this.processChecked = elm.id;
+      }
+    });
 
     this.separatrisItems = {
       radios: Array.from(this.separatrisHolder.querySelectorAll('input[type=radio]')),
@@ -155,9 +164,9 @@ class Descriptive {
     } else if (this.listRadio[1].checked === true) {
       this.result = Ordinal.create(this.data, this.dataName, this.orderOrdinal, this.separatrisItems).getResult(); // eslint-disable-line
     } else if (this.listRadio[2].checked === true) {
-      this.result = Discreet.create(this.dataConverted, this.dataName, this.separatrisItems).getResult(); // eslint-disable-line
+      this.result = Discreet.create(this.dataConverted, this.dataName, this.separatrisItems, this.processChecked).getResult(); // eslint-disable-line
     } else if (this.listRadio[3].checked === true) {
-      this.result = Continue.create(this.dataConverted, this.dataName, this.separatrisItems).getResult(); // eslint-disable-line
+      this.result = Continue.create(this.dataConverted, this.dataName, this.separatrisItems, this.processChecked).getResult(); // eslint-disable-line
     }
   }
 
@@ -176,7 +185,7 @@ class Descriptive {
   }
 }
 
-export default{
+export default {
   create() {
     return new Descriptive();
   },
