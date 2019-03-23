@@ -14,8 +14,6 @@ class StandardDeviation {
       this.dataLength += elm.cont;
     });
 
-    console.log(this.dataLength);
-
     if (this.process === 'amostra') {
       this.result = this.result / (this.dataLength - 1);
     } else if (this.process === 'censo') {

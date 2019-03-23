@@ -12,6 +12,7 @@ class Discreet {
     this.name = name;
     this.process = process;
     this.standardDeviationResult = null;
+    this.coefficientOfVariation = null;
     this.separatrizItems = separatriz;
     this.separatrizResult = null;
     this.simpleFrequencyPercentage = [];
@@ -22,7 +23,7 @@ class Discreet {
     this.moda = null;
     this.mediana = null;
     this.media = null;
-    this.discreetTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p> <p>Media: {{=it.media}}</p><p>Medida separatriz: {{=it.separatriz}}</p><p>Desvio Padrão: {{=it.desvioPadrao}}</p>');
+    this.discreetTemplate = doT.template('<table style="text-align:center" border="1"> <tr><th>Classe</th> <th>{{=it.name}}</th> <th>Frequenca Simples</th> <th>Frequenca Relativa</th> <th>Frequenca Acumulada</th> <th>Frequenca Acumulada %</th> </tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.index}}</td> <td>{{=value.number}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><p>Mediana: {{=it.mediana}}</p><p>Moda: {{=it.moda}}</p> <p>Media: {{=it.media}}</p><p>Medida separatriz: {{=it.separatriz}}</p><p>Desvio Padrão: {{=it.desvioPadrao}}</p><p> Coeficiente de variação: {{=it.coeficienteDeVariacao}}%');
     this.discreetResult = '';
     this.setup();
   }
@@ -32,7 +33,8 @@ class Discreet {
     this.generateFrequency();
     this.createModaMediana();
     this.createSeparatriz();
-    this.standardDeviation();
+    this.createstandardDeviation();
+    this.createCoefficientOfVariation();
     this.createTable();
     this.createChart();
   }
@@ -56,7 +58,7 @@ class Discreet {
       media += this.dataModa[i].number * this.dataModa[i].cont;
     }
 
-    this.media = media / this.data.length;
+    this.media = (media / this.data.length).toFixed(2);
   }
 
   generateFrequency() {
@@ -72,11 +74,20 @@ class Discreet {
 
   createSeparatriz() {
     this.separatrizResult = this.data[Math.round((this.data.length * (this.separatrizItems.range / 100))) - 1] // eslint-disable-line
+
+    if (this.separatrizResult === undefined) {
+      this.separatrizResult = 0;
+    }
+
     this.separatrizResult = `${this.separatrizItems.isChecked}: ${this.separatrizResult}`;
   }
 
-  standardDeviation() {
+  createstandardDeviation() {
     this.standardDeviationResult = StandardDeviation.create(this.dataModa, this.media, this.process).getResult(); // eslint-disable-line
+  }
+
+  createCoefficientOfVariation() {
+    this.coefficientOfVariation = Math.round((this.standardDeviationResult / this.media) * 100);
   }
 
   createTable() {
@@ -99,6 +110,7 @@ class Discreet {
       mediana: this.mediana,
       moda: this.moda,
       desvioPadrao: this.standardDeviationResult,
+      coeficienteDeVariacao: this.coefficientOfVariation,
       separatriz: this.separatrizResult,
       dynamicTable: this.dynamicTable,
     });

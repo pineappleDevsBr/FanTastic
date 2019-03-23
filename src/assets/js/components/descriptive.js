@@ -125,14 +125,23 @@ class Descriptive {
   }
 
   convertArray() {
-    const regExpArray = /;$/;
+    const regExpArrayEnd = /;$/;
+    const regExpArrayStart = /^;/;
 
-    if (regExpArray.test(this.data)) {
+    if (regExpArrayEnd.test(this.data)) {
       this.data = this.data.replace(/;$/, '');
     }
 
-    if (regExpArray.test(this.orderOrdinal)) {
+    if (regExpArrayStart.test(this.data)) {
+      this.data = this.data.replace(/^;/, '');
+    }
+
+    if (regExpArrayEnd.test(this.orderOrdinal)) {
       this.orderOrdinal = this.orderOrdinal.replace(/;$/, '');
+    }
+
+    if (regExpArrayStart.test(this.orderOrdinal)) {
+      this.orderOrdinal = this.orderOrdinal.replace(/^;/, '');
     }
 
     this.data = this.data.split(/;/);
