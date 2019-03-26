@@ -14,6 +14,7 @@ class Continue {
     this.valueMedia = null;
     this.separatrizResult = null;
     this.standardDeviationResult = null;
+    this.variation = null;
     this.dataModa = [];
     this.k = [];
     this.simpleFrequencyPercentage = [];
@@ -26,7 +27,7 @@ class Continue {
     this.separatrizItems = separatriz;
     this.process = process;
     this.canvasHolder = document.querySelector('[data-canvas]');
-    this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><br/><p>Moda: {{=value.moda}}</p><p>Média: {{=value.media}}</p><p>Mediana: {{=value.mediana}}</p><p>Desvio Padrão: {{=it.desvioPadrao}}</p>');
+    this.continueTemplate = doT.template('<table style="text-align:center" border="1"><tr><th>Classes</th><th>{{=it.name}}</th><th>Frequenca Simples</th><th>Frequenca Relativa</th><th>Frequenca Acumulada</th><th>Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr><td>{{=value.class}}</td><td>{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td>{{=value.cont}}</td><td>{{=value.fr}}</td><td>{{=value.fa}}</td><td>{{=value.fac}}</td></tr>{{~}}</table><br/><p>Moda: {{=value.moda}}</p><p>Média: {{=value.media}}</p><p>Mediana: {{=value.mediana}}</p><p>Desvio Padrão: {{=it.desvioPadrao}}</p><p>Coeficiente de Variação: {{=it.coeficientevariacao}}</p>');
     this.continueResult = '';
     this.setup();
   }
@@ -44,6 +45,7 @@ class Continue {
     this.moda();
     this.mediana();
     this.standardDeviation();
+    this.coefficientVariation();
     this.createTable();
     this.createChart();
   }
@@ -153,7 +155,6 @@ class Continue {
   separatriz() {
     const posicao = Number((this.separatrizItems.range / 100) * this.vet.length).toFixed(2);
     this.separatrizGeral(posicao);
-    const teste = this.result;
   }
 
   mediana() {
@@ -192,8 +193,10 @@ class Continue {
       };
     });
     this.standardDeviationResult = StandardDeviation.create(medias, this.valueMedia, this.process).getResult(); // eslint-disable-line
+  }
 
-    this.calcVar = (this.standardDeviationResult / this.valueMedia) * 100;
+  coefficientVariation() {
+    this.variation = ((this.standardDeviationResult / this.valueMedia) * 100).toFixed(2);
   }
 
   createTable() {
@@ -210,12 +213,13 @@ class Continue {
         media: this.valueMedia,
         mediana: this.valueMediana,
         desvioPadrao: this.standardDeviationResult,
+        coeficientevariacao: this.variation,
       };
 
       this.dynamicTable.push(obj);
     }
 
-    this.continueResult = this.continueTemplate({ name: this.name, dynamicTable: this.dynamicTable, desvioPadrao: this.standardDeviationResult, }); // eslint-disable-line
+    this.continueResult = this.continueTemplate({ name: this.name, dynamicTable: this.dynamicTable, desvioPadrao: this.standardDeviationResult, coeficientevariacao: this.variation, }); // eslint-disable-line
   }
 
   createChart() {
