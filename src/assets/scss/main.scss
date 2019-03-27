@@ -25,65 +25,8 @@
 @import '6-components/c-dropdown';
 @import '6-components/c-result';
 @import '6-components/c-accessibility-bar';
+@import '6-components/c-table-result';
 
 // Sections
 @import '7-sections/s-header';
 @import '7-sections/s-section';
-
-<<<<<<< HEAD
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
-}
-
-.table__informations {
-  display: flex;
-  width: 100%;
-}
-
-.table__header {
-  background: #1aab8b;
-  color: #fff;
-  text-transform: uppercase;
-}
-
-th:first-child {
-  border-top-left-radius: 10px;
-}
-
-th:last-child {
-  border-top-right-radius: 10px;
-}
-
-.table__item {
-  padding: 15px;
-  text-align: center;
-}
-
-.table__lines:nth-child(even) {
-  background: #eee;
-}
-
-.cell__information {
-  display: inline-block;
-  margin: 20px 10px;
-  flex: 1;
-  height: 50px;
-  background: #fafafa;
-  box-shadow: 0 8px 6px -6px #b3b0b0;
-  text-align: center;
-}
-
-.cell__information p {
-  display: block;
-  margin: 5px;
-  padding: 0;
-}
-
-.cell__title {
-  font-weight: bolder;
-  font-size: 18px;
-}
-=======
->>>>>>> 228efb64b776296ea3ad50d94d1b528936b2d238
