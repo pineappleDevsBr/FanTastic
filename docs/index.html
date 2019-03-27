@@ -43,11 +43,11 @@
   <div class="s-header">
     <header class="t-container s-header-wrapp">
 
-  <div class="c-accessibility-bar">
+  <div class="c-accessibility-bar" data-accessibillity-bar>
     <p class="c-accessibility-bar__holder c-accessibility-bar__title">Acessibilidade: </p>
     <div class="c-accessibility-bar__holder">
       <p class="c-accessibility-bar__contrast-title">alto contraste</p>
-      <button class="c-accessibility__bar-contrast-button" data-accessibility></button>
+      <button class="c-accessibility__bar-contrast-button" data-contrast-button></button>
     </div>
     <div class="c-accessibility-bar__holder">
       <p class="c-accessibility-bar__font-title">tamanho da fonte</p>
@@ -63,16 +63,6 @@
   <button class="o-button--arrow-down" data-button-home></button>
 </header>
 <!-- <a href="https://github.com/pineappleDevsBr/FanTastic" target="_blank" class="o-octocat"></a> -->
-
-<script>
-  (function(){
-    const botao = document.querySelector('[data-accessibility]');
-
-    botao.addEventListener("click", () => {
-      botao.classList.toggle('is-active');
-    } )
-  })();
-</script>
 
   </div>
   <div class="s-section s-section--form">

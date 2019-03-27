@@ -1,5 +1,6 @@
 .s-header {
-  background: $gd-blue-shaft;
+  @include ac(background, gradient-blue);
+  // background: $gd-blue-shaft;
   text-align: center;
   position: relative;
   height: 100vh;
