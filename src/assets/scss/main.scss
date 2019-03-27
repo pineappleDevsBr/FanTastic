@@ -3,6 +3,7 @@
 @import '1-tools/t-respond-to';
 // Settings
 @import '2-settings/s-colors';
+@import '2-settings/s-accessibility-color';
 @import '2-settings/s-typography';
 @import '2-settings/s-scrollBar';
 
@@ -29,6 +30,7 @@
 @import '7-sections/s-header';
 @import '7-sections/s-section';
 
+<<<<<<< HEAD
 table {
   border-collapse: separate;
   border-spacing: 0;
@@ -83,3 +85,5 @@ th:last-child {
   font-weight: bolder;
   font-size: 18px;
 }
+=======
+>>>>>>> 228efb64b776296ea3ad50d94d1b528936b2d238

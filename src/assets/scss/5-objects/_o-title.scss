@@ -1,4 +1,6 @@
 .o-title {
+  @include ac(color, color-black);
+
   margin-top: 0;
   margin-bottom: 40px;
   font-size: 102px;

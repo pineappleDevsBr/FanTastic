@@ -12,3 +12,15 @@ $gd-blue-shaft: linear-gradient(to left, #104e8b, #1aaad8);
 $gd-purple-shaft: linear-gradient(to left, #470097, #7700fe);
 $gd-yellow-shaft: linear-gradient(to left, #fdb200, #ca9106);
 $gd-green-shaft: linear-gradient(to right, #6edcc4, #1aab8b);
+
+$colors: (
+  color-black: $color-black,
+  gradient-blue: $gd-blue-shaft,
+  gradient-purple: $gd-purple-shaft,
+);
+
+$contrast-colors: (
+  color-black: $color-black,
+  gradient-blue: $color-gray-mid,
+  gradient-purple: $color-black,
+);

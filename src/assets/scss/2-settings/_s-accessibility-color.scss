@@ -1,0 +1,14 @@
+@mixin ac($property, $color, $forced-color: null, $opacity: 1) {
+  #{$property}: (map-get($colors, $color));
+
+  .accessibility-mode & {
+    @if ($forced-color) {
+      #{$property}: (map-get($colors, $forced-color)) !important;
+    }
+
+    @else {
+      #{$property}: (map-get($contrast-colors, $color));
+    }
+  }
+}
+
