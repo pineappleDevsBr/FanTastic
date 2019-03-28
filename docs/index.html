@@ -138,21 +138,22 @@
       <label for="porcentil" class="o-label-title">Porcentil</label>
     </div>
     
-    <div class="o-label-range__holder">
-      <span class="o-label-range-value" data-range-value>Value: 0</span>
+    <div class="o-label-range__holder" data-range-interface>
       <input type="range" class="o-label-range" step="25" min="0" max="100" value="0" data-range>
+      <span class="o-label-range-value" data-range-value>0%</span>
     </div>
   </div>
 
+  <h3>Entrada de Dados</h3>
   <div class="o-label--input">
-      <label for="name" class="o-label-title">Nome da variavel</label>
-      <input type="text" id="name" class="o-label-input" required="true" data-name>
-    </div>
+    <label for="name" class="o-label-title">Nome da variavel</label>
+    <input type="text" id="name" class="o-label-input" required="true" data-name>
+  </div>
   
-    <div class="o-label--input o-label--data">
-      <label for="data" class="o-label-title">Dados</label>
-      <input type="text" id="data" class="o-label-input" required="true" data-dados>
-    </div>
+  <div class="o-label--input o-label--data">
+    <label for="data" class="o-label-title">Dados</label>
+    <input type="text" id="data" class="o-label-input" required="true" data-dados>
+  </div>
 
   <div class="o-button o-button--file">
     <input type="file" id="file" accept=".csv,.txt" data-button-file></input>

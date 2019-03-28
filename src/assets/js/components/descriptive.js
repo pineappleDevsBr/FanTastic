@@ -39,12 +39,12 @@ class Descriptive {
     rangeLabels.forEach((elm) => {
       elm.addEventListener('click', () => {
         range.setAttribute('step', elm.getAttribute('data-value'));
-        value.innerHTML = `Value: ${range.value}`;
+        value.innerHTML = `${range.value}%`;
       });
     });
 
     range.addEventListener('input', () => {
-      value.innerHTML = `Value: ${range.value}`;
+      value.innerHTML = `${range.value}%`;
     });
   }
 

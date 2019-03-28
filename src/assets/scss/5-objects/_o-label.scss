@@ -62,20 +62,55 @@
 }
 
 .o-label-range__holder {
-  display: block;
+  display: flex;
+  position: relative;
+  margin-top: 30px;
+  width: 70%;
 }
 
 .o-label-range {
-  display: inline-block;
-  width: 60%;
   vertical-align: middle;
+  -webkit-appearance: none;
+  flex: 8;
+
+  &::-webkit-slider-runnable-track {
+    height: 5px;
+    background: #ddd;
+    border: none;
+    border-radius: 3px;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 28px;
+    width: 16px;
+    border-radius: 4px;
+    background: $color-white;
+    margin-top: -12px;
+    box-shadow: 0 0 10px $color-gray;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+  }
 }
 
 .o-label-range-value {
-  display: inline-block;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-right: 20px;
+  background: $color-white;
+  padding: 10px;
+  border: 1px solid $color-gray-ease;
+  box-shadow: 0 0 10px $color-gray-ease;
+  border-radius: 4px;
+  vertical-align: middle;
+  width: 10%;
+  margin-left: 10px;
+  flex: 1;
+  text-align: center;
 }
 
 @include respond-to(mobile) {
@@ -83,6 +118,14 @@
     .o-label-input {
       width: 100%;
     }
+  }
+
+  .o-label-range__holder {
+    width: 100%;
+  }
+
+  .o-label-range-value {
+    flex: 2;
   }
 }
 
