@@ -6,11 +6,11 @@
 
   &--form {
     // @include ac(background, gradient-purple);
-    background: $gd-purple-shaft;
+    background: $gd-purple-shaft; // Trocar por essa #470097
   }
 
   &--result {
-    background: $gd-green-shaft;
+    background: $color-result;
     display: none;
 
     &.is-active {

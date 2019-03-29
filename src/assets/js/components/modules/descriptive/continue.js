@@ -5,17 +5,17 @@ import Moda from '../common/moda';
 import StandardDeviation from '../common/standardDeviation';
 
 class Continue {
-  constructor(vet, name, separatriz, process) {
+  constructor(vet, name, separatrix, process) {
     this.At = null;
     this.result = null;
     this.intervalNumber = null;
-    this.valueMediana = null;
-    this.valueModa = null;
-    this.valueMedia = null;
-    this.separatrizResult = null;
+    this.medianValue = null;
+    this.modeValue = null;
+    this.meanValue = null;
+    this.separatrixResult = null;
     this.standardDeviationResult = null;
     this.variation = null;
-    this.dataModa = [];
+    this.dataMode = [];
     this.k = [];
     this.simpleFrequencyPercentage = [];
     this.accumulatedFrequncy = [];
@@ -24,10 +24,10 @@ class Continue {
     this.vetInterval = [];
     this.vet = vet;
     this.name = name;
-    this.separatrizItems = separatriz;
+    this.separatrixItems = separatrix;
     this.process = process;
     this.canvasHolder = document.querySelector('[data-canvas]');
-    this.continueTemplate = doT.template('<table style="text-align:center"><tr class="table__header"><th class="table__item">Classes</th><th class="table__item">{{=it.name}}</th><th class="table__item">Frequenca Simples</th><th class="table__item">Frequenca Relativa</th><th class="table__item">Frequenca Acumulada</th><th class="table__item">Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr class="table__lines"><td class="table__item">{{=value.class}}</td><td class="table__item">{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td class="table__item">{{=value.cont}}</td><td class="table__item">{{=value.fr}}</td><td class="table__item">{{=value.fa}}</td><td class="table__item">{{=value.fac}}</td></tr>{{~}}</table><br/><div class="table__informations"><div class="cell__information" ><p class="cell__title">Moda</p><p>{{=value.moda}}</p></div><div class="cell__information" ><p class="cell__title">  Média</p><p> {{=value.media}}</p></div><div class="cell__information" ><p class="cell__title">  Mediana</p><p> {{=value.mediana}}</p></div><div class="cell__information" ><p class="cell__title">  Separatriz</p><p> {{=it.separatrizResult}}</p></div><div class="cell__information" ><p class="cell__title"> Desvio Padrão</p><p> {{=it.desvioPadrao}}</p></div><div class="cell__information" ><p class="cell__title"> Coeficiente de Variação</p><p> {{=it.coeficientevariacao}}</p></div></div>');
+    this.continueTemplate = doT.template('<table style="text-align:center"><tr class="table__header"><th class="table__item">Classes</th><th class="table__item">{{=it.name}}</th><th class="table__item">Frequenca Simples</th><th class="table__item">Frequenca Relativa</th><th class="table__item">Frequenca Acumulada</th><th class="table__item">Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr class="table__lines"><td class="table__item">{{=value.class}}</td><td class="table__item">{{=value.valorInicial}} |&#8212; {{=value.valorFinal}}</td><td class="table__item">{{=value.cont}}</td><td class="table__item">{{=value.fr}}</td><td class="table__item">{{=value.fa}}</td><td class="table__item">{{=value.fac}}</td></tr>{{~}}</table><br/><div class="table__informations"><div class="cell__information" ><p class="cell__title">Moda</p><p>{{=value.moda}}</p></div><div class="cell__information" ><p class="cell__title">  Média</p><p> {{=value.media}}</p></div><div class="cell__information" ><p class="cell__title">  Mediana</p><p> {{=value.mediana}}</p></div><div class="cell__information" ><p class="cell__title">  Separatriz</p><p> {{=it.separatrixResult}}</p></div><div class="cell__information" ><p class="cell__title"> Desvio Padrão</p><p> {{=it.desvioPadrao}}</p></div><div class="cell__information" ><p class="cell__title"> Coeficiente de Variação</p><p> {{=it.coeficientevariacao}}</p></div></div>');
     this.continueResult = '';
     this.setup();
   }
@@ -40,7 +40,7 @@ class Continue {
     this.createModa();
     this.interval();
     this.generateFrequency();
-    this.separatriz();
+    this.separatrix();
     this.media();
     this.moda();
     this.mediana();
@@ -84,7 +84,7 @@ class Continue {
       y = x + this.intervalNumber;
       for (let i = 0; i < this.vet.length; i += 1) {
         if ((this.vet[i] >= x) && (this.vet[i] < y)) {
-          this.dataModa = Moda.create(this.vet).getResult();
+          this.dataMode = Moda.create(this.vet).getResult();
         }
       }
       x += this.intervalNumber;
@@ -92,12 +92,12 @@ class Continue {
   }
 
   interval() {
-    let valorInicial = this.dataModa[0].number;
-    let cont = this.dataModa[0].cont;
+    let valorInicial = this.dataMode[0].number;
+    let cont = this.dataMode[0].cont;
     let valorFinal = valorInicial + this.intervalNumber;
 
-    for (let i = 1; i < this.dataModa.length; i += 1) {
-      if (this.dataModa[i].number >= valorFinal) {
+    for (let i = 1; i < this.dataMode.length; i += 1) {
+      if (this.dataMode[i].number >= valorFinal) {
         const obj = new Object(); // eslint-disable-line
         obj.valorInicial = valorInicial;
         obj.valorFinal = valorFinal;
@@ -105,9 +105,9 @@ class Continue {
         this.vetInterval.push(obj);
         valorInicial = valorFinal;
         valorFinal = valorInicial + this.intervalNumber;
-        cont = this.dataModa[i].cont;
-      } else if (this.dataModa[i].number < valorFinal) {
-        cont += this.dataModa[i].cont;
+        cont = this.dataMode[i].cont;
+      } else if (this.dataMode[i].number < valorFinal) {
+        cont += this.dataMode[i].cont;
       }
     }
     const obj = new Object(); // eslint-disable-line
@@ -128,7 +128,7 @@ class Continue {
     }
   }
 
-  separatrizGeral(valuePosicao) {
+  separatrixGeral(valuePosicao) {
     const posicao = valuePosicao;
     let I = null;// eslint-disable-line
     let find = null;// eslint-disable-line
@@ -152,16 +152,16 @@ class Continue {
     this.result = (I + ((posicao - facAnt) / find) * this.intervalNumber).toFixed(2); //eslint-disable-line
   }
 
-  separatriz() {
-    const posicao = Number((this.separatrizItems.range / 100) * this.vet.length).toFixed(2);
-    this.separatrizGeral(posicao);
-    this.separatrizResult = this.result;
+  separatrix() {
+    const posicao = Number((this.separatrixItems.range / 100) * this.vet.length).toFixed(2);
+    this.separatrixGeral(posicao);
+    this.separatrixResult = this.result;
   }
 
   mediana() {
     const posicao = this.vet.length / 2;
-    this.separatrizGeral(posicao);
-    this.valueMediana = this.result;
+    this.separatrixGeral(posicao);
+    this.medianValue = this.result;
   }
 
   media() {
@@ -170,7 +170,7 @@ class Continue {
       mediaparcial += ((this.vetInterval[i].valorFinal + this.vetInterval[i].valorInicial) / 2) * this.vetInterval[i].cont; // eslint-disable-line
     }
 
-    this.valueMedia = (mediaparcial / this.vet.length).toFixed(2);
+    this.meanValue = (mediaparcial / this.vet.length).toFixed(2);
   }
 
   moda() {
@@ -182,7 +182,7 @@ class Continue {
         posicao = i;
       }
     }
-    this.valueModa = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
+    this.modeValue = (this.vetInterval[posicao].valorFinal + this.vetInterval[posicao].valorInicial) / 2; // eslint-disable-line
   }
 
   standardDeviation() {
@@ -190,14 +190,14 @@ class Continue {
     this.vetInterval.forEach((elm, i) => {
       medias[i] = {
         number: (elm.valorInicial + elm.valorFinal) / 2,
-        cont: this.dataModa[i].cont,
+        cont: this.dataMode[i].cont,
       };
     });
-    this.standardDeviationResult = StandardDeviation.create(medias, this.valueMedia, this.process).getResult(); // eslint-disable-line
+    this.standardDeviationResult = StandardDeviation.create(medias, this.meanValue, this.process).getResult(); // eslint-disable-line
   }
 
   coefficientVariation() {
-    this.variation = ((this.standardDeviationResult / this.valueMedia) * 100).toFixed(2);
+    this.variation = ((this.standardDeviationResult / this.meanValue) * 100).toFixed(2);
   }
 
   createTable() {
@@ -210,10 +210,10 @@ class Continue {
         fr: this.simpleFrequencyPercentage[i],
         fa: this.accumulatedFrequncy[i],
         fac: this.accumulatedFrequncyPercentage[i],
-        moda: this.valueModa,
-        media: this.valueMedia,
-        mediana: this.valueMediana,
-        separatrizResult: this.separatrizResult,
+        moda: this.modeValue,
+        media: this.meanValue,
+        mediana: this.medianValue,
+        separatrixResult: this.separatrixResult,
         desvioPadrao: this.standardDeviationResult,
         coeficientevariacao: this.variation,
       };
@@ -221,7 +221,7 @@ class Continue {
       this.dynamicTable.push(obj);
     }
 
-    this.continueResult = this.continueTemplate({ name: this.name, dynamicTable: this.dynamicTable, separatrizResult: this.separatrizResult, desvioPadrao: this.standardDeviationResult, coeficientevariacao: this.variation, }); // eslint-disable-line
+    this.continueResult = this.continueTemplate({ name: this.name, dynamicTable: this.dynamicTable, separatrixResult: this.separatrixResult, desvioPadrao: this.standardDeviationResult, coeficientevariacao: this.variation, }); // eslint-disable-line
   }
 
   createChart() {
@@ -257,8 +257,8 @@ class Continue {
 
 
 export default{
-  create(vet, name, separatriz, process) {
-    return new Continue(vet, name, separatriz, process);
+  create(vet, name, separatrix, process) {
+    return new Continue(vet, name, separatrix, process);
   },
 };
 
