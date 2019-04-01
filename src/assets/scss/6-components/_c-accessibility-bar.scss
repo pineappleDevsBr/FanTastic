@@ -60,3 +60,9 @@
     }
   }
 }
+
+@include respond-to(mobile) {
+  .c-accessibility-bar {
+    display: none;
+  }
+}

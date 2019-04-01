@@ -1,0 +1,31 @@
+.c-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 4;
+  display: none;
+
+  &__overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba($color: #000, $alpha: 0.5);
+  }
+
+  &__wrapp {
+    background: $color-white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+  }
+}
+
+.c-modal.is-open {
+  display: block;
+}

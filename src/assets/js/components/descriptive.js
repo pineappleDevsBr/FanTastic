@@ -1,4 +1,5 @@
 import Jump from 'jump.js';
+import MicroModal from 'micromodal';
 import Nominal from './modules/descriptive/nominal';
 import Ordinal from './modules/descriptive/ordinal';
 import Discreet from './modules/descriptive/discreet';
@@ -9,6 +10,7 @@ class Descriptive {
     this.button = document.querySelector('[data-button-descriptive]');
     this.buttonFile = document.querySelector('[data-button-file]');
     this.holderResult = document.querySelector('[data-result-holder]');
+    this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.elm = null;
     this.radioHolder = null;
     this.separatrisHolder = null;
@@ -85,8 +87,14 @@ class Descriptive {
           inputFile.value = reader.result;
         };
         reader.readAsText(file);
-      } else (alert('Escolha um arquivo no formato .txt ou .csv'));
-    } else { alert('Seu navegador nao suporta essa funcionalidade :('); }
+      } else {
+        this.modalMessage.innerHTML = 'Escolha um arquivo no formato .txt ou .csv';
+        MicroModal.show('modal-1');
+      }
+    } else {
+      this.modalMessage.innerHTML = 'Seu navegador nao suporta essa funcionalidade';
+      MicroModal.show('modal-1');
+    }
   }
 
   recoverData() {
@@ -152,14 +160,22 @@ class Descriptive {
   validateData() {
     if (this.listRadio[1].checked === true) {
       if (this.data === '' || this.dataName === '' || this.orderOrdinal === '' ) { // eslint-disable-line
-        alert('preencha todos os campos');
+        this.modalMessage.innerHTML = 'Preencha todos os campos!';
+        MicroModal.show('modal-1');
+      } else if (/;;/.test(this.data)) {
+        this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, verifique a separação dos dados!';
+        MicroModal.show('modal-1');
       } else {
         this.convertArray();
         this.choiceTypeVariable();
         this.appendResult();
       }
     } else if (this.data === '' || this.dataName === '') {
-      alert('preencha todos os campos');
+      this.modalMessage.innerHTML = 'Preencha todos os campos!';
+      MicroModal.show('modal-1');
+    } else if (/;;/.test(this.data)) {
+      this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, verifique a separação dos dados!';
+      MicroModal.show('modal-1');
     } else {
       this.convertArray();
       this.choiceTypeVariable();
