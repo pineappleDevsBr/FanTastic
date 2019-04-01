@@ -10,7 +10,7 @@ class StandardDeviation {
 
   setup() {
     this.data.forEach((elm) => {
-      this.result += Math.pow(elm.number - this.media) * elm.cont; // eslint-disable-line
+      this.result += Math.pow((elm.number - this.media), 2 ) * elm.cont; // eslint-disable-line 
       this.dataLength += elm.cont;
     });
 
