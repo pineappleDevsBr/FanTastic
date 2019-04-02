@@ -12,3 +12,9 @@
   }
 }
 
+@mixin bg-contrast() {
+  .accessibility-mode & {
+    filter: grayscale(100%);
+  }
+}
+

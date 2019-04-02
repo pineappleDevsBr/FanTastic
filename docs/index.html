@@ -202,22 +202,56 @@
 
     <div class="c-modal__wrapp" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
 
-
-      <header class="c-modal__header">
-        <h2 id="modal-1-title" class="c-modal__title">
-          Ops, algo deu errado! 🤕
-        </h2>
-
-        <button class="c-modal__button-close" aria-label="Close modal" data-micromodal-close></button>
-      </header>
-
-      <div id="modal-1-content" class="c-modal__content" data-modal-message>
-        Modal Content
+      <div class="c-modal__holder">
+        <header class="c-modal__header">
+            <h2 id="modal-1-title" class="c-modal__title">
+              Ops, algo deu errado! 🤕
+            </h2>
+    
+            <button class="c-modal__button-close" aria-label="Close modal" data-micromodal-close>X</button>
+          </header>
+    
+          <div id="modal-1-content" class="c-modal__content" data-modal-message>
+            Modal Content
+          </div>      
       </div>
 
     </div>
   </div>
 </div>
+    <div class="c-help-box" data-help-box>
+  <div class="c-help-box__wrapp">
+    <div class="c-help-box__cta" data-help-box-open>
+      <span class="c-help-box__title">Posso ajudar ?</span>
+      <button class="c-help-box__button">🤔</button>
+    </div>
+    <div class="c-help-box__holder">
+     <h3>Dicas de uso</h3>
+     <ul>
+       <li>Escolha de processo</li>
+       <li>Escolha do tipo de varivel</li>
+       <li>Escolha da medida separatriz</li>
+     </ul>
+     <button data-help-box-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+var pao = document.querySelector('[data-help-box]');
+var poa = document.querySelector('[data-help-box-close]');
+var pp  = document.querySelector('[data-help-box-open]');
+
+pp.addEventListener("click", () => {
+  pao.classList.toggle('is-active');
+})
+
+poa.addEventListener("click", () => {
+  pao.classList.toggle('is-active');
+})
+
+</script>
   <!-- <footer class="footer">
 	&copy; PinneapleDevs | 2018
 </footer> -->

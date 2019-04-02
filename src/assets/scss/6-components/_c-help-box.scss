@@ -1,0 +1,77 @@
+.c-help-box {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 6;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  &.is-active {
+    .c-help-box__cta {
+      display: none;
+    }
+
+    .c-help-box__holder {
+      transform: translateX(0);
+    }
+  }
+}
+
+.c-help-box__cta {
+  position: relative;
+}
+
+.c-help-box__button {
+  @include bg-contrast();
+
+  border: none;
+  background: $color-white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 30px;
+  box-shadow: 0 0 10px $color-gray-mid;
+  cursor: pointer;
+}
+
+.c-help-box__title {
+  position: absolute;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0;
+  display: block;
+  width: 0;
+  right: 100%;
+  top: 50%;
+  transform: translate(0, -50%);
+  transition: all 0.5s ease-in-out;
+  background: $color-white;
+  box-shadow: 0 0 10px $color-gray-mid;
+  padding: 6px 10px;
+  z-index: -1;
+  white-space: nowrap;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-style: italic;
+}
+
+.c-help-box__holder {
+  display: block;
+  position: absolute;
+  width: 300px;
+  bottom: 0;
+  right: 0;
+  background: $color-white;
+  transform: translateX(150%);
+  transition: transform 0.5s ease-in-out;
+  box-shadow: 0 0 10px $color-gray-mid;
+}
+
+@include respond-to(tablet-desktop) {
+  .c-help-box {
+    &:hover {
+      .c-help-box__title {
+        width: 100px;
+        opacity: 1;
+      }
+    }
+  }
+}

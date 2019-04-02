@@ -36,6 +36,7 @@
   border-radius: 10px;
   background: none;
   transition: all 0.3s ease-out;
+  cursor: pointer;
 
   &::before {
     content: "";
@@ -52,11 +53,11 @@
   }
 
   &.is-active {
-    border-color: green;
+    border-color: $color-gray-mid;
 
     &::before {
       transform: translateX(-12px);
-      background: green;
+      background: $color-gray-mid;
     }
   }
 }
