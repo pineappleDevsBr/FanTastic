@@ -56,13 +56,34 @@
 .c-help-box__holder {
   display: block;
   position: absolute;
-  width: 300px;
+  padding: 20px 10px;
+  width: 400px;
+  border-radius: 10px;
   bottom: 0;
   right: 0;
   background: $color-white;
   transform: translateX(150%);
   transition: transform 0.5s ease-in-out;
   box-shadow: 0 0 10px $color-gray-mid;
+}
+
+.c-help-box__holder-title {
+  margin-top: 0;
+}
+
+.c-help-box__holder-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.c-help-box__holder-item {
+  padding: 10px;
+  border-radius: 10px;
+  background: $color-gray-minimal;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
 }
 
 @include respond-to(tablet-desktop) {

@@ -34,10 +34,31 @@
 
 .c-modal__button-close {
   position: absolute;
-  right: -5px;
-  top: -5px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  height: 35px;
+  width: 35px;
+  right: 5px;
+  top: 5px;
+  outline: none;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    background: url(../static/close-button.png);
+    background-size: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .c-modal.is-open {
   display: block;
 }
+
