@@ -96,3 +96,9 @@
     }
   }
 }
+
+@include respond-to(mobile) {
+  .c-help-box__holder {
+    width: 325px;
+  }
+}

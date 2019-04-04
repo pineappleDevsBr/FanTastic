@@ -62,3 +62,10 @@
   display: block;
 }
 
+@include respond-to(mobile) {
+  .c-modal__holder {
+    padding: 40px 15px;
+    width: 232px;
+    text-align: center;
+  }
+}
