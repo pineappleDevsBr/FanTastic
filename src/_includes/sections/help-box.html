@@ -1,6 +1,6 @@
 <div class="c-help-box" data-help-box>
   <div class="c-help-box__wrapp">
-    <div class="c-help-box__cta" data-help-box-open>
+    <div class="c-help-box__cta" data-button-open>
       <span class="c-help-box__title">Posso ajudar ?</span>
       <button class="c-help-box__button">🤔</button>
     </div>
@@ -8,45 +8,35 @@
      <h3 class="c-help-box__holder-title">Dicas de uso</h3>
      <ul class="c-help-box__holder-list">
        <li class="c-help-box__holder-item">
-         <h4>Tipo do processo</h4>
-         <!-- <p>Non sit exercitation quis mollit sit dolor mollit aliqua pariatur irure aliquip do voluptate. Eiusmod magna id adipisicing esse cupidatat nisi exercitation ipsum proident id sunt sunt.</p> -->
+         <h4 class="c-help-box__item-title" data-item>Tipo do processo</h4>
+         <div data-height="isClosed" class="c-help-box__height-box">
+          <p>Non sit exercitation quis mollit sit dolor mollit aliqua pariatur irure aliquip do voluptate. Eiusmod magna id adipisicing esse cupidatat nisi exercitation ipsum proident id sunt sunt.Non sit exercitation quis mollit sit dolor mollit aliqua pariatur irure aliquip do voluptate. Eiusmod magna id adipisicing esse cupidatat nisi exercitation ipsum proident id sunt sunt.</p>
+         </div>
         </li>
        <li class="c-help-box__holder-item">
-         <h4>Escolha do tipo de varivel</h4>
-         <!-- <ul>
-           <li>Qualitativa nominal</li>
-           <li>Qualitativa ordinal</li>
-           <li>Quantitativa discreta</li>
-           <li>Quantitativa continua</li>
-         </ul> -->
+         <h4 class="c-help-box__item-title" data-item>Escolha do tipo de varivel</h4>
+         <div data-height="isClosed" class="c-help-box__height-box">
+          <ul>
+            <li>Qualitativa nominal</li>
+            <li>Qualitativa ordinal</li>
+            <li>Quantitativa discreta</li>
+            <li>Quantitativa continua</li>
+          </ul>
+         </div>
        </li>
        <li class="c-help-box__holder-item">
-         <h4>Escolha da medida separatriz</h4>
-         <!-- <ul>
-           <li>Quartil</li>
-           <li>Quintil</li>
-           <li>Decil</li>
-           <li>Porcentil</li>
-         </ul> -->
+         <h4 class="c-help-box__item-title" data-item>Escolha da medida separatriz</h4>
+         <div data-height="isClosed" class="c-help-box__height-box">
+          <ul>
+            <li>Quartil</li>
+            <li>Quintil</li>
+            <li>Decil</li>
+            <li>Porcentil</li>
+          </ul>
+         </div>
        </li>
      </ul>
-     <button data-help-box-close>Close</button>
+     <button data-button-close>Close</button>
     </div>
   </div>
 </div>
-
-<script>
-
-var pao = document.querySelector('[data-help-box]');
-var poa = document.querySelector('[data-help-box-close]');
-var pp  = document.querySelector('[data-help-box-open]');
-
-pp.addEventListener("click", () => {
-  pao.classList.toggle('is-active');
-})
-
-poa.addEventListener("click", () => {
-  pao.classList.toggle('is-active');
-})
-
-</script>
