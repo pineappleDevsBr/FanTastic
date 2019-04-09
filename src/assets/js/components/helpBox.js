@@ -31,7 +31,10 @@ class HelpBox {
 
   setupsListeners() {
     this.openButton.addEventListener('click', () => { this.toggleClass(); });
-    this.closeButton.addEventListener('click', () => { this.toggleClass(); });
+    this.closeButton.addEventListener('click', () => {
+      this.toggleClass();
+      this.setMaxHeightDefault();
+    });
 
     this.items.forEach((elm, i) => {
       elm.addEventListener('click', () => { this.setMaxHeight(this.contentsObj[i]); });

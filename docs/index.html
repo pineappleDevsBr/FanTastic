@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Uma fantastica ferramenta de estatistica">
   <!-- meta tags for social networks -->
   <meta property="og:site_name" content="FanTastic">
   <meta property="og:title" content="FanTastic">
@@ -60,7 +61,7 @@
   <h1 class="o-title"><span>Fan</span>tastic</h1>
   <p class="o-subtitle">Uma fantástica ferramenta de estatistica</p>
   <p class="o-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales blandit posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce in erat at erat sollicitudin volutpat. Phasellus sagittis at mauris at rutrum. Nam rhoncus, urna at dapibus auctor, est neque sagittis felis, a semper urna quam eu mi. Vestibulum faucibus rutrum justo, ut facilisis lorem aliquet eget. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-  <button class="o-button--arrow-down" data-button-home></button>
+  <button class="o-button--arrow-down" name="Inicio" data-button-home></button>
 </header>
 <!-- <a href="https://github.com/pineappleDevsBr/FanTastic" target="_blank" class="o-octocat"></a> -->
 
@@ -139,8 +140,8 @@
     </div>
     
     <div class="o-label-range__holder" data-range-interface>
-      <input type="range" class="o-label-range" step="25" min="0" max="100" value="0" data-range>
-      <span class="o-label-range-value" data-range-value>0%</span>
+      <input id="range" type="range" class="o-label-range" step="25" min="0" max="100" value="0" data-range>
+      <label for="range" class="o-label-range-value" data-range-value>0%</label>
     </div>
   </div>
 
@@ -164,11 +165,11 @@
 </form>
 
     <div class="c-form__box" data-box>
+  <!-- <input type="text"><br /><br />
   <input type="text"><br /><br />
   <input type="text"><br /><br />
   <input type="text"><br /><br />
-  <input type="text"><br /><br />
-  <input type="text"><br /><br />
+  <input type="text"><br /><br /> -->
 </div>
     <div class="c-form__box" data-box data-dropdown>
 
