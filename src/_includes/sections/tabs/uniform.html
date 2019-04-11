@@ -1,0 +1,37 @@
+<div class="c-dropdown__box" id="uniforme" data-uniform>
+
+  <h3>Entrada de Dados</h3>
+  <div class="o-label--input">
+    <label for="max" class="o-label-title">Ponto máximo</label>
+    <input type="text" id="max" class="o-label-input" required="true">
+  </div>
+
+  <div class="o-label--input">
+    <label for="min" class="o-label-title">Ponto mínimo</label>
+    <input type="text" id="min" class="o-label-input" required="true">
+  </div>
+
+  <div class="o-label--input">
+    <label for="data" class="o-label-title">Dados</label>
+    <input type="text" id="data" class="o-label-input" required="true">
+  </div>
+
+  <div class="o-label--select">
+    <label for="interval" class="o-label-title">Intervalo de análise</label>
+    <select name="interval">
+      <option value=" "> -- </option>
+      <option value="">Menor que</option>
+      <option value="">Entre</option>
+      <option value="">Maior que</option>
+    </select>
+  </div>
+  <br>
+
+  <div class="o-button o-button--file">
+    <input type="file" id="file" accept=".csv,.txt" data-button-file></input>
+    <label class="o-button_label" for="file" >Escolha o arquivo</label>
+  </div>
+
+  <button type="submit" class="o-button o-button--calculate" data-button-descriptive>Calcular</button>
+
+</div>

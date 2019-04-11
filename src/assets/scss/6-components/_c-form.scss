@@ -18,13 +18,16 @@
 
 .c-form__tab {
   flex: 1;
-  color: $color-white;
-  font-size: 24px;
-  font-weight: $font-weight-medium;
-  font-family: $font-family-main;
   padding: 20px 10px;
   cursor: pointer;
   position: relative;
+
+  a {
+    color: $color-white;
+    font-size: 24px;
+    font-weight: $font-weight-medium;
+    font-family: $font-family-main;
+  }
 
   &::before {
     content: "";
@@ -35,7 +38,6 @@
 
   &.is-active {
     background: white;
-    color: $color-gray;
 
     &:nth-child(1) {
       border-top-right-radius: 10px;
@@ -48,6 +50,10 @@
 
     &:nth-child(3) {
       border-top-left-radius: 10px;
+    }
+
+    a {
+      color: $color-gray;
     }
   }
 }
@@ -82,7 +88,7 @@
 }
 
 @include respond-to(mobile-tablet) {
-  .c-form__tab {
+  .c-form__tab a {
     font-size: 15px;
   }
 }
@@ -96,7 +102,7 @@
 }
 
 @media all and (max-width: 320px) {
-  .c-form__tab {
+  .c-form__tab a {
     font-size: 12px;
   }
 }

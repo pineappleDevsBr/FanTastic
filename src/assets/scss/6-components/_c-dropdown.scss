@@ -11,15 +11,25 @@
   cursor: pointer;
   transition: all 0.3s ease;
 
+  a {
+    color: $color-gray-mid;
+    text-decoration: none;
+  }
+
   &:hover,
   &.is-active {
     border-bottom: 2px solid $color-purple;
+
+    a {
+      font-weight: bold;
+      color: $color-gray-mid;
+    }
   }
 }
 
 .c-dropdown__boxes {
   position: relative;
-  height: calc(100% - 52px);
+  // height: calc(100% - 52px);
 }
 
 .c-dropdown__box {
@@ -32,5 +42,6 @@
   &.is-active {
     opacity: 1;
     z-index: 1;
+    position: absolute;
   }
 }

@@ -1,15 +1,15 @@
 <div class="c-form-wrapp" data-form>
 
-  <ul class="c-form__tabs" data-list-tab>
-    <li class="c-form__tab is-active" data-tab><spam class="c-form__tab-title">Estatística descritiva</spam></li>
-    <li class="c-form__tab" data-tab><spam class="c-form__tab-title">Correlação e Regressão</spam></li>
-    <li class="c-form__tab" data-tab><spam class="c-form__tab-title">Probabilidade</spam></li>
+  <ul class="c-form__tabs"tab-list>
+    <li class="c-form__tab" tab tab-default><a href="#descriptive" class="c-form__tab-title">Estatística descritiva</a></li>
+    <li class="c-form__tab" tab><a href="#probability" class="c-form__tab-title">Probabilidade</a></li>
+    <li class="c-form__tab" tab><a href="#tab-2" class="c-form__tab-title">Correlação e Regressão</a></li>
   </ul>
 
-  <div class="c-form__boxes" data-list-box>
+  <div class="c-form__boxes" content-list>
     {% include sections/tabs/descriptive.html %}
     {% include sections/tabs/tab-2.html %}
-    {% include sections/tabs/tab-3.html %}
+    {% include sections/tabs/probability.html %}
   </div>
   
 </div>

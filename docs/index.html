@@ -69,14 +69,14 @@
   <div class="s-section s-section--form">
       <div class="c-form-wrapp" data-form>
 
-  <ul class="c-form__tabs" data-list-tab>
-    <li class="c-form__tab is-active" data-tab><spam class="c-form__tab-title">Estatística descritiva</spam></li>
-    <li class="c-form__tab" data-tab><spam class="c-form__tab-title">Correlação e Regressão</spam></li>
-    <li class="c-form__tab" data-tab><spam class="c-form__tab-title">Probabilidade</spam></li>
+  <ul class="c-form__tabs"tab-list>
+    <li class="c-form__tab" tab tab-default><a href="#descriptive" class="c-form__tab-title">Estatística descritiva</a></li>
+    <li class="c-form__tab" tab><a href="#probability" class="c-form__tab-title">Probabilidade</a></li>
+    <li class="c-form__tab" tab><a href="#tab-2" class="c-form__tab-title">Correlação e Regressão</a></li>
   </ul>
 
-  <div class="c-form__boxes" data-list-box>
-    <form class="c-form__box is-active" data-box data-descriptive>
+  <div class="c-form__boxes" content-list>
+    <form id="descriptive" class="c-form__box" data-descriptive>
 
   <div class="o-label--radio-holder" data-process>
     <h3>Processo</h3>
@@ -164,24 +164,60 @@
   <button type="submit" class="o-button o-button--calculate" data-button-descriptive>Calcular</button>
 </form>
 
-    <div class="c-form__box" data-box>
+    <div id="tab-2" class="c-form__box">
   <!-- <input type="text"><br /><br />
   <input type="text"><br /><br />
   <input type="text"><br /><br />
   <input type="text"><br /><br />
   <input type="text"><br /><br /> -->
 </div>
-    <div class="c-form__box" data-box data-dropdown>
+    <div id="probability" class="c-form__box" data-form>
 
-  <ul class="c-dropdown__tabs" data-list-tab>
-    <li class="c-dropdown__tab is-active" data-tab>pao</li>
-    <li class="c-dropdown__tab" data-tab>pao 3 </li>
-    <li class="c-dropdown__tab" data-tab>pao 2</li>
+  <ul class="c-dropdown__tabs" tab-list>
+    <li class="c-dropdown__tab" tab tab-default><a href="#uniforme">Uniforeme</a> </li>
+    <li class="c-dropdown__tab" tab><a href="#pao3">Normal</a></li>
+    <li class="c-dropdown__tab" tab><a href="#pao2">Binomial</a></li>
   </ul>
-  <div class="c-dropdown__boxes" data-list-box>
-    <div class="c-dropdown__box is-active" data-box>fvawsrgvfg</div>
-    <div class="c-dropdown__box" data-box>GRwghrsWGR</div>
-    <div class="c-dropdown__box" data-box>wgrWGRSgrsgr</div>
+  <div class="c-dropdown__boxes" content-list>
+    <div class="c-dropdown__box" id="uniforme" data-uniform>
+
+  <h3>Entrada de Dados</h3>
+  <div class="o-label--input">
+    <label for="max" class="o-label-title">Ponto máximo</label>
+    <input type="text" id="max" class="o-label-input" required="true">
+  </div>
+
+  <div class="o-label--input">
+    <label for="min" class="o-label-title">Ponto mínimo</label>
+    <input type="text" id="min" class="o-label-input" required="true">
+  </div>
+
+  <div class="o-label--input">
+    <label for="data" class="o-label-title">Dados</label>
+    <input type="text" id="data" class="o-label-input" required="true">
+  </div>
+
+  <div class="o-label--select">
+    <label for="interval" class="o-label-title">Intervalo de análise</label>
+    <select name="interval">
+      <option value=" "> -- </option>
+      <option value="">Menor que</option>
+      <option value="">Entre</option>
+      <option value="">Maior que</option>
+    </select>
+  </div>
+  <br>
+
+  <div class="o-button o-button--file">
+    <input type="file" id="file" accept=".csv,.txt" data-button-file></input>
+    <label class="o-button_label" for="file" >Escolha o arquivo</label>
+  </div>
+
+  <button type="submit" class="o-button o-button--calculate" data-button-descriptive>Calcular</button>
+
+</div>
+    <div class="c-dropdown__box" id="pao3">GRwghrsWGR</div>
+    <div class="c-dropdown__box" id="pao2">wgrWGRSgrsgr</div>
   </div>
   
 </div>
