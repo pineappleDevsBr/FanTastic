@@ -29,7 +29,7 @@
 
 .c-dropdown__boxes {
   position: relative;
-  // height: calc(100% - 52px);
+  height: calc(100% - 52px);
 }
 
 .c-dropdown__box {
@@ -43,5 +43,16 @@
     opacity: 1;
     z-index: 1;
     position: absolute;
+  }
+}
+
+@include respond-to(mobile) {
+  .c-dropdown__tabs {
+    display: flex;
+  }
+
+  .c-dropdown__tab {
+    width: auto;
+    flex: 1;
   }
 }

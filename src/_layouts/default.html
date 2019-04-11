@@ -39,19 +39,14 @@
 
 <body>
 
-  <div class="s-header">
-    {% include header.html %}
-  </div>
-  <div class="s-section s-section--form">
-      {% include sections/form.html %}
-  </div>
-  <div class="s-section s-section--result" data-result-holder>
-    {% include sections/result.html %}
-  </div>
+  {% include header.html %}
 
-    {% include sections/modal.html %}
-    {% include sections/help-box.html %}
-  <!-- {% include footer.html %} -->
+  {{ content }}
+
+  {% include sections/modal.html %}
+  {% include sections/help-box.html %}
+
+  {# {% include footer.html %} #}
 
   <script>
   //This is the "Offline copy of pages" service worker

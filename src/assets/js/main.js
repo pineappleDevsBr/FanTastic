@@ -4,7 +4,9 @@ import AccessibillityBar from './components/accessibility-bar';
 import HelpBox from './components/helpBox';
 import Descriptive from './components/descriptive';
 
-const tabs = new SimpleTabs('[data-form]'); // eslint-disable-line
+const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
+  minHeight: false,
+});
 
 JumpButton.create('[data-button-home]', '.s-section--form');
 HelpBox.create('[data-help-box]');
