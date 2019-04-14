@@ -113,6 +113,29 @@
   text-align: center;
 }
 
+.o-label-select__holder {
+  display: inline-block;
+  position: relative;
+}
+
+.o-label-select__span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  border: 2px solid $color-purple;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.o-label-select__value {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+}
+
 @include respond-to(mobile) {
   .o-label--input {
     .o-label-input {
