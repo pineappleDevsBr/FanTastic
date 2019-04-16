@@ -77,7 +77,6 @@
 }
 
 .c-help-box__holder-item {
-  padding: 10px;
   border-radius: 10px;
   background: $color-gray-minimal;
 
@@ -88,6 +87,7 @@
 
 .c-help-box__item-title {
   margin: 0;
+  padding: 10px;
   cursor: pointer;
 }
 
