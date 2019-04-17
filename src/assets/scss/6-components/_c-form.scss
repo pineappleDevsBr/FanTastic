@@ -5,6 +5,10 @@
   overflow: hidden;
   border-radius: 10px;
   background: white;
+
+  &--result {
+    overflow-y: scroll;
+  }
 }
 
 .c-form__tabs {

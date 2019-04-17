@@ -8,11 +8,15 @@ class Uniform {
     this.buttonSubmit = this.elm.querySelector('[data-button-uniform]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.holderResult = document.querySelector('[data-result-holder]');
+    this.canvasHolder = document.querySelector('[data-canvas]');
     this.uniformTemplate = doT.template('<div> <p>{{=it.probabilidade}}%</p><p>{{=it.desvioPadrao}}</p><p>{{=it.media}}</p><p>{{=it.coeficienteVaricao}}</p></div>');
     this.intervalAnalysisValue = { type: null, data: null };
     this.maxPoint = null;
     this.minPoint = null;
     this.probability = null;
+    this.media = null;
+    this.standartDeviation = null;
+    this.coefficientOfVariation = null;
     this.result = null;
     this.intervalAnalysis = {
       span: this.elm.querySelector('[data-select-span]'),
@@ -66,6 +70,9 @@ class Uniform {
       Modal.show('modal-1');
     } else {
       this.generateProbability();
+      this.generateMedia();
+      this.generateStandartDeviation();
+      this.generateCoefficientOfVariation();
       this.generateLayout();
       this.appendResult();
     }
@@ -90,8 +97,25 @@ class Uniform {
     this.probability = this.probability.toFixed();
   }
 
+  generateMedia() {
+    this.media = (this.maxPoint + this.minPoint) / 2;
+  }
+
+  generateStandartDeviation() {
+    this.standartDeviation = Math.sqrt((Math.pow((this.maxPoint - this.minPoint), 2)) / 12 ).toFixed(2) // eslint-disable-line
+  }
+
+  generateCoefficientOfVariation() {
+    this.coefficientOfVariation = (this.standartDeviation / this.media) * 100;
+  }
+
   generateLayout() {
-    this.result = this.uniformTemplate({ probabilidade: this.probability });
+    this.result = this.uniformTemplate({
+      probabilidade: this.probability,
+      desvioPadrao: this.standartDeviation,
+      media: this.media,
+      coeficienteVaricao: this.coefficientOfVariation,
+    });
   }
 
   appendResult() {
@@ -101,6 +125,7 @@ class Uniform {
       }
 
       this.holderResult.firstElementChild.firstElementChild.innerHTML = '';
+      this.canvasHolder.innerHTML = '';
       this.holderResult.firstElementChild.firstElementChild.innerHTML = this.result;
       setTimeout(() => {
         Jump('.s-section--result');
