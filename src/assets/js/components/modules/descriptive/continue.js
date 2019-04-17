@@ -190,7 +190,7 @@ class Continue {
     this.vetInterval.forEach((elm, i) => {
       medias[i] = {
         number: (elm.valorInicial + elm.valorFinal) / 2,
-        cont: this.dataMode[i].cont,
+        cont: this.vetInterval[i].cont,
       };
     });
     this.standardDeviationResult = StandardDeviation.create(medias, this.meanValue, this.process).getResult(); // eslint-disable-line
