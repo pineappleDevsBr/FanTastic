@@ -72,8 +72,8 @@
   <div class="c-form-wrapp" data-form>
 
     <ul class="c-form__tabs"tab-list>
-      <li class="c-form__tab" tab tab-default><a href="#descriptive" class="c-form__tab-title">Estatística descritiva</a></li>
-      <li class="c-form__tab" tab><a href="#probability" class="c-form__tab-title">Probabilidade</a></li>
+      <li class="c-form__tab" tab><a href="#descriptive" class="c-form__tab-title">Estatística descritiva</a></li>
+      <li class="c-form__tab" tab tab-default><a href="#probability" class="c-form__tab-title">Probabilidade</a></li>
       <li class="c-form__tab" tab><a href="#tab-2" class="c-form__tab-title">Correlação e Regressão</a></li>
     </ul>
 
@@ -89,7 +89,7 @@
 
     <div class="o-label--radio">
       <input type="radio" id="censo" name="processo" class="o-label-radio">
-      <label for="censo" class="o-label-title">Censo</label>
+      <label for="censo" class="o-label-title">População</label>
     </div>
   </div>
 
@@ -119,7 +119,7 @@
     <label for="order" class="o-label-title">Ordenação das variveis ordinais</label>
     <input type="text" id="order" class="o-label-input" placeholder=" Ex: bom; pessimo; regular" disabled="true" data-order>
   </div>
-  
+
   <div class="o-label--radio-holder" data-separatriz>
     <h3>Medida separatriz</h3>
     <div class="o-label--radio">
@@ -140,7 +140,7 @@
       <input type="radio" data-value="1" id="porcentil" name="separatriz" class="o-label-radio">
       <label for="porcentil" class="o-label-title">Porcentil</label>
     </div>
-    
+
     <div class="o-label-range__holder" data-range-interface>
       <input id="range" type="range" class="o-label-range" step="25" min="0" max="100" value="0" data-range>
       <label for="range" class="o-label-range-value" data-range-value>0%</label>
@@ -152,7 +152,7 @@
     <label for="name" class="o-label-title">Nome da variavel</label>
     <input type="text" id="name" class="o-label-input" required="true" data-name>
   </div>
-  
+
   <div class="o-label--input o-label--data">
     <label for="data" class="o-label-title">Dados</label>
     <input type="text" id="data" class="o-label-input" required="true" data-dados>
@@ -197,13 +197,13 @@
   <div class="o-label--select">
     <label for="interval" class="o-label-title">Intervalo de análise: </label>
     <div class="o-label-select__holder" data-select>
-      <span class="o-label-select__span" data-select-span> Selecione </span>
       <select class="o-label-select__value" name="interval" data-select-value>
         <option value=" -- "> -- </option>
         <option value="menor">Menor que</option>
         <option value="entre">Entre</option>
         <option value="maior">Maior que</option>
       </select>
+      <span class="o-label-select__span" data-select-span> Selecione </span>
     </div>
   </div>
 
@@ -220,7 +220,7 @@
     <div class="c-dropdown__box" id="pao3">GRwghrsWGR</div>
     <div class="c-dropdown__box" id="pao2">wgrWGRSgrsgr</div>
   </div>
-  
+
 </div>
     </div>
 

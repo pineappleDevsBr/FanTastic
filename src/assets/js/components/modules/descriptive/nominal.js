@@ -1,5 +1,6 @@
 import doT from 'dot';
 import Chart from 'chart.js';
+import Order from '../common/order';
 import Moda from '../common/moda';
 import Median from '../common/median';
 
@@ -32,6 +33,8 @@ class Nominal {
   }
 
   organizerData() {
+    this.data = Order.create(this.data).organizerWordsNoOder();
+
     this.dataModa = Moda.create(this.data).getResult();
   }
 

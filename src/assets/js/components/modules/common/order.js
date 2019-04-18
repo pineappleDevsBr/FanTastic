@@ -30,6 +30,12 @@ class Order {
     this.vet = this.vetLetter;
   }
 
+  organizerWordsNoOder() {
+    this.vet = this.vet.sort();
+
+    return this.vet;
+  }
+
   orderCrescent() {
     for (let i = 0; i < this.vet.length; i += 1) {
       for (let j = 0; j < this.vet.length; j += 1) {

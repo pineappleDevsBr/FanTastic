@@ -116,24 +116,35 @@
 .o-label-select__holder {
   display: inline-block;
   position: relative;
+  border: 2px solid $color-purple;
+  border-radius: 15px;
+  padding: 3px 10px;
 }
 
 .o-label-select__span {
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
   right: 0;
+  bottom: 0;
   z-index: 1;
-  border: 2px solid $color-purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 15px;
-  text-align: center;
 }
 
 .o-label-select__value {
   position: relative;
   z-index: 2;
   opacity: 0;
+  border-radius: 15px;
+
+  &:focus {
+    & + .o-label-select__span {
+      box-shadow: 0 0 10px $color-purple;
+    }
+  }
 }
 
 @include respond-to(mobile) {
