@@ -4,6 +4,7 @@ import AccessibillityBar from './components/accessibility-bar';
 import HelpBox from './components/helpBox';
 import Descriptive from './components/descriptive';
 import Uniform from './components/uniform';
+import Binomial from './components/binomial';
 
 const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
   minHeight: false,
@@ -15,3 +16,4 @@ AccessibillityBar.create('[data-accessibillity-bar]');
 
 Descriptive.create();
 Uniform.create();
+Binomial.create();

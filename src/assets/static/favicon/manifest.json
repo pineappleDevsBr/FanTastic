@@ -2,6 +2,7 @@
  "name": "FanTastic",
  "short_name": "FanTastic",
  "lang": "pt-BR",
+ "description": "Uma fantástica ferramenta de estatistica",
  "start_url": "https://pineappledevsbr.github.io/FanTastic/",
  "background_color": "#157bb1",
  "theme_color": "#ffffff",
