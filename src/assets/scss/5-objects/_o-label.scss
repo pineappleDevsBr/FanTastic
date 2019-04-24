@@ -73,14 +73,18 @@
   -webkit-appearance: none;
   flex: 8;
 
-  &::-webkit-slider-runnable-track {
+  &::-webkit-slider-runnable-track,
+  &::-moz-range-track,
+  &::-ms-track {
     height: 5px;
     background: #ddd;
     border: none;
     border-radius: 3px;
   }
 
-  &::-webkit-slider-thumb {
+  &::-webkit-slider-thumb,
+  &::-moz-range-thumb,
+  &::-ms-thumb {
     -webkit-appearance: none;
     border: none;
     height: 28px;
@@ -95,7 +99,8 @@
     outline: none;
   }
 
-  &:focus::-webkit-slider-runnable-track {
+  &:focus::-webkit-slider-runnable-track,
+  &::-ms-fill-lower {
     background: #ccc;
   }
 }
