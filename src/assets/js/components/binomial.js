@@ -1,5 +1,4 @@
 import Modal from 'micromodal';
-import * as math from 'mathjs';
 
 class Binomial {
   constructor() {
@@ -37,7 +36,6 @@ class Binomial {
 
     this.event = (bigData.querySelector('[data-event]').value).split(/;/);
     this.event = this.event.map(num => parseFloat(num));
-    console.log(this.event);
   }
 
   validateData() {
@@ -53,20 +51,31 @@ class Binomial {
 
   probability() {
     this.event.forEach((i) => {
-      const pao = {
+      const probabilityObject = {
         a: Binomial.combinatorialAnalysis(this.size, this.event[i]),
         b: Math.pow(this.sucess, this.event[i]), // eslint-disable-line
-        c: Math.pow(this.failure, (this.size - this.event[i])) // eslint-disable-line
+        c: (Math.pow(this.failure, (this.size - this.event[i])) * 100).toFixed(2) // eslint-disable-line
       };
 
-      console.log(pao);
+      console.log(probabilityObject);
     });
 
     console.log(this.probabilityValue);
   }
 
   static combinatorialAnalysis(n, k) {
-    return (math.factorial(n) / ((math.factorial(k) * (math.factorial(n - k)))));
+    if (k === 0) {
+      return 1;
+    }
+    return (Binomial.factorial(n) / ((Binomial.factorial(k) * (Binomial.factorial(n - k)))));
+  }
+
+  static factorial(n) {
+    if (n === 1) {
+      return 1;
+    }
+
+    return n * Binomial.factorial(n - 1);
   }
 }
 
