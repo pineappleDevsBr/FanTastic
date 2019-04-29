@@ -1,4 +1,5 @@
 import Modal from 'micromodal';
+// import doT from 'dot';
 
 class Binomial {
   constructor() {
@@ -9,7 +10,8 @@ class Binomial {
     this.event = null;
     this.sucess = null;
     this.failure = null;
-    this.probabilityValue = [];
+    this.standardDeviationValue = null;
+    this.probabilityValue = null;
 
     this.setup();
   }
@@ -44,38 +46,49 @@ class Binomial {
       Modal.show('modal-1');
     } else {
       this.probability();
-      // this.median();
-      // this.standardDeviation();
+      this.median();
+      this.standardDeviation();
+      // this.createResult();
     }
   }
 
   probability() {
     this.event.forEach((i) => {
       const probabilityObject = {
-        a: Binomial.combinatorialAnalysis(this.size, this.event[i]),
-        b: Math.pow(this.sucess, this.event[i]), // eslint-disable-line
-        c: (Math.pow(this.failure, (this.size - this.event[i])) * 100).toFixed(2) // eslint-disable-line
+        a: Binomial.combinatorialAnalysis(this.size, i),
+        b: Math.pow(this.sucess, i), // eslint-disable-line
+        c: Math.pow(this.failure, (this.size - i)), // eslint-disable-line
       };
 
-      console.log(probabilityObject);
-    });
+      probabilityObject.d = ((probabilityObject.a * probabilityObject.b * probabilityObject.c) * 100).toFixed(2); // eslint-disable-line
+      probabilityObject.d = parseFloat(probabilityObject.d);
 
-    console.log(this.probabilityValue);
+      this.probabilityValue += probabilityObject.d;
+    });
   }
 
   static combinatorialAnalysis(n, k) {
-    if (k === 0) {
+    if (!k) {
       return 1;
     }
+
     return (Binomial.factorial(n) / ((Binomial.factorial(k) * (Binomial.factorial(n - k)))));
   }
 
   static factorial(n) {
-    if (n === 1) {
+    if (n === 1 || n === 0) {
       return 1;
     }
 
     return n * Binomial.factorial(n - 1);
+  }
+
+  median() {
+    this.media = this.size * this.sucess;
+  }
+
+  standardDeviation() {
+    this.standardDeviationValue = Math.sqrt(this.size * this.sucess * this.failure);
   }
 }
 
