@@ -72,7 +72,7 @@ class Descriptive {
     this.button.addEventListener('click', (evt) => {
       evt.preventDefault();
       this.recoverData();
-      this.validateData();
+      this.validateCharacter();
     });
   }
 
@@ -105,7 +105,7 @@ class Descriptive {
     this.processList = Array.from(this.elm.querySelector('[data-process]').querySelectorAll('input[type=radio]'));
 
     this.processList.forEach((elm) => {
-      if (elm.checked === true) {
+      if (elm.checked) {
         this.processChecked = elm.id;
       }
     });
@@ -126,55 +126,39 @@ class Descriptive {
     let checked = null;
 
     this.separatrisItems.radios.forEach((elm) => {
-      if (elm.checked === true) { checked = elm.id; }
+      if (elm.checked) { checked = elm.id; }
     });
 
     return checked;
   }
 
-  convertArray() {
-    const regExpArrayEnd = /;$/;
-    const regExpArrayStart = /^;/;
+  validateCharacter() {
+    const regExpNumber = /^[\d]+([;,][\d]+)*$/;
+    const regExpText = /^[\w]+([;][\w]+)*$/;
 
-    if (regExpArrayEnd.test(this.data)) {
-      this.data = this.data.replace(/;$/, '');
-    }
-
-    if (regExpArrayStart.test(this.data)) {
-      this.data = this.data.replace(/^;/, '');
-    }
-
-    if (regExpArrayEnd.test(this.orderOrdinal)) {
-      this.orderOrdinal = this.orderOrdinal.replace(/;$/, '');
-    }
-
-    if (regExpArrayStart.test(this.orderOrdinal)) {
-      this.orderOrdinal = this.orderOrdinal.replace(/^;/, '');
-    }
-
-    this.data = this.data.split(/;/);
-    this.orderOrdinal = this.orderOrdinal.split(/;/);
-    this.dataConverted = this.data.map(num => parseFloat(num, 10));
+    if (this.listRadio[0].checked || this.listRadio[1].checked) {
+      if (!regExpText.test(this.data)) {
+        this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, seus dados nao podem iniciar nem terminar com \';\', tambem nao pode contem separações seguidas!';
+        MicroModal.show('modal-1');
+      } else { this.validateNull(); }
+    } else if (!regExpNumber.test(this.data)) {
+      this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, seus dados nao podem iniciar nem terminar com \';\', tambem nao pode contem separações seguidas!';
+      MicroModal.show('modal-1');
+    } else { this.validateNull(); }
   }
 
-  validateData() {
-    if (this.listRadio[1].checked === true) {
-      if (this.data === '' || this.dataName === '' || this.orderOrdinal === '' ) { // eslint-disable-line
+  validateNull() {
+    if (this.listRadio[1].checked) {
+      if (!this.data || !this.dataName || !this.orderOrdinal) {
         this.modalMessage.innerHTML = 'Preencha todos os campos!';
-        MicroModal.show('modal-1');
-      } else if (/;;/.test(this.data)) {
-        this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, verifique a separação dos dados!';
         MicroModal.show('modal-1');
       } else {
         this.convertArray();
         this.choiceTypeVariable();
         this.appendResult();
       }
-    } else if (this.data === '' || this.dataName === '') {
+    } else if (!this.data || !this.dataName) {
       this.modalMessage.innerHTML = 'Preencha todos os campos!';
-      MicroModal.show('modal-1');
-    } else if (/;;/.test(this.data)) {
-      this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, verifique a separação dos dados!';
       MicroModal.show('modal-1');
     } else {
       this.convertArray();
@@ -183,14 +167,20 @@ class Descriptive {
     }
   }
 
+  convertArray() {
+    this.data = this.data.split(/;/);
+    this.orderOrdinal = this.orderOrdinal.split(/;/);
+    this.dataConverted = this.data.map(num => parseFloat(num, 10));
+  }
+
   choiceTypeVariable() {
-    if (this.listRadio[0].checked === true) {
+    if (this.listRadio[0].checked) {
       this.result = Nominal.create(this.data, this.dataName, this.separatrisItems).getResult();
-    } else if (this.listRadio[1].checked === true) {
+    } else if (this.listRadio[1].checked) {
       this.result = Ordinal.create(this.data, this.dataName, this.orderOrdinal, this.separatrisItems).getResult(); // eslint-disable-line
-    } else if (this.listRadio[2].checked === true) {
+    } else if (this.listRadio[2].checked) {
       this.result = Discreet.create(this.dataConverted, this.dataName, this.separatrisItems, this.processChecked).getResult(); // eslint-disable-line
-    } else if (this.listRadio[3].checked === true) {
+    } else if (this.listRadio[3].checked) {
       this.result = Continue.create(this.dataConverted, this.dataName, this.separatrisItems, this.processChecked).getResult(); // eslint-disable-line
     }
   }
