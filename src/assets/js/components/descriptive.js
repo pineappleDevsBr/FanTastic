@@ -72,7 +72,7 @@ class Descriptive {
     this.button.addEventListener('click', (evt) => {
       evt.preventDefault();
       this.recoverData();
-      this.validateCharacter();
+      this.validateNull();
     });
   }
 
@@ -132,6 +132,22 @@ class Descriptive {
     return checked;
   }
 
+  validateNull() {
+    if (this.listRadio[1].checked) {
+      if (!this.data || !this.dataName || !this.orderOrdinal) {
+        this.modalMessage.innerHTML = 'Preencha todos os campos!';
+        MicroModal.show('modal-1');
+      } else {
+        this.validateCharacter();
+      }
+    } else if (!this.data || !this.dataName) {
+      this.modalMessage.innerHTML = 'Preencha todos os campos!';
+      MicroModal.show('modal-1');
+    } else {
+      this.validateCharacter();
+    }
+  }
+
   validateCharacter() {
     const regExpNumber = /^[\d]+([;,][\d]+)*$/;
     const regExpText = /^[\w]+([;][\w]+)*$/;
@@ -140,25 +156,13 @@ class Descriptive {
       if (!regExpText.test(this.data)) {
         this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, seus dados nao podem iniciar nem terminar com \';\', tambem nao pode contem separações seguidas!';
         MicroModal.show('modal-1');
-      } else { this.validateNull(); }
-    } else if (!regExpNumber.test(this.data)) {
-      this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, seus dados nao podem iniciar nem terminar com \';\', tambem nao pode contem separações seguidas!';
-      MicroModal.show('modal-1');
-    } else { this.validateNull(); }
-  }
-
-  validateNull() {
-    if (this.listRadio[1].checked) {
-      if (!this.data || !this.dataName || !this.orderOrdinal) {
-        this.modalMessage.innerHTML = 'Preencha todos os campos!';
-        MicroModal.show('modal-1');
       } else {
         this.convertArray();
         this.choiceTypeVariable();
         this.appendResult();
       }
-    } else if (!this.data || !this.dataName) {
-      this.modalMessage.innerHTML = 'Preencha todos os campos!';
+    } else if (!regExpNumber.test(this.data)) {
+      this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, seus dados nao podem iniciar nem terminar com \';\', tambem nao pode contem separações seguidas!';
       MicroModal.show('modal-1');
     } else {
       this.convertArray();
