@@ -22,6 +22,11 @@
     &:disabled {
       border-radius: 10px;
     }
+
+    &:focus {
+      border-color: $color-purple;
+      border-width: 2px;
+    }
   }
 }
 

@@ -5,8 +5,7 @@
   padding: 0 15px;
 
   &--form {
-    // @include ac(background, gradient-purple);
-    background: $gd-purple-shaft; // Trocar por essa #470097
+    @include ac(background, gradient-purple); // Trocar por essa #470097
   }
 
   &--result {

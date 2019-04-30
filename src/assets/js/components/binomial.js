@@ -1,17 +1,23 @@
 import Modal from 'micromodal';
-// import doT from 'dot';
+import doT from 'dot';
+import Jump from 'jump.js';
 
 class Binomial {
   constructor() {
     this.elm = document.querySelector('[data-binomial]');
     this.buttonSubmit = this.elm.querySelector('[data-button-binomial]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
+    this.binomialTemplate = doT.template('<div><p>{{=it.probabilidade }}%</p><p>{{=it.media}}</p><p>{{=it.desvioPadrao }}</p></div>');
+    this.holderResult = document.querySelector('[data-result-holder]');
+    this.canvasHolder = document.querySelector('[data-canvas]');
+    this.media = null;
     this.size = null;
     this.event = null;
     this.sucess = null;
     this.failure = null;
     this.standardDeviationValue = null;
     this.probabilityValue = null;
+    this.result = null;
 
     this.setup();
   }
@@ -48,11 +54,14 @@ class Binomial {
       this.probability();
       this.median();
       this.standardDeviation();
-      // this.createResult();
+      this.createLayout();
+      this.appendResult();
     }
   }
 
   probability() {
+    this.probabilityValue = null;
+
     this.event.forEach((i) => {
       const probabilityObject = {
         a: Binomial.combinatorialAnalysis(this.size, i),
@@ -89,6 +98,29 @@ class Binomial {
 
   standardDeviation() {
     this.standardDeviationValue = Math.sqrt(this.size * this.sucess * this.failure);
+  }
+
+  createLayout() {
+    this.result = this.binomialTemplate({
+      probabilidade: this.probabilityValue,
+      media: this.media,
+      desvioPadrao: this.standardDeviationValue,
+    });
+  }
+
+  appendResult() {
+    if (this.result !== undefined) {
+      if (this.holderResult.className.indexOf('is-active') === -1) {
+        this.holderResult.classList.add('is-active');
+      }
+
+      this.holderResult.firstElementChild.firstElementChild.innerHTML = '';
+      this.canvasHolder.innerHTML = '';
+      this.holderResult.firstElementChild.firstElementChild.innerHTML = this.result;
+      setTimeout(() => {
+        Jump('.s-section--result');
+      }, 500);
+    }
   }
 }
 
