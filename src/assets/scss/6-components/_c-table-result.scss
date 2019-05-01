@@ -6,7 +6,8 @@ table {
 
 .table__informations {
   display: flex;
-  width: 100%;
+  flex-wrap: wrap;
+  width: 100vw;
 }
 
 .table__header {
@@ -27,6 +28,7 @@ table {
 .cell__information {
   display: inline-block;
   margin: 20px 10px;
+  position: relative;
   flex: 1;
   height: 50px;
   background: #fafafa;
@@ -44,4 +46,3 @@ table {
   font-weight: bolder;
   font-size: 18px;
 }
-
