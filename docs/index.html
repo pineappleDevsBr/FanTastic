@@ -62,11 +62,12 @@
     <h1 class="o-title"><span>Fan</span>tastic</h1>
     <p class="o-subtitle">Uma fantástica ferramenta de estatistica</p>
     <p class="o-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales blandit posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce in erat at erat sollicitudin volutpat. Phasellus sagittis at mauris at rutrum. Nam rhoncus, urna at dapibus auctor, est neque sagittis felis, a semper urna quam eu mi. Vestibulum faucibus rutrum justo, ut facilisis lorem aliquet eget. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-    <button class="o-button--arrow-down" name="Inicio" data-button-home aria-label="Inicio"</button>
+    <button data-open-login>Vamos começar</button>
+    <!-- <button class="o-button--arrow-down" name="Inicio" data-button-home aria-label="Inicio"</button> -->
   </header>
   <!-- <a href="https://github.com/pineappleDevsBr/FanTastic" target="_blank" class="o-octocat"></a> -->
 </div>
-<div class="s-section s-section--form">
+<div class="s-section s-section--form" data-section-form>
   <div class="c-form-wrapp" data-form>
 
     <ul class="c-form__tabs"tab-list>
@@ -257,6 +258,33 @@
   </div>
 </div>
 
+<div class="c-modal" id="modal-2" aria-hidden="true" data-modal>
+  
+  <div class="c-modal__overlay" tabindex="-1">
+    
+    <div class="c-modal__wrapp" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+      
+      <div class="c-modal__holder">
+        <button data-micromodal-close>Close</button>
+        <header class="c-modal__header">
+          Fantastic
+        </header>
+        <form id="modal-1-content" class="c-modal__content" data-modal-message>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="mail" required data-email-login>
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input type="password" required data-password-login>
+          </div>
+          <button type="submit" data-submit-login>Login</button>
+        </form>      
+      </div>
+      
+    </div>
+  </div>
+</div>
 <div class="c-modal" id="modal-1" aria-hidden="true" data-modal>
 
   <div class="c-modal__overlay" tabindex="-1" data-micromodal-close>

@@ -1,6 +1,6 @@
 import SimpleTabs from 'simple-tabs-js';
-import JumpButton from './components/jumpButton';
 import AccessibillityBar from './components/accessibility-bar';
+import Login from './components/login';
 import HelpBox from './components/helpBox';
 import Descriptive from './components/descriptive';
 import Uniform from './components/uniform';
@@ -10,9 +10,9 @@ const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
   minHeight: false,
 });
 
-JumpButton.create('[data-button-home]', '.s-section--form');
 HelpBox.create('[data-help-box]');
 AccessibillityBar.create('[data-accessibillity-bar]');
+Login.create();
 
 Descriptive.create();
 Uniform.create();

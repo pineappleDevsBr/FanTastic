@@ -6,6 +6,12 @@
 
   &--form {
     @include ac(background, gradient-purple); // Trocar por essa #470097
+
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
   }
 
   &--result {
