@@ -5,6 +5,7 @@ import HelpBox from './components/helpBox';
 import Descriptive from './components/descriptive';
 import Uniform from './components/uniform';
 import Binomial from './components/binomial';
+import Normal from './components/normal';
 
 const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
   minHeight: false,
@@ -17,3 +18,4 @@ Login.create();
 Descriptive.create();
 Uniform.create();
 Binomial.create();
+Normal.create();

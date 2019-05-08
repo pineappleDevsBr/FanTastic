@@ -1,0 +1,35 @@
+<form class="c-dropdown__box" id="normal" data-normal>
+
+  <h3>Entrada de dados</h3>
+
+  <div class="o-label--input">
+    <label for="normal-media" class="o-label-title">Média</label>
+    <input type="number" id="normal-media" class="o-label-input" required="true" data-normal-media>
+  </div>
+
+  <div class="o-label--input">
+    <label for="normal-dp" class="o-label-title">Desvio Padrão</label>
+    <input type="number" id="normal-dp" class="o-label-input" required="true" data-normal-dp>
+  </div>
+
+  <div class="o-label--select">
+    <label for="normal-interval" class="o-label-title">Intervalo de análise: </label>
+    <div class="o-label-select__holder" data-select>
+      <select class="o-label-select__value" id="normal-interval" name="normal-interval" data-select-value>
+        <option value=" -- "> -- </option>
+        <option value="menor">Menor que</option>
+        <option value="entre">Entre</option>
+        <option value="maior">Maior que</option>
+      </select>
+      <span class="o-label-select__span" data-select-span> Selecione </span>
+    </div>
+  </div>
+
+  <div class="o-label--input">
+    <label class="o-label-title" for="normal-value">Dado(s)</label>
+    <input type="text" class="o-label-input" id="normal-value" required="true" data-interval>
+  </div>
+
+  <button type="submit" class="o-button o-button--calculate" data-button-normal>Calcular</button>
+
+</form>
