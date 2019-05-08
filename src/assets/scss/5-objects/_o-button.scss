@@ -7,8 +7,8 @@
   text-transform: uppercase;
   text-align: center;
 
-  &--calculate {
-    background: $gd-purple-shaft;
+  &--calculate,
+  &--login {
     color: $color-white;
     line-height: 1;
     border-radius: 10px;
@@ -22,6 +22,15 @@
     &:focus {
       box-shadow: 0 0 10px $color-black;
     }
+  }
+
+  &--calculate {
+    background: $gd-purple-shaft;
+  }
+
+  &--login {
+    background: $color-blue-light;
+    margin-top: 20px;
   }
 
   &--arrow-down {
@@ -101,4 +110,3 @@
     width: 100%;
   }
 }
-

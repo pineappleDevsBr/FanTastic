@@ -292,33 +292,35 @@
   </div>
 </div>
 
-<div class="c-modal" id="modal-2" aria-hidden="true" data-modal>
-  
+<div class="c-modal c-modal__login" id="modal-2" aria-hidden="true" data-modal>
+
   <div class="c-modal__overlay" tabindex="-1">
-    
+
     <div class="c-modal__wrapp" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
-      
+
       <div class="c-modal__holder">
-        <button data-micromodal-close>Close</button>
+        <button data-micromodal-close class="c-modal__button-close"></button>
         <header class="c-modal__header">
-          Fantastic
+          <h2 class="c-modal__title">Fantastic</h2>
+          <h3 class="c-modal__subtitle">Login</h3>
         </header>
         <form id="modal-1-content" class="c-modal__content" data-modal-message>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" type="mail" required data-email-login>
+          <div class="c-modal__input">
+            <label for="email" class="c-modal__input-title">Email</label>
+            <input id="email" type="mail" required data-email-login class="c-modal__input-box">
           </div>
-          <div>
-            <label for="password">Password</label>
-            <input type="password" required data-password-login>
+          <div class="c-modal__input">
+            <label for="password" class="c-modal__input-title">Password</label>
+            <input type="password" required data-password-login class="c-modal__input-box">
           </div>
-          <button type="submit" data-submit-login>Login</button>
-        </form>      
+          <button type="submit" data-submit-login class="o-button o-button--login">Login</button>
+        </form>
       </div>
-      
+
     </div>
   </div>
 </div>
+
 <div class="c-modal" id="modal-1" aria-hidden="true" data-modal>
 
   <div class="c-modal__overlay" tabindex="-1" data-micromodal-close>

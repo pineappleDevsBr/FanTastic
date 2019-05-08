@@ -32,6 +32,69 @@
   }
 }
 
+.c-modal__login {
+  .c-modal {
+    &__overlay {
+      background: $gd-blue-shaft;
+    }
+
+    &__wrapp {
+      border-radius: 10px;
+      width: 480px;
+      height: 500px;
+    }
+
+    &__header {
+      position: relative;
+      display: block;
+      text-align: center;
+    }
+
+    &__content {
+      margin-top: 60px;
+    }
+
+    &__input {
+      position: relative;
+      margin-bottom: 30px;
+
+      input {
+        padding-left: 20px;
+        color: $color-blue-light;
+      }
+    }
+
+    &__input-title {
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      padding: 0 10px;
+      background: $color-white;
+      color: $color-blue-dark;
+    }
+
+    &__input-box {
+      width: calc(100% - 20px);
+      border: solid 1px $color-blue-dark;
+      border-radius: 10px;
+      height: 45px;
+      padding-right: 15px;
+      outline: none;
+    }
+  }
+}
+
+.c-modal__title {
+  color: $color-blue-dark;
+  font-size: 45px;
+  margin: 0;
+}
+
+.c-modal__subtitle {
+  color: $color-blue-dark;
+  font-size: 25px;
+}
+
 .c-modal__button-close {
   position: absolute;
   background: none;

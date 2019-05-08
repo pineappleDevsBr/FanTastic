@@ -5519,6 +5519,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
+simple-tabs-js@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/simple-tabs-js/-/simple-tabs-js-1.3.3.tgz#93bd98c96aad6571657fd440d4e71848a0888ed0"
+  integrity sha512-BqOsUYLKk+AM8chn0xWVK9XRBPImoc/XjAhEOAffhWcmPJGPEtA2asf6SgkQsT67nbxJFlaC3oeaeHuu4Wfb0A==
+
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"

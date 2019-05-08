@@ -78,4 +78,3 @@ export default{
 };
 
 export const Class = Moda;
-
