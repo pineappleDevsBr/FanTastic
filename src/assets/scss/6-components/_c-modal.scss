@@ -40,8 +40,8 @@
 
     &__wrapp {
       border-radius: 10px;
-      width: 480px;
-      height: 500px;
+      width: 90%;
+      max-width: 450px;
     }
 
     &__header {
@@ -52,6 +52,7 @@
 
     &__content {
       margin-top: 60px;
+      text-align: center;
     }
 
     &__input {
@@ -60,7 +61,8 @@
 
       input {
         padding-left: 20px;
-        color: $color-blue-light;
+        color: $color-blue-dark;
+        box-sizing: border-box;
       }
     }
 
@@ -91,6 +93,22 @@
     &__subtitle {
       color: $color-blue-dark;
       font-size: 25px;
+    }
+
+    &__button-close {
+      right: 20px;
+      top: 20px;
+      mix-blend-mode: multiply;
+    }
+
+    &__ancor {
+      color: $color-blue-dark;
+      margin: 0 15px;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-blue-light;
+      }
     }
   }
 }
@@ -130,5 +148,11 @@
     padding: 40px 15px;
     width: 232px;
     text-align: center;
+  }
+
+  .c-modal__login {
+    .c-modal__holder {
+      width: auto;
+    }
   }
 }

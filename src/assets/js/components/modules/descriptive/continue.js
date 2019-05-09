@@ -238,7 +238,17 @@ class Continue {
         datasets: [{
           label: 'Frequencia Relativa',
           data: this.simpleFrequencyPercentage,
+          stack: 's1',
+          borderWidth: 0,
         }],
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            categoryPercentage: 1,
+            barPercentage: 1,
+          }],
+        },
       },
     });
     Chart.scaleService.updateScaleDefaults('linear', {
