@@ -7,7 +7,7 @@ class Binomial {
     this.elm = document.querySelector('[data-binomial]');
     this.buttonSubmit = this.elm.querySelector('[data-button-binomial]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
-    this.binomialTemplate = doT.template('<div><p>{{=it.probabilidade }}%</p><p>{{=it.media}}</p><p>{{=it.desvioPadrao }}</p></div>');
+    this.binomialTemplate = doT.template('<div class="c-prob-result"><p class="c-prob-result__cell">Probabilidade: {{=it.probabilidade }}%</p><p class="c-prob-result__cell">Média: {{=it.media}}</p><p class="c-prob-result__cell">Desvio Padrão: {{=it.desvioPadrao }}</p></div>');
     this.holderResult = document.querySelector('[data-result-holder]');
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.media = null;
@@ -114,9 +114,9 @@ class Binomial {
         this.holderResult.classList.add('is-active');
       }
 
-      this.holderResult.firstElementChild.firstElementChild.innerHTML = '';
+      this.holderResult.querySelector('[data-table-result]').innerHTML = '';
       this.canvasHolder.innerHTML = '';
-      this.holderResult.firstElementChild.firstElementChild.innerHTML = this.result;
+      this.holderResult.querySelector('[data-table-result]').innerHTML = this.result;
       setTimeout(() => {
         Jump('.s-section--result');
       }, 500);

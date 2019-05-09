@@ -195,8 +195,8 @@ class Descriptive {
         this.holderResult.classList.add('is-active');
       }
 
-      this.holderResult.firstElementChild.firstElementChild.innerHTML = '';
-      this.holderResult.firstElementChild.firstElementChild.innerHTML = this.result;
+      this.holderResult.querySelector('[data-table-result]').innerHTML = '';
+      this.holderResult.querySelector('[data-table-result]').innerHTML = this.result;
       setTimeout(() => {
         Jump('.s-section--result');
       }, 500);

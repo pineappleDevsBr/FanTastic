@@ -9,7 +9,7 @@ class Uniform {
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.holderResult = document.querySelector('[data-result-holder]');
     this.canvasHolder = document.querySelector('[data-canvas]');
-    this.uniformTemplate = doT.template('<div> <p>{{=it.probabilidade}}%</p><p>{{=it.desvioPadrao}}</p><p>{{=it.media}}</p><p>{{=it.coeficienteVaricao}}</p></div>');
+    this.uniformTemplate = doT.template('<div class="c-prob-result"> <p class="c-prob-result__cell">Probabilidade: {{=it.probabilidade}}%</p><p class="c-prob-result__cell">Desvio Padrão: {{=it.desvioPadrao}}</p><p class="c-prob-result__cell">Média: {{=it.media}}</p><p class="c-prob-result__cell">Coeficiente de Variação: {{=it.coeficienteVaricao}}</p></div>');
     this.intervalAnalysisValue = { type: null, data: null };
     this.maxPoint = null;
     this.minPoint = null;
@@ -124,9 +124,9 @@ class Uniform {
         this.holderResult.classList.add('is-active');
       }
 
-      this.holderResult.firstElementChild.firstElementChild.innerHTML = '';
+      this.holderResult.querySelector('[data-table-result]').innerHTML = '';
       this.canvasHolder.innerHTML = '';
-      this.holderResult.firstElementChild.firstElementChild.innerHTML = this.result;
+      this.holderResult.querySelector('[data-table-result]').innerHTML = this.result;
       setTimeout(() => {
         Jump('.s-section--result');
       }, 500);

@@ -1,0 +1,31 @@
+.c-prob-result {
+  display: flex;
+  padding: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.c-prob-result__cell {
+  border-radius: 4px;
+  box-shadow: 0 0 6px $color-gray;
+  padding: 20px;
+
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+@include respond-to(mobile-tablet) {
+  .c-prob-result {
+    flex-direction: column;
+  }
+
+  .c-prob-result__cell {
+    width: 200px;
+    margin: 0 auto;
+
+    &:not(:last-child) {
+      margin-right: auto;
+      margin-bottom: 20px;
+    }
+  }
+}

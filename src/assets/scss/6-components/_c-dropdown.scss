@@ -29,7 +29,6 @@
 
 .c-dropdown__boxes {
   position: relative;
-  height: calc(100% - 52px);
 }
 
 .c-dropdown__box {
@@ -42,7 +41,7 @@
   &.is-active {
     opacity: 1;
     z-index: 1;
-    position: absolute;
+    position: relative;
   }
 }
 

@@ -7,6 +7,7 @@ class Login {
   constructor() {
     this.openButton = document.querySelector('[data-open-login]');
     this.submitButton = document.querySelector('[data-submit-login]');
+    this.logoffButton = document.querySelector('[data-logoff-login]');
     this.sectionForm = document.querySelector('[data-section-form]');
     this.credentials = user.user;
     this.email = null;
@@ -16,14 +17,18 @@ class Login {
 
   setup() {
     const isLogin = Cookie.get('isLogin');
-
     if (!isLogin) {
       this.setupListeners();
     } else {
-      this.openButton.innerHTML = 'Usuario logado';
-      this.openButton.setAttribute('disabled', true);
-      this.sectionForm.classList.add('is-active');
+      this.setLogged();
+      this.logoffButton.addEventListener('click', () => { Login.logOff(); });
     }
+  }
+
+  setLogged() {
+    this.openButton.innerHTML = 'Usuario logado';
+    this.openButton.setAttribute('disabled', true);
+    this.sectionForm.classList.add('is-active');
   }
 
   setupListeners() {
@@ -46,9 +51,16 @@ class Login {
       setTimeout(() => {
         Jump(this.sectionForm);
       }, 300);
+
+      this.setLogged();
     } else {
       // this.email.setCustomValidity('Invalid field.');
     }
+  }
+
+  static logOff() {
+    Cookie.remove('isLogin');
+    document.location.reload(true);
   }
 }
 
