@@ -81,18 +81,18 @@
       padding-right: 15px;
       outline: none;
     }
+
+    &__title {
+      color: $color-blue-dark;
+      font-size: 45px;
+      margin: 0;
+    }
+
+    &__subtitle {
+      color: $color-blue-dark;
+      font-size: 25px;
+    }
   }
-}
-
-.c-modal__title {
-  color: $color-blue-dark;
-  font-size: 45px;
-  margin: 0;
-}
-
-.c-modal__subtitle {
-  color: $color-blue-dark;
-  font-size: 25px;
 }
 
 .c-modal__button-close {
