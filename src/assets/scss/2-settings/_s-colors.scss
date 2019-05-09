@@ -7,6 +7,7 @@ $color-gray-ease: #bfbfbf;
 $color-gray-minimal: #ebebe4;
 $color-purple: #6a00e3;
 $color-orange: #ff6510;
+$color-orange-dark: #f70;
 $color-result: #820933;
 $color-blue-light: #1aaad8;
 $color-blue-dark: #104e8b;
@@ -16,7 +17,8 @@ $purple-plated: #470097;
 $gd-blue-shaft: linear-gradient(to left, #104e8b, #1aaad8);
 $gd-purple-shaft: linear-gradient(to left, #470097, #7700fe);
 $gd-yellow-shaft: linear-gradient(to left, #fdb200, #ca9106);
-$gd-green-shaft: linear-gradient(to right, #6edcc4, #1aab8b);
+$gd-green-shaft: linear-gradient(to right, #00995e, #00cc7e);
+$gd-orange-shaft: linear-gradient(to right, #f70, #ff9100);
 
 $colors: (
   color-black: $color-black,

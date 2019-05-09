@@ -16,24 +16,27 @@ class Login {
   }
 
   setup() {
+    this.setupListeners();
+
     const isLogin = Cookie.get('isLogin');
     if (!isLogin) {
-      this.setupListeners();
+      this.logoffButton.setAttribute('disabled', true);
     } else {
       this.setLogged();
-      this.logoffButton.addEventListener('click', () => { Login.logOff(); });
     }
-  }
-
-  setLogged() {
-    this.openButton.innerHTML = 'Usuario logado';
-    this.openButton.setAttribute('disabled', true);
-    this.sectionForm.classList.add('is-active');
   }
 
   setupListeners() {
     this.openButton.addEventListener('click', () => { MicroModal.show('modal-2'); });
     this.submitButton.addEventListener('click', (evt) => { this.validateUser(evt); });
+    this.logoffButton.addEventListener('click', () => { Login.logOff(); });
+  }
+
+  setLogged() {
+    this.openButton.innerHTML = 'Usuario logado';
+    this.openButton.setAttribute('disabled', true);
+    this.logoffButton.removeAttribute('disabled');
+    this.sectionForm.classList.add('is-active');
   }
 
   validateUser(evt) {
