@@ -54,6 +54,11 @@ class Normal {
     this.intervalAnalysisValue.type = holder.querySelector('[data-select-value]').value;
     this.intervalAnalysisValue.data = holder.querySelector('[data-interval]').value;
 
+    if (/[,]/.test(this.intervalAnalysisValue.data)) {
+      this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.replace(',', '.');
+      console.log(this.intervalAnalysisValue.data);
+    }
+
     if (this.intervalAnalysisValue.type === 'entre') {
       this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.split(/;/);
       this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.map(num => parseFloat(num));
@@ -131,6 +136,8 @@ class Normal {
     numberZ = Math.abs((numberZ - this.media) / this.standardDeviation);
     numberZ = ((Math.round(numberZ * 100)) / 100);
     numberZ = numberZ.toString();
+
+    if (numberZ >= 3.9) { return '3.90'; }
 
     if (numberZ.length === 3) {
       numberZ += '0';
