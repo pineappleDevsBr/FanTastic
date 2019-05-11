@@ -23,7 +23,7 @@ class Discreet {
     this.moda = null;
     this.mediana = null;
     this.media = null;
-    this.discreetTemplate = doT.template('<table style="text-align:center" ><tr class="table__header"><th class="table__item">Classe</th><th class="table__item">{{=it.name}}</th><th class="table__item">Frequenca Simples</th><th class="table__item">Frequenca Relativa</th><th class="table__item">Frequenca Acumulada</th><th class="table__item">Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr class="table__lines"><td class="table__item">{{=value.index}}</td><td class="table__item">{{=value.number}}</td><td class="table__item">{{=value.cont}}</td><td class="table__item">{{=value.fr}}</td><td class="table__item">{{=value.fa}}</td><td class="table__item">{{=value.fac}}</td></tr>{{~}}</table><div class="table__informations" ><div class="cell__information" ><p class="cell__title">Mediana</p><p> {{=it.mediana}}</p></div><div class="cell__information" ><p class="cell__title">Moda</p><p> {{=it.moda}}</p></div><div class="cell__information" ><p class="cell__title">Media</p><p> {{=it.media}}</p></div><div class="cell__information" ><p class="cell__title">Medida separatriz</p><p> {{=it.separatriz}}</p></div><div class="cell__information" ><p class="cell__title">Desvio Padrão</p><p> {{=it.desvioPadrao}}</p></div><div class="cell__information" ><p class="cell__title"> Coeficiente de variação</p><p> {{=it.coeficienteDeVariacao}}%</p></div></div>');
+    this.discreetTemplate = doT.template(`<div class="c-result__table"><table cellspacing="0" cellpadding="0" border="0" style="text-align:center"><tr class="table__header"><th class="table__item">Classe</th><th class="table__item">{{=it.name}}</th><th class="table__item">Frequenca Simples</th><th class="table__item">Frequenca Relativa</th><th class="table__item">Frequenca Acumulada</th><th class="table__item">Frequenca Acumulada %</th></tr>{{~it.dynamicTable :value:index}}<tr class="table__lines"><td class="table__item">{{=value.index}}</td><td class="table__item">{{=value.number}}</td><td class="table__item">{{=value.cont}}</td><td class="table__item">{{=value.fr}}</td><td class="table__item">{{=value.fa}}</td><td class="table__item">{{=value.fac}}</td></tr>{{~}}</table></div><div class="table__informations" ><div class="cell__information" ><p class="cell__title">Mediana</p><p> {{=it.mediana}}</p></div><div class="cell__information" ><p class="cell__title">Moda</p><p> {{=it.moda}}</p></div><div class="cell__information" ><p class="cell__title">Media</p><p> {{=it.media}}</p></div><div class="cell__information" ><p class="cell__title">${this.separatrizItems.isChecked}</p><p> {{=it.separatriz}}</p></div><div class="cell__information" ><p class="cell__title">Desvio Padrão</p><p> {{=it.desvioPadrao}}</p></div><div class="cell__information" ><p class="cell__title"> Coeficiente de variação</p><p> {{=it.coeficienteDeVariacao}}%</p></div></div>`);
     this.discreetResult = '';
     this.setup();
   }
@@ -79,7 +79,7 @@ class Discreet {
       this.separatrizResult = 0;
     }
 
-    this.separatrizResult = `${this.separatrizItems.isChecked}: ${this.separatrizResult}`;
+    this.separatrizResult = this.separatrizResult;
   }
 
   createstandardDeviation() {
