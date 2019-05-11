@@ -7,6 +7,9 @@
   display: inline-block;
   width: 94px;
   border-bottom: 2px solid $color-gray-ease;
+
+  @include ac(border-bottom, color-purple);
+
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -19,6 +22,8 @@
   &:hover,
   &.is-active {
     border-bottom: 2px solid $color-purple;
+
+    @include ac(border-color, color-purple);
 
     a {
       font-weight: bold;

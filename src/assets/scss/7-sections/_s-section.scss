@@ -16,6 +16,9 @@
 
   &--result {
     background: $gd-green-shaft;
+
+    @include ac(background, gradient-green);
+
     display: none;
 
     &.is-active {
