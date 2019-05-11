@@ -25,11 +25,13 @@
   }
 
   &--calculate {
-    background: $gd-purple-shaft;
+    @include ac(background, gradient-purple);
+    // background: $gd-purple-shaft;
   }
 
   &--login {
-    background: $color-blue-light;
+    @include ac(background, gradient-blue);
+    //background: $color-blue-light;
     margin: 20px 10px;
   }
 
@@ -62,7 +64,9 @@
 
     .o-button_label {
       display: inline-block;
-      background: $gd-purple-shaft;
+
+      @include ac(background, gradient-purple);
+      //background: $gd-purple-shaft;
       color: $color-white;
       padding: 10px 20px;
       border-radius: 10px;

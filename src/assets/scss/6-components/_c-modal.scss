@@ -36,6 +36,8 @@
   .c-modal {
     &__overlay {
       background: $gd-blue-shaft;
+
+      @include ac(background, gradient-blue);
     }
 
     &__wrapp {
@@ -62,6 +64,9 @@
       input {
         padding-left: 20px;
         color: $color-blue-dark;
+
+        @include ac(color, gradient-blue);
+
         box-sizing: border-box;
       }
     }
@@ -73,11 +78,16 @@
       padding: 0 10px;
       background: $color-white;
       color: $color-blue-dark;
+
+      @include ac(color, gradient-blue);
     }
 
     &__input-box {
       width: calc(100% - 20px);
       border: solid 1px $color-blue-dark;
+
+      @include ac(border-color, gradient-blue);
+
       border-radius: 10px;
       height: 45px;
       padding-right: 15px;
@@ -86,12 +96,18 @@
 
     &__title {
       color: $color-blue-dark;
+
+      @include ac(color, gradient-blue);
+
       font-size: 45px;
       margin: 0;
     }
 
     &__subtitle {
       color: $color-blue-dark;
+
+      @include ac(color, gradient-blue);
+
       font-size: 25px;
     }
 
@@ -103,11 +119,16 @@
 
     &__ancor {
       color: $color-blue-dark;
+
+      @include ac(color, gradient-blue);
+
       margin: 0 15px;
       text-decoration: none;
 
       &:hover {
         color: $color-blue-light;
+
+        @include ac(color, gradient-blue);
       }
     }
   }
