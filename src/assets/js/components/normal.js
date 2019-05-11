@@ -1,13 +1,20 @@
 import MicroModal from 'micromodal';
+import doT from 'dot';
+import Jump from 'jump.js';
 
 class Normal {
   constructor() {
     this.elm = document.querySelector('[data-normal]');
     this.submitbutton = this.elm.querySelector('[data-button-normal]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
+    this.normalTemplate = doT.template('<div class="c-prob-result"><p class="c-prob-result__cell">Probabilidade: {{=it.result}}%</p></div>');
     this.media = null;
+    this.numbersZ = [];
     this.standardDeviation = null;
     this.intervalAnalysisValue = { type: null, data: null };
+    this.holderResult = document.querySelector('[data-result-holder]');
+    this.canvasHolder = document.querySelector('[data-canvas]');
+    this.result = null;
     this.intervalAnalysis = {
       span: this.elm.querySelector('[data-select-span]'),
       select: this.elm.querySelector('[data-select-value]'),
@@ -45,7 +52,19 @@ class Normal {
     this.media = parseFloat(holder.querySelector('[data-normal-media]').value);
     this.standardDeviation = parseFloat(holder.querySelector('[data-normal-dp]').value);
     this.intervalAnalysisValue.type = holder.querySelector('[data-select-value]').value;
-    this.intervalAnalysisValue.data = parseFloat(holder.querySelector('[data-interval]').value);
+    this.intervalAnalysisValue.data = holder.querySelector('[data-interval]').value;
+
+    if (/[,]/.test(this.intervalAnalysisValue.data)) {
+      this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.replace(',', '.');
+      console.log(this.intervalAnalysisValue.data);
+    }
+
+    if (this.intervalAnalysisValue.type === 'entre') {
+      this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.split(/;/);
+      this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.map(num => parseFloat(num));
+    } else {
+      this.intervalAnalysisValue.data = parseFloat(this.intervalAnalysisValue.data);
+    }
   }
 
   validateData() {
@@ -54,41 +73,79 @@ class Normal {
       MicroModal.show('modal-1');
     } else {
       this.choiceType();
+      this.generateResult();
+      this.appendResult();
     }
   }
 
   choiceType() {
+    this.numbersZ = [];
+
     switch (this.intervalAnalysisValue.type) {
-      case 'maior':
+      case 'maior': // eslint-disable-line
+        let biggerZ = this.generateNumberZ(this.intervalAnalysisValue.data);
+        biggerZ = Normal.searchTable(biggerZ.substr(0, 3), biggerZ[3]);
+
         if (this.intervalAnalysisValue.data > this.media) {
-          let dataZ = (this.intervalAnalysisValue.data - this.media) / this.standardDeviation; // eslint-disable-line
-          dataZ = ((Math.round(dataZ * 100)) / 100);
-
-          dataZ = dataZ.toString();
-
-          if (dataZ.length === 2) {
-            dataZ += '0';
-          } else if (dataZ.length === 1) {
-            dataZ += '.00';
-          }
-
-          dataZ = Normal.searchTable(dataZ.substr(0, 2), dataZ[3]);
+          biggerZ = (0.5 - biggerZ) * 100;
+        } else if (this.intervalAnalysisValue.data < this.media) {
+          biggerZ = (0.5 + biggerZ) * 100;
         }
-
+        this.numbersZ.push(biggerZ);
         break;
 
-      case 'entre':
-        alert('entre');
+      case 'menor': // eslint-disable-line
+        let smallerZ = this.generateNumberZ(this.intervalAnalysisValue.data);
+        smallerZ = Normal.searchTable(smallerZ.substr(0, 3), smallerZ[3]);
+
+        if (this.intervalAnalysisValue.data > this.media) {
+          smallerZ = (0.5 + smallerZ) * 100;
+        } else if (this.intervalAnalysisValue.data < this.media) {
+          smallerZ = (0.5 - smallerZ) * 100;
+        }
+        this.numbersZ.push(smallerZ);
         break;
 
-      case 'menor':
-        alert('menor');
+      case 'entre': // eslint-disable-line
+        const between = [];
+        this.intervalAnalysisValue.data.forEach((num, i) => {
+          between[i] = this.generateNumberZ(num);
+          between[i] = Normal.searchTable(between[i].substr(0, 3), between[i][3]);
+        });
+
+        if (this.intervalAnalysisValue.data[0] > this.media && this.intervalAnalysisValue.data[1] > this.media) { // eslint-disable-line
+          this.numbersZ.push((between[1] - between[0]) * 100);
+        } else if (this.intervalAnalysisValue.data[0] < this.media && this.intervalAnalysisValue.data[1] > this.media) { // eslint-disable-line
+          this.numbersZ.push((between[1] + between[0]) * 100);
+        } else if (this.intervalAnalysisValue.data[0] < this.media && this.intervalAnalysisValue.data[1] < this.media) { // eslint-disable-line
+          this.numbersZ.push((between[0] - between[1]) * 100);
+        } else if (this.intervalAnalysisValue.data[0] === this.media || this.intervalAnalysisValue.data[1]) { // eslint-disable-line
+          this.numbersZ.push((between[1] + between[0]) * 100);
+        }
         break;
 
       default:
         alert('deu ruim');
         break;
     }
+  }
+
+  generateNumberZ(num) {
+    let numberZ = num;
+
+    numberZ = Math.abs((numberZ - this.media) / this.standardDeviation);
+    numberZ = ((Math.round(numberZ * 100)) / 100);
+    numberZ = numberZ.toString();
+
+    if (numberZ >= 3.9) { return '3.90'; }
+
+    if (numberZ.length === 3) {
+      numberZ += '0';
+    } else if (numberZ.length === 1) {
+      numberZ += '.00';
+    }
+
+    return numberZ;
   }
 
   static searchTable(lin, col) {
@@ -139,11 +196,8 @@ class Normal {
     const line = Number(lin);
     let index = 0;
 
-    console.log(column, line);
-
     while (tableGauss[index][0] !== line) {
       if (tableGauss[index + 1][0] === line) {
-        console.log(tableGauss[index + 1][column]);
         return (tableGauss[index + 1][column]);
       }
 
@@ -151,6 +205,25 @@ class Normal {
     }
 
     return 'deu ruim';
+  }
+
+  generateResult() {
+    this.result = this.normalTemplate({ result: this.numbersZ });
+  }
+
+  appendResult() {
+    if (this.result !== undefined) {
+      if (this.holderResult.className.indexOf('is-active') === -1) {
+        this.holderResult.classList.add('is-active');
+      }
+
+      this.holderResult.querySelector('[data-table-result]').innerHTML = '';
+      this.canvasHolder.innerHTML = '';
+      this.holderResult.querySelector('[data-table-result]').innerHTML = this.result;
+      setTimeout(() => {
+        Jump('.s-section--result');
+      }, 500);
+    }
   }
 }
 
