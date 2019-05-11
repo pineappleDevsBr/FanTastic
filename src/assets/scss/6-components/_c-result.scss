@@ -3,6 +3,11 @@
   margin: 0 auto;
 }
 
+.c-result__table {
+  border: solid 2px #fff;
+  box-sizing: border-box;
+}
+
 @include respond-to(mobile) {
   .c-result__table {
     overflow-x: scroll;
