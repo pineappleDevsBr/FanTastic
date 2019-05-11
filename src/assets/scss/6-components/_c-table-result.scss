@@ -2,16 +2,16 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .table__informations {
-  display: flex;
-  flex-wrap: wrap;
   width: 100vw;
+  text-align: center;
 }
 
 .table__header {
-  background: #606060;
+  background: #00995e;
   color: #fff;
   text-transform: uppercase;
 }
@@ -19,17 +19,17 @@ table {
 .table__item {
   padding: 15px;
   text-align: center;
+  min-width: 130px;
 }
 
 .table__lines:nth-child(even) {
-  background: #eee;
+  background: #d6ffd9;
 }
 
 .cell__information {
   display: inline-block;
   margin: 20px 10px;
   position: relative;
-  flex: 1;
   height: 50px;
   background: #fafafa;
   box-shadow: 0 8px 6px -6px #b3b0b0;
@@ -39,7 +39,7 @@ table {
 .cell__information p {
   display: block;
   margin: 5px;
-  padding: 0;
+  padding: 0 20px;
 }
 
 .cell__title {
