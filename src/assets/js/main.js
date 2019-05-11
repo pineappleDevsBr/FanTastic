@@ -1,4 +1,5 @@
 import SimpleTabs from 'simple-tabs-js';
+import html2canvas from 'html2canvas';
 import AccessibillityBar from './components/accessibility-bar';
 import Login from './components/login';
 import HelpBox from './components/helpBox';
@@ -19,3 +20,7 @@ Descriptive.create();
 Uniform.create();
 Binomial.create();
 Normal.create();
+
+html2canvas(document.body).then((canvas) => {
+  document.body.appendChild(canvas);
+});
