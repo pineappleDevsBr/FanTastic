@@ -6,12 +6,14 @@ table {
 }
 
 .table__informations {
-  width: 100vw;
   text-align: center;
 }
 
 .table__header {
-  background: #00995e;
+  // background: #00995e;
+
+  @include ac(background, color-green);
+
   color: #fff;
   text-transform: uppercase;
 }
@@ -23,7 +25,8 @@ table {
 }
 
 .table__lines:nth-child(even) {
-  background: #d6ffd9;
+  // background: #d6ffd9;
+  @include ac(background, color-green-light);
 }
 
 .cell__information {

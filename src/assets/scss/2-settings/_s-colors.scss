@@ -12,6 +12,8 @@ $color-orange-dark: #f70;
 $color-result: #820933;
 $color-blue-light: #1aaad8;
 $color-blue-dark: #104e8b;
+$color-green: #00995e;
+$color-green-light: #d6ffd9;
 $purple-plated: #470097;
 
 // Backgrounds
@@ -24,6 +26,8 @@ $gd-orange-shaft: linear-gradient(to right, #f70, #ff9100);
 $colors: (
   color-black: $color-black,
   color-purple: $color-purple,
+  color-green: $color-green,
+  color-green-light: $color-green-light,
   gradient-blue: $gd-blue-shaft,
   gradient-purple: $gd-purple-shaft,
   gradient-green: $gd-green-shaft,
@@ -33,6 +37,8 @@ $colors: (
 $contrast-colors: (
   color-black: $color-black,
   color-purple: $color-gray,
+  color-green: $color-gray,
+  color-green-light: $color-gray-minimal,
   gradient-blue: $color-gray-mid,
   gradient-purple: $color-gray,
   gradient-green: $color-gray-ease,
