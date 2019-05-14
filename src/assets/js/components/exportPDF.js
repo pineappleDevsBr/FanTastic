@@ -1,9 +1,9 @@
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import html22pdf from 'html2pdf.js';
 
 class ExportPDF {
   constructor() {
     this.elm = document.querySelector('[data-export-pdf]');
+    this.loading = document.querySelector('[data-export-load]');
     this.instances = null;
     this.content = null;
     this.setup();
@@ -11,26 +11,17 @@ class ExportPDF {
 
   setup() {
     this.elm.addEventListener('click', () => {
-      this.recoverContent();
+      this.loading.classList.add('is-active');
 
       setTimeout(() => {
-        this.createPDF();
+        this.loading.classList.remove('is-active');
+        html22pdf(document.querySelector('[data-content-pdf]'), {
+          filename: 'resultados_Fantastic.pdf',
+          html2canvas: { width: 970 },
+          jsPDF: { orientation: 'portrait', formart: 'a4' },
+        });
       }, 2000);
     });
-  }
-
-  recoverContent() {
-    html2canvas(document.querySelector('.c-form-wrapp--result'), { scale: 10, dpi: 144 }).then((canvas) => {
-      this.content = canvas.toDataURL('image/jpg');
-    });
-  }
-
-  createPDF() {
-    this.instances = new jsPDF('p', 'mm', 'a4'); // eslint-disable-line
-
-    this.instances.addImage(this.content, 'JPG', 0, 0, 211, 298);
-    // this.instances.internal.scaleFactor = 30;
-    this.instances.save('test.pdf');
   }
 }
 
