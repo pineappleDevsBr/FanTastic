@@ -73,8 +73,8 @@
 
     <ul class="c-form__tabs"tab-list>
       <li class="c-form__tab" tab><a href="#descriptive" class="c-form__tab-title">Estatística descritiva</a></li>
-      <li class="c-form__tab" tab tab-default><a href="#probability" class="c-form__tab-title">Probabilidade</a></li>
-      <li class="c-form__tab" tab><a href="#tab-2" class="c-form__tab-title">Correlação e Regressão</a></li>
+      <li class="c-form__tab" tab><a href="#probability" class="c-form__tab-title">Probabilidade</a></li>
+      <li class="c-form__tab" tab tab-default><a href="#correlationAndRegression" class="c-form__tab-title">Correlação e Regressão</a></li>
     </ul>
 
     <div class="c-form__boxes" content-list>
@@ -166,13 +166,31 @@
   <button type="submit" class="o-button o-button--calculate" data-button-descriptive>Calcular</button>
 </form>
 
-      <div id="tab-2" class="c-form__box">
-  <!-- <input type="text"><br /><br />
-  <input type="text"><br /><br />
-  <input type="text"><br /><br />
-  <input type="text"><br /><br />
-  <input type="text"><br /><br /> -->
-</div>
+      <form id="correlationAndRegression" class="c-form__box" data-cr>
+
+  <div class="o-label--input">
+    <label for="cr-name-independente" class="o-label-title">Nome da variavel independente (X)</label>
+    <input type="text" id="cr-name-independente" class="o-label-input" required="true" data-cr-name-x>
+  </div>
+
+  <div class="o-label--input">
+    <label for="cr-name-dependente" class="o-label-title">Nome da variavel dependente (Y)</label>
+    <input type="text" id="cr-name-dependente" class="o-label-input" required="true" data-cr-name-y>
+  </div>
+
+  <div class="o-label--input">
+    <label for="cr-independente" class="o-label-title">Historico da variavel independente (X)</label>
+    <input type="text" id="cr-independente" class="o-label-input" required="true" data-cr-x value="4;6;7;6;9;8;8;2">
+  </div>
+
+  <div class="o-label--input">
+    <label for="cr-dependente" class="o-label-title">Historico da variavel dependente (Y)</label>
+    <input type="text" id="cr-dependente" class="o-label-input" required="true" data-cr-y value="5;7;8;5;9;8;5;4">
+  </div>
+
+  <button type="submit" class="o-button o-button--calculate" data-button-cr>Calcular</button>
+
+</form>
       <div id="probability" class="c-form__box" data-form>
 
   <ul class="c-dropdown__tabs" tab-list>
@@ -286,7 +304,7 @@
   </div>
 </div>
 
-<div class="s-section s-section--result is-active" data-result-holder>
+<div class="s-section s-section--result" data-result-holder>
   <div class="c-form-wrapp c-form-wrapp--result">
     <div data-content-pdf>
       <h2 class="c-form-wrapp__title">Resultados</h2>

@@ -1,7 +1,25 @@
-<div id="tab-2" class="c-form__box">
-  <!-- <input type="text"><br /><br />
-  <input type="text"><br /><br />
-  <input type="text"><br /><br />
-  <input type="text"><br /><br />
-  <input type="text"><br /><br /> -->
-</div>
+<form id="correlationAndRegression" class="c-form__box" data-cr>
+
+  <div class="o-label--input">
+    <label for="cr-name-independente" class="o-label-title">Nome da variavel independente (X)</label>
+    <input type="text" id="cr-name-independente" class="o-label-input" required="true" data-cr-name-x>
+  </div>
+
+  <div class="o-label--input">
+    <label for="cr-name-dependente" class="o-label-title">Nome da variavel dependente (Y)</label>
+    <input type="text" id="cr-name-dependente" class="o-label-input" required="true" data-cr-name-y>
+  </div>
+
+  <div class="o-label--input">
+    <label for="cr-independente" class="o-label-title">Historico da variavel independente (X)</label>
+    <input type="text" id="cr-independente" class="o-label-input" required="true" data-cr-x value="4;6;7;6;9;8;8;2">
+  </div>
+
+  <div class="o-label--input">
+    <label for="cr-dependente" class="o-label-title">Historico da variavel dependente (Y)</label>
+    <input type="text" id="cr-dependente" class="o-label-input" required="true" data-cr-y value="5;7;8;5;9;8;5;4">
+  </div>
+
+  <button type="submit" class="o-button o-button--calculate" data-button-cr>Calcular</button>
+
+</form>

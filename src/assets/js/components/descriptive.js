@@ -149,7 +149,7 @@ class Descriptive {
   }
 
   validateCharacter() {
-    const regExpNumber = /^[\d]+([;,][\d]+)*$/;
+    const regExpNumber = /^[\d]+([;,.][\d]+)*$/;
     const regExpText = /^[\w]+([;][\w]+)*$/;
 
     if (this.listRadio[0].checked || this.listRadio[1].checked) {
@@ -172,6 +172,7 @@ class Descriptive {
   }
 
   convertArray() {
+    this.data = this.data.replace(/,/, '.');
     this.data = this.data.split(/;/);
     this.orderOrdinal = this.orderOrdinal.split(/;/);
     this.dataConverted = this.data.map(num => parseFloat(num, 10));

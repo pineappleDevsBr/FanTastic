@@ -56,7 +56,6 @@ class Normal {
 
     if (/[,]/.test(this.intervalAnalysisValue.data)) {
       this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.replace(',', '.');
-      console.log(this.intervalAnalysisValue.data);
     }
 
     if (this.intervalAnalysisValue.type === 'entre') {
@@ -125,7 +124,6 @@ class Normal {
         break;
 
       default:
-        alert('deu ruim');
         break;
     }
   }

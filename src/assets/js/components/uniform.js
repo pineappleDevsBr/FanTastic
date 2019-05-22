@@ -50,10 +50,10 @@ class Uniform {
   }
 
   recoverData() {
-    this.maxPoint = Number(document.querySelector('[data-max]').value);
-    this.minPoint = Number(document.querySelector('[data-min]').value);
+    this.maxPoint = Number(document.querySelector('[data-max]').value.replace(/,/, '.'));
+    this.minPoint = Number(document.querySelector('[data-min]').value.replace(/,/, '.'));
     this.intervalAnalysisValue.type = document.querySelector('[data-select-value]').value;
-    this.intervalAnalysisValue.data = document.querySelector('[data-interval]').value;
+    this.intervalAnalysisValue.data = document.querySelector('[data-interval]').value.replace(/,/, '.');
 
     if (this.intervalAnalysisValue.type === 'entre') {
       this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.split(/;/);
