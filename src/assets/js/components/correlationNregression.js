@@ -8,6 +8,13 @@ class CorrelationNRegression {
     this.dataY = { name: null, value: null, somY: null, somYsqr: null };
     this.dataXY = null;
     this.dataR = null;
+    this.dataA = null;
+    this.dataB = null;
+    this.inputX = document.createElement('input');
+    this.inputY = document.createElement('input');
+    this.container = document.createElement('div');
+    this.valueX = null;
+    this.valueY = null;
     this.setup();
   }
 
@@ -38,6 +45,8 @@ class CorrelationNRegression {
       this.convertData();
       this.generateMatrix();
       this.generateR();
+      this.regression();
+      this.futureProjection();
     }
   }
 
@@ -66,8 +75,58 @@ class CorrelationNRegression {
     const qd2 = (size * this.dataY.somYsqr) - Math.pow(this.dataY.somY, 2); // eslint-disable-line
 
     this.dataR = this.dataR / Math.sqrt(qd1 * qd2);
+  }
 
-    console.log(this.dataR);
+  regression() {
+    const size = this.dataX.value.length;
+    this.dataA = (size * this.dataXY) - (this.dataX.somX * this.dataY.somY);
+    const qd1 = (size * this.dataX.somXsqr) - Math.pow(this.dataX.somX, 2); // eslint-disable-line
+    this.dataA = (this.dataA / qd1).toFixed(2);
+    this.dataB = (this.dataY.somY / size) - (this.dataA * (this.dataX.somX / size));
+    this.dataB = (Math.round(this.dataB * 100)) / 100;
+  }
+
+  futureProjection() {
+    this.inputX.addEventListener('keyup', (e) => { this.listenerX(e); });
+    this.inputY.addEventListener('keyup', (e) => { this.listenerY(e); });
+
+    const testeA = document.createElement('p');
+    const textoA = document.createTextNode(` = ${this.dataA}`);
+    const testeB = document.createElement('p');
+    const textoB = document.createTextNode(`+${this.dataB}`);
+
+    testeA.appendChild(textoA);
+    testeB.appendChild(textoB);
+
+    this.container.appendChild(this.inputY);
+    this.container.appendChild(testeA);
+    this.container.appendChild(this.inputX);
+    this.container.appendChild(testeB);
+
+    document.body.appendChild(this.container);
+  }
+
+  listenerX(e) {
+    if (this.inputX.value === '') {
+      this.inputY.value = '';
+    } else {
+      this.valueX = e.currentTarget.value;
+
+      this.valueY = ((this.dataA * this.valueX) + this.dataB).toFixed(2);
+      this.inputY.value = this.valueY;
+      console.log(this.valueX); //eslint-disable-line
+    }
+  }
+
+  listenerY(e) {
+    if (this.inputY.value === '') {
+      this.inputX.value = '';
+    } else {
+      this.valueY = e.currentTarget.value;
+      this.valueX = ((this.valueY - this.dataB) / this.dataA).toFixed(2);
+      this.inputX.value = this.valueX;
+      console.log(this.valueY); //eslint-disable-line
+    }
   }
 }
 
