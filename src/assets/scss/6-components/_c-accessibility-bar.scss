@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4px 0;
 }
 
 .c-accessibility-bar__holder {
@@ -26,7 +27,7 @@
 
 .c-accessibility__bar-contrast-button {
   position: relative;
-  height: 16px;
+  height: 17px;
   width: 30px;
   border: 2px solid red;
   border-radius: 10px;
@@ -42,7 +43,7 @@
     width: 10px;
     right: 2px;
     transform: translateX(0);
-    top: 1px;
+    top: 2px;
     background: red;
     border-radius: 100%;
     transition: all 0.3s ease-out;

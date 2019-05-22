@@ -27,14 +27,20 @@ class Login {
   }
 
   setupListeners() {
-    this.openButton.addEventListener('click', () => { MicroModal.show('modal-2'); });
+    this.openButton.addEventListener('click', () => {
+      if (Cookie.get('isLogin')) {
+        Jump(this.sectionForm);
+      } else {
+        MicroModal.show('modal-2');
+      }
+    });
     this.submitButton.addEventListener('click', (evt) => { this.validateUser(evt); });
     this.logoffButton.addEventListener('click', () => { Login.logOff(); });
   }
 
   setLogged() {
-    this.openButton.innerHTML = 'Usuario logado';
-    this.openButton.setAttribute('disabled', true);
+    // this.openButton.setAttribute('disabled', true);
+    this.openButton.innerHTML = 'Ir para aplicação';
     this.logoffButton.removeAttribute('disabled');
     this.sectionForm.classList.add('is-active');
   }
