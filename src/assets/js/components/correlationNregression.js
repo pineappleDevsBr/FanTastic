@@ -1,6 +1,7 @@
 import MicroModal from 'micromodal';
 import Jump from 'jump.js';
 import doT from 'dot';
+import Chart from 'chart.js';
 
 class CorrelationNRegression {
   constructor() {
@@ -56,6 +57,7 @@ class CorrelationNRegression {
       this.regression();
       this.futureProjection();
       this.createResult();
+      this.createChart();
       this.appendResult();
     }
   }
@@ -169,6 +171,40 @@ class CorrelationNRegression {
     this.containerResult.appendChild(this.containerFuture);
   }
 
+  createChart() {
+    this.canvasHolder.innerHTML = '';
+
+    const canvas = document.createElement('canvas');
+    const scatter = [];
+
+    for (let index = 0; index < this.dataX.value.length; index += 1) {
+      scatter.push({ x: this.dataX.value[index], y: this.dataY.value[index] });
+    }
+
+    const scatterChart = new Chart(canvas, { // eslint-disable-line
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'scatter',
+          data: scatter,
+          backgroundColor: 'rgba(255,0,0,1)',
+        }],
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            beginAtZero: true,
+          }],
+          xAxes: [{
+            beginAtZero: true,
+          }],
+        },
+      },
+    });
+
+    this.canvasHolder.appendChild(canvas);
+  }
+
   appendResult() {
     if (this.containerResult !== undefined) {
       if (this.holderResult.className.indexOf('is-active') === -1) {
@@ -176,7 +212,6 @@ class CorrelationNRegression {
       }
 
       this.holderResult.querySelector('[data-table-result]').innerHTML = '';
-      this.canvasHolder.innerHTML = '';
       this.holderResult.querySelector('[data-table-result]').appendChild(this.containerResult);
       setTimeout(() => {
         Jump('.s-section--result');
