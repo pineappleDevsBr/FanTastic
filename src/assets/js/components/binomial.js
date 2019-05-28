@@ -39,8 +39,8 @@ class Binomial {
     const bigData = document.querySelector('[data-binomial]');
 
     this.size = parseFloat(bigData.querySelector('[data-size]').value);
-    this.sucess = parseFloat(bigData.querySelector('[data-sucess]').value).replace(/,/, '.');
-    this.failure = parseFloat(bigData.querySelector('[data-failure]').value).replace(/,/, '.');
+    this.sucess = parseFloat((bigData.querySelector('[data-sucess]').value).replace(/,/, '.'));
+    this.failure = parseFloat((bigData.querySelector('[data-failure]').value).replace(/,/, '.'));
 
     this.event = (bigData.querySelector('[data-event]').value).split(/;/);
     this.event = this.event.map(num => parseFloat(num));

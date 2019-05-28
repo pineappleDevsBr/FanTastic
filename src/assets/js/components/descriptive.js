@@ -8,7 +8,7 @@ import Continue from './modules/descriptive/continue';
 class Descriptive {
   constructor() {
     this.button = document.querySelector('[data-button-descriptive]');
-    this.buttonFile = document.querySelector('[data-button-file]');
+    this.buttonFile = document.querySelector('[data-descriptive-file]');
     this.holderResult = document.querySelector('[data-result-holder]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.elm = null;
@@ -78,7 +78,7 @@ class Descriptive {
 
   readFile() {
     if (window.File && window.FileReader && window.FileList && window.Blob) {
-      const file = this.buttonFile.files[0];
+      const file = this.buttonFile.files[this.buttonFile.files.length - 1];
       const inputFile = document.querySelector('[data-dados]');
       const regExp = [/.txt$/, /.csv$/];
       if (regExp[0].test(file.name) || regExp[1].test(file.name)) {

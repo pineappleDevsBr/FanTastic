@@ -9,6 +9,7 @@ import Binomial from './components/binomial';
 import Normal from './components/normal';
 import CorrelationNRegression from './components/correlationNregression';
 import ExportPDF from './components/exportPDF';
+import JumpButton from './components/jumpButton';
 
 const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
   minHeight: false,
@@ -19,6 +20,7 @@ AccessibillityBar.create('[data-accessibillity-bar]');
 Login.create();
 ExportPDF.create();
 Interface.create();
+JumpButton.create();
 
 Descriptive.create();
 Uniform.create();
