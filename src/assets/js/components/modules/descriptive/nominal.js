@@ -33,6 +33,7 @@ class Nominal {
   }
 
   organizerData() {
+    this.data = this.data.map(elm => elm.toLowerCase());
     this.data = Order.create(this.data).organizerWordsNoOder();
 
     this.dataModa = Moda.create(this.data).getResult();

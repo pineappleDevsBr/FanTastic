@@ -14,7 +14,7 @@
   }
 }
 
-@include respond-to(mobile-tablet) {
+@include respond-to(mobile) {
   .c-prob-result {
     flex-direction: column;
   }

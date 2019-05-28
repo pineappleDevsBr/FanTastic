@@ -9,6 +9,7 @@ class Login {
     this.submitButton = document.querySelector('[data-submit-login]');
     this.logoffButton = document.querySelector('[data-logoff-login]');
     this.sectionForm = document.querySelector('[data-section-form]');
+    this.error = document.querySelector('[data-login-error]');
     this.credentials = user.user;
     this.email = null;
     this.password = null;
@@ -56,6 +57,7 @@ class Login {
       this.sectionForm.classList.add('is-active');
       MicroModal.close('modal-2');
       Cookie.set('isLogin', true);
+      this.error.classList.remove('is-active');
 
       setTimeout(() => {
         Jump(this.sectionForm);
@@ -63,7 +65,7 @@ class Login {
 
       this.setLogged();
     } else {
-      // this.email.setCustomValidity('Invalid field.');
+      this.error.classList.add('is-active');
     }
   }
 

@@ -74,14 +74,14 @@
 }
 
 .o-buttons__holder {
-  margin: 10px;
+  margin: 10px auto;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @include respond-to((max-width: 580px)) {
   .o-buttons__holder {
     max-width: 380px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .o-button--result {

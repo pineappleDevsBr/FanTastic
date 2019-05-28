@@ -34,6 +34,7 @@ class Ordinal {
   }
 
   organizerData() {
+    this.data = this.data.map(elm => elm.toLowerCase());
     this.data = Order.create(this.data, 'crescent', this.order).getResult();
     this.dataModa = Moda.create(this.data).getResult();
   }

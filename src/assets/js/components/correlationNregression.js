@@ -47,7 +47,7 @@ class CorrelationNRegression {
       const file = this.fileButton.files[this.fileButton.files.length - 1];
       const inputX = document.querySelector('[data-cr-x]');
       const inputY = document.querySelector('[data-cr-y]');
-      const regExp = /.csv$/;
+      const regExp = /.csv$||.txt$/;
       if (regExp.test(file.name)) {
         const reader = new FileReader();
         reader.onload = () => {
@@ -74,8 +74,13 @@ class CorrelationNRegression {
   }
 
   validateData() {
+    const regExpNumber = /^[\d]+([;,.][\d]+)*$/;
+
     if (!this.dataX.name || !this.dataY.name || !this.dataX.value || !this.dataY.value ) { // eslint-disable-line
       this.modalMessage.innerHTML = 'Preencha todos os campos!!!';
+      MicroModal.show('modal-1');
+    } else if (!regExpNumber.test(this.dataX.value) || !regExpNumber.test(this.dataY.value)) {
+      this.modalMessage.innerHTML = 'Preencha todos os corretamente!!!';
       MicroModal.show('modal-1');
     } else {
       this.convertData();

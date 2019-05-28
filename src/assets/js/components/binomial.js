@@ -38,25 +38,38 @@ class Binomial {
   recoverData() {
     const bigData = document.querySelector('[data-binomial]');
 
-    this.size = parseFloat(bigData.querySelector('[data-size]').value);
-    this.sucess = parseFloat((bigData.querySelector('[data-sucess]').value).replace(/,/, '.'));
-    this.failure = parseFloat((bigData.querySelector('[data-failure]').value).replace(/,/, '.'));
-
-    this.event = (bigData.querySelector('[data-event]').value).split(/;/);
-    this.event = this.event.map(num => parseFloat(num));
+    this.size = bigData.querySelector('[data-size]').value;
+    this.sucess = bigData.querySelector('[data-sucess]').value;
+    this.failure = bigData.querySelector('[data-failure]').value;
+    this.event = bigData.querySelector('[data-event]').value;
   }
 
   validateData() {
+    const regExpNumber = /^[\d]+([;,.][\d]+)*$/;
+
     if (!this.size || !this.event || !this.sucess || !this.failure) {
       this.modalMessage.innerHTML = 'Preencha todos os dados!';
       Modal.show('modal-1');
+    } else if (!regExpNumber.test(this.event)) {
+      this.modalMessage.innerHTML = 'Preencha todos os campos corretamente!';
+      Modal.show('modal-1');
     } else {
+      this.convertData();
       this.probability();
       this.median();
       this.standardDeviation();
       this.createLayout();
       this.appendResult();
     }
+  }
+
+  convertData() {
+    this.size = parseFloat(this.size.replace(/,/, '.'));
+    this.sucess = parseFloat(this.sucess.replace(/,/, '.'));
+    this.failure = parseFloat(this.failure.replace(/,/, '.'));
+
+    this.event = this.event.split(/;/);
+    this.event = this.event.map(num => parseFloat(num));
   }
 
   probability() {

@@ -49,10 +49,32 @@ class Normal {
   recoverData() {
     const holder = document.querySelector('[data-normal]');
 
-    this.media = parseFloat(holder.querySelector('[data-normal-media]').value);
-    this.standardDeviation = parseFloat(holder.querySelector('[data-normal-dp]').value);
+    this.media = holder.querySelector('[data-normal-media]').value;
+    this.standardDeviation = holder.querySelector('[data-normal-dp]').value;
     this.intervalAnalysisValue.type = holder.querySelector('[data-select-value]').value;
     this.intervalAnalysisValue.data = holder.querySelector('[data-interval]').value;
+  }
+
+  validateData() {
+    const regExpNumber = /^[\d]+([;,.][\d]+)*$/;
+
+    if (!this.media || !this.standardDeviation || this.intervalAnalysisValue.type == ' -- ' || !this.intervalAnalysisValue.data) { // eslint-disable-line
+      this.modalMessage.innerHTML = 'Preencha todos os campos!!!';
+      MicroModal.show('modal-1');
+    } else if (this.intervalAnalysisValue.type === 'entre' && !regExpNumber.test(this.intervalAnalysisValue.data)) {
+      this.modalMessage.innerHTML = 'Preencha todos os campos corretamente!!!';
+      MicroModal.show('modal-1');
+    } else {
+      this.convertData();
+      this.choiceType();
+      this.generateResult();
+      this.appendResult();
+    }
+  }
+
+  convertData() {
+    this.media = parseFloat(this.media);
+    this.standardDeviation = parseFloat(this.standardDeviation);
 
     if (/[,]/.test(this.intervalAnalysisValue.data)) {
       this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.replace(',', '.');
@@ -63,17 +85,6 @@ class Normal {
       this.intervalAnalysisValue.data = this.intervalAnalysisValue.data.map(num => parseFloat(num));
     } else {
       this.intervalAnalysisValue.data = parseFloat(this.intervalAnalysisValue.data);
-    }
-  }
-
-  validateData() {
-    if (!this.media || !this.standardDeviation || this.intervalAnalysisValue.type == ' -- ' || !this.intervalAnalysisValue.data) { // eslint-disable-line
-      this.modalMessage.innerHTML = 'Preencha todos os campos!!!';
-      MicroModal.show('modal-1');
-    } else {
-      this.choiceType();
-      this.generateResult();
-      this.appendResult();
     }
   }
 

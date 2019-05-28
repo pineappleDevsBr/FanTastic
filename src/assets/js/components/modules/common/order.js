@@ -36,13 +36,15 @@ class Order {
     return this.vet;
   }
 
-  orderCrescent() {
-    for (let i = 0; i < this.vet.length; i += 1) {
-      for (let j = 0; j < this.vet.length; j += 1) {
-        if (this.vet[i] < this.vet[j]) {
-          const aux = this.vet[i];
-          this.vet[i] = this.vet[j];
-          this.vet[j] = aux;
+  orderCrescent() { // bubbleSort
+    let aux = 1;
+
+    for (let i = this.vet.length; i >= 0; i -= 1) {
+      for (let j = 0; j < i; j += 1) {
+        if (this.vet[j] > this.vet[j + 1]) {
+          aux = this.vet[j];
+          this.vet[j] = this.vet[j + 1];
+          this.vet[j + 1] = aux;
         }
       }
     }

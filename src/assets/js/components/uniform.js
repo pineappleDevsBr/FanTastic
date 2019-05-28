@@ -62,11 +62,16 @@ class Uniform {
   }
 
   validateData() {
+    const regExpNumber = /^[\d]+([;,.][\d]+)*$/;
+
     if (this.maxPoint === '' || this.minPoint === '' || this.intervalAnalysisValue.type === ' -- ' || this.intervalAnalysisValue.data === '') {
       this.modalMessage.innerHTML = 'Peencha todos os campos!';
       Modal.show('modal-1');
     } else if (this.intervalAnalysisValue.type === 'entre' && this.intervalAnalysisValue.data.length > 2) {
-      this.modalMessage.innerHTML = "Caso a escolha do intervalo seja 'entre', digite somente com dois dados!";
+      this.modalMessage.innerHTML = "Caso a escolha do intervalo seja 'entre', digite somente dois dados!";
+      Modal.show('modal-1');
+    } else if (!regExpNumber.test(this.intervalAnalysisValue.data)) {
+      this.modalMessage.innerHTML = 'Preencha os campos corretamente!!!';
       Modal.show('modal-1');
     } else {
       this.generateProbability();
