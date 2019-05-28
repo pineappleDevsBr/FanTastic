@@ -1,0 +1,49 @@
+.register {
+  background-color: $color-blue-light2;
+  color: $color-white;
+  text-align: center;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 20px 10px;
+  height: 100%;
+}
+
+.register__title {
+  margin: 0;
+}
+
+.register__text {
+  font-size: 22px;
+  margin: 0 auto 10px;
+  max-width: 950px;
+}
+
+.register__loading {
+  font-size: 18px;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 540px;
+    height: 190px;
+    margin: 0 auto;
+    background-image: url('../static/construcao_white.png');
+    background-repeat: no-repeat;
+    background-size: content;
+  }
+}
+
+.register__back-to-home {
+  color: $color-white;
+  margin-bottom: 50px;
+}
+
+@include respond-to (mobile) {
+  .register__loading {
+    &::before {
+      width: 360px;
+      height: 130px;
+      margin: 0 auto;
+      background-size: cover;
+    }
+  }
+}
