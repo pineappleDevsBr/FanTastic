@@ -1,0 +1,26 @@
+.c-projection {
+  margin: 0 25px;
+}
+
+.c-projection__title {
+  font-size: 20px;
+}
+
+.c-projection__text {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.c-projection__input {
+  display: inline-block;
+  width: 60px;
+  border: none;
+  border-bottom: solid 1px #00cc7e;
+  outline: none;
+  padding: 0 10px;
+  box-sizing: border-box;
+
+  &:focus {
+    border-bottom: solid 2px #00cc7e;
+  }
+}
