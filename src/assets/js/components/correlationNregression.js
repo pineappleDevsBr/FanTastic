@@ -6,6 +6,7 @@ import Chart from 'chart.js';
 class CorrelationNRegression {
   constructor() {
     this.submitButton = document.querySelector('[data-button-cr]');
+    this.fileButton = document.querySelector('[data-cr-file]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.holderResult = document.querySelector('[data-result-holder]');
     this.canvasHolder = document.querySelector('[data-canvas]');
@@ -32,11 +33,37 @@ class CorrelationNRegression {
   }
 
   setupListeners() {
+    this.fileButton.addEventListener('change', () => this.readFile());
+
     this.submitButton.addEventListener('click', (evt) => {
       evt.preventDefault();
       this.recoverData();
       this.validateData();
     });
+  }
+
+  readFile() {
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      const file = this.fileButton.files[this.fileButton.files.length - 1];
+      const inputX = document.querySelector('[data-cr-x]');
+      const inputY = document.querySelector('[data-cr-y]');
+      const regExp = /.csv$/;
+      if (regExp.test(file.name)) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const data = reader.result.split(/\n/);
+          inputX.value = data[0];
+          inputY.value = data[1];
+        };
+        reader.readAsText(file);
+      } else {
+        this.modalMessage.innerHTML = 'Escolha um arquivo no formato csv';
+        MicroModal.show('modal-1');
+      }
+    } else {
+      this.modalMessage.innerHTML = 'Seu navegador nao suporta essa funcionalidade';
+      MicroModal.show('modal-1');
+    }
   }
 
   recoverData() {
@@ -52,13 +79,18 @@ class CorrelationNRegression {
       MicroModal.show('modal-1');
     } else {
       this.convertData();
-      this.generateMatrix();
-      this.generateR();
-      this.regression();
-      this.futureProjection();
-      this.createResult();
-      this.createChart();
-      this.appendResult();
+      if (this.dataX.value.length !== this.dataY.value.length) {
+        this.modalMessage.innerHTML = 'Parece que a quantidade de históricos da variável dependente esta diferente da variável independente.' // eslint-disable-line
+        MicroModal.show('modal-1');
+      } else {
+        this.generateMatrix();
+        this.generateR();
+        this.regression();
+        this.futureProjection();
+        this.createResult();
+        this.createChart();
+        this.appendResult();
+      }
     }
   }
 
@@ -197,6 +229,15 @@ class CorrelationNRegression {
           label: 'scatter',
           data: scatter,
           backgroundColor: 'rgba(255,0,0,1)',
+        },
+        {
+          type: 'line',
+          label: 'line',
+          data: [{ x: xMenor, y: yMenor }, { x: xMaior, y: yMaior }],
+          showLine: true,
+          backgroundColor: 'rgba(0,0,255,0)',
+          pointBorderColor: 'rgba(0,0,255,0)',
+          borderColor: 'rgba(0,0,255,.5)',
         }],
       },
       options: {

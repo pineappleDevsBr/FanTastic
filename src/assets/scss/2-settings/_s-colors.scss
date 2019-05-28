@@ -29,6 +29,7 @@ $colors: (
   color-purple: $color-purple,
   color-green: $color-green,
   color-green-light: $color-green-light,
+  color-gray-black: $color-gray,
   gradient-blue: $gd-blue-shaft,
   gradient-purple: $gd-purple-shaft,
   gradient-green: $gd-green-shaft,
@@ -42,6 +43,6 @@ $contrast-colors: (
   color-green-light: $color-gray-minimal,
   gradient-blue: $color-gray-mid,
   gradient-purple: $color-gray,
-  gradient-green: $color-gray-ease,
+  gradient-green: $color-gray-mid,
   gradient-orange: $color-gray-minimal,
 );

@@ -58,9 +58,11 @@
     <p class="o-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales blandit posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce in erat at erat sollicitudin volutpat. Phasellus sagittis at mauris at rutrum. Nam rhoncus, urna at dapibus auctor, est neque sagittis felis, a semper urna quam eu mi. Vestibulum faucibus rutrum justo, ut facilisis lorem aliquet eget. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
     <div class="c-login">
       <button data-open-login>Vamos começar</button>
-      <button data-logoff-login>Sair</button>
+      <div class="c-login__holder">
+        <p class="c-login__user">Admin</p>
+        <button class="c-login__logoff" data-logoff-login>Sair</button>
+      </div>
     </div>
-    <!-- <button class="o-button--arrow-down" name="Inicio" data-button-home aria-label="Inicio"</button> -->
   </header>
 </div>
 <div class="s-section s-section--form" data-section-form>
@@ -74,7 +76,6 @@
 
     <div class="c-form__boxes" content-list>
       <form id="descriptive" class="c-form__box" data-descriptive>
-  <span>^[\d]+([;,][\d]+)*$</span>
   <div class="o-label--radio-holder" data-process>
     <h3>Processo</h3>
     <div class="o-label--radio">
@@ -154,7 +155,7 @@
   </div>
 
   <div class="o-button o-button--file">
-    <input type="file" id="file" accept=".csv,.txt" data-button-file></input>
+    <input type="file" id="file" accept=".csv,.txt" data-descriptive-file></input>
     <label class="o-button_label" for="file" >Escolha o arquivo</label>
   </div>
 
@@ -181,6 +182,11 @@
   <div class="o-label--input">
     <label for="cr-dependente" class="o-label-title">Historico da variavel dependente (Y)</label>
     <input type="text" id="cr-dependente" class="o-label-input" required="true" data-cr-y value="5;7;8;5;9;8;5;4">
+  </div>
+
+  <div class="o-button o-button--file">
+    <input type="file" id="file-cr" accept=".csv,.txt" data-cr-file></input>
+    <label class="o-button_label" for="file-cr" >Escolha o arquivo</label>
   </div>
 
   <button type="submit" class="o-button o-button--calculate" data-button-cr>Calcular</button>
@@ -306,11 +312,14 @@
       <div data-table-result></div>
       <div class="c-result__canvas-holder" data-canvas></div>
     </div>
-    <button data-export-pdf>Exportar</button>
-    <div class="o-button-loading" data-export-load>
-      <div class="ball"></div>
-      <div class="ball"></div>
-      <div class="ball"></div>
+    <div class="o-buttons__holder">
+      <a class="o-button o-button--result" href=".s-section--form" data-jump>Voltar a entrada de dados</a>
+      <button class="o-button o-button--result" data-export-pdf>Exportar</button>
+      <div class="o-button-loading" data-export-load>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+      </div>
     </div>
   </div>
 </div>
