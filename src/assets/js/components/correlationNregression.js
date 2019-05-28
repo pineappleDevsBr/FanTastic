@@ -21,6 +21,7 @@ class CorrelationNRegression {
     this.rateR = null;
     this.inputX = document.createElement('input');
     this.inputY = document.createElement('input');
+    this.title = document.createElement('h2');
     this.containerFuture = document.createElement('div');
     this.valueX = null;
     this.valueY = null;
@@ -157,14 +158,25 @@ class CorrelationNRegression {
     this.inputX.addEventListener('keyup', (e) => { this.listenerX(e); });
     this.inputY.addEventListener('keyup', (e) => { this.listenerY(e); });
 
+    const title = document.createElement('h2');
+    const nodeTitle = document.createTextNode('Calculo de projeção futura');
     const elemA = document.createElement('p');
     const nodeA = document.createTextNode(` = ${this.dataA} x`);
     const elemB = document.createElement('p');
     const nodeB = document.createTextNode(`+${this.dataB}`);
 
+    title.appendChild(nodeTitle);
     elemA.appendChild(nodeA);
     elemB.appendChild(nodeB);
 
+    title.classList.add('c-projection__title');
+    elemA.classList.add('c-projection__text');
+    elemB.classList.add('c-projection__text');
+    this.inputX.classList.add('c-projection__input');
+    this.inputY.classList.add('c-projection__input');
+    this.containerFuture.classList.add('c-projection');
+
+    this.containerFuture.appendChild(title);
     this.containerFuture.appendChild(this.inputY);
     this.containerFuture.appendChild(elemA);
     this.containerFuture.appendChild(this.inputX);
