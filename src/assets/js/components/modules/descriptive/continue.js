@@ -239,7 +239,24 @@ class Continue {
           label: 'Frequencia Relativa',
           data: this.simpleFrequencyPercentage,
           stack: 's1',
-          borderWidth: 0,
+          borderWidth: 1,
+          backgroundColor: [
+            'rgba(106, 0, 227, 0.2)',
+            'rgba(0, 204, 126, 0.2)',
+            'rgba(209, 88, 50, 0.2)',
+            'rgba(0, 153, 94, 0.2)',
+            'rgba(71, 0, 151, 0.2)',
+            'rgba(26, 170, 216, 0.2)',
+          ],
+
+          borderColor: [
+            'rgba(106, 0, 227, 1)',
+            'rgba(0, 204, 126, 1)',
+            'rgba(209, 88, 50, 1)',
+            'rgba(0, 153, 94, 1)',
+            'rgba(71, 0, 151, 1)',
+            'rgba(26, 170, 216, 1)',
+          ],
         }],
       },
       options: {

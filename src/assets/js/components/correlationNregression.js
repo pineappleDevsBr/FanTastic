@@ -243,18 +243,18 @@ class CorrelationNRegression {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'scatter',
+          label: 'X e Y',
           data: scatter,
-          backgroundColor: 'rgba(255,0,0,1)',
+          backgroundColor: '#470097',
         },
         {
           type: 'line',
-          label: 'line',
+          label: 'Projeção',
           data: [{ x: xMenor, y: yMenor }, { x: xMaior, y: yMaior }],
           showLine: true,
           backgroundColor: 'rgba(0,0,255,0)',
           pointBorderColor: 'rgba(0,0,255,0)',
-          borderColor: 'rgba(0,0,255,.5)',
+          borderColor: '#1aaad8',
         }],
       },
       options: {
