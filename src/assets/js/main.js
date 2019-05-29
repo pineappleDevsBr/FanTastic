@@ -9,7 +9,7 @@ import Normal from './components/normal';
 import CorrelationNRegression from './components/correlationNregression';
 import ExportPDF from './components/exportPDF';
 import JumpButton from './components/jumpButton';
-import Douglinhas from './components/douglinhas';
+import HelpBox from './components/helpBox';
 
 const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
   minHeight: false,
@@ -20,7 +20,7 @@ Login.create();
 ExportPDF.create();
 Interface.create();
 JumpButton.create();
-Douglinhas.create();
+HelpBox.create('[data-help-box]');
 
 Descriptive.create();
 Uniform.create();

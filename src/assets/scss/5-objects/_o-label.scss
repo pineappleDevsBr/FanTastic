@@ -22,6 +22,7 @@
 
     &:disabled {
       border-radius: 10px;
+      background: $color-gray-ease;
     }
 
     &:focus {
