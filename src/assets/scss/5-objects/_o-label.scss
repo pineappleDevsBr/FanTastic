@@ -109,6 +109,8 @@
 
   &:focus {
     & + .o-label-select__span {
+      @include bg-contrast();
+
       box-shadow: 0 0 10px $color-purple;
     }
   }
