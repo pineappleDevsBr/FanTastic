@@ -16,6 +16,7 @@ $color-blue-dark: #104e8b;
 $color-green: #00995e;
 $color-green-light: #d6ffd9;
 $purple-plated: #470097;
+$color-green-water: #00cc7e;
 
 // Backgrounds
 $gd-blue-shaft: linear-gradient(to left, #104e8b, #1aaad8);
@@ -26,10 +27,14 @@ $gd-orange-shaft: linear-gradient(to right, #f70, #ff9100);
 
 $colors: (
   color-black: $color-black,
+  color-white: $color-white,
   color-purple: $color-purple,
   color-green: $color-green,
+  color-orange: $color-orange,
   color-green-light: $color-green-light,
   color-gray-black: $color-gray,
+  color-gray-minimal: $color-gray-minimal,
+  color-green-water: $color-green-water,
   gradient-blue: $gd-blue-shaft,
   gradient-purple: $gd-purple-shaft,
   gradient-green: $gd-green-shaft,
@@ -38,10 +43,14 @@ $colors: (
 
 $contrast-colors: (
   color-black: $color-black,
+  color-white: $color-white,
   color-purple: $color-gray,
   color-green: $color-gray,
+  color-orange: $color-gray,
   color-green-light: $color-gray-minimal,
+  color-green-water: $color-gray,
   gradient-blue: $color-gray-mid,
+  color-gray-minimal: $color-black,
   gradient-purple: $color-gray,
   gradient-green: $color-gray-mid,
   gradient-orange: $color-gray-minimal,

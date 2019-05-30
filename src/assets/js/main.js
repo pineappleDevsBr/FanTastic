@@ -10,20 +10,24 @@ import CorrelationNRegression from './components/correlationNregression';
 import ExportPDF from './components/exportPDF';
 import JumpButton from './components/jumpButton';
 import HelpBox from './components/helpBox';
+import ChangeBox from './components/changeBox';
 
-const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
-  minHeight: false,
+window.onload = (() => {
+  AccessibillityBar.create('[data-accessibillity-bar]');
+  Login.create();
+  ExportPDF.create();
+  Interface.create();
+  JumpButton.create();
+  HelpBox.create();
+  Descriptive.create();
+  Uniform.create();
+  Binomial.create();
+  Normal.create();
+  CorrelationNRegression.create();
+
+  const tabs = new SimpleTabs('[data-form]', { // eslint-disable-line
+    minHeight: false,
+    callback: (dataTabs) => { ChangeBox.create(dataTabs); },
+  });
 });
 
-AccessibillityBar.create('[data-accessibillity-bar]');
-Login.create();
-ExportPDF.create();
-Interface.create();
-JumpButton.create();
-HelpBox.create('[data-help-box]');
-
-Descriptive.create();
-Uniform.create();
-Binomial.create();
-Normal.create();
-CorrelationNRegression.create();

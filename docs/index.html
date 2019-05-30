@@ -68,9 +68,9 @@
   <div class="c-form-wrapp" data-form>
 
     <ul class="c-form__tabs"tab-list>
-      <li class="c-form__tab" tab><a href="#descriptive" class="c-form__tab-title">Estatística descritiva</a></li>
+      <li class="c-form__tab" tab tab-default><a href="#descriptive" class="c-form__tab-title">Estatística descritiva</a></li>
       <li class="c-form__tab" tab><a href="#probability" class="c-form__tab-title">Probabilidade</a></li>
-      <li class="c-form__tab" tab tab-default><a href="#correlationAndRegression" class="c-form__tab-title">Correlação e Regressão</a></li>
+      <li class="c-form__tab" tab><a href="#correlationAndRegression" class="c-form__tab-title">Correlação e Regressão</a></li>
     </ul>
 
     <div class="c-form__boxes" content-list>
@@ -155,7 +155,7 @@
 
   <div class="o-button o-button--file">
     <input type="file" id="file" accept=".csv,.txt" data-descriptive-file></input>
-    <label class="o-button_label" for="file" >Escolha o arquivo</label>
+    <label data-file-class class="o-button_label" for="file" >Escolha o arquivo</label>
   </div>
 
   <button type="submit" class="o-button o-button--calculate" data-button-descriptive>Calcular</button>
@@ -175,12 +175,12 @@
 
   <div class="o-label--input">
     <label for="cr-independente" class="o-label-title">Historico da variavel independente (X)</label>
-    <input type="text" id="cr-independente" class="o-label-input" required="true" data-cr-x value="4;6;7;6;9;8;8;2">
+    <input type="text" id="cr-independente" class="o-label-input" required="true" data-cr-x>
   </div>
 
   <div class="o-label--input">
     <label for="cr-dependente" class="o-label-title">Historico da variavel dependente (Y)</label>
-    <input type="text" id="cr-dependente" class="o-label-input" required="true" data-cr-y value="5;7;8;5;9;8;5;4">
+    <input type="text" id="cr-dependente" class="o-label-input" required="true" data-cr-y>
   </div>
 
   <div class="o-button o-button--file">
@@ -194,9 +194,9 @@
       <div id="probability" class="c-form__box" data-form>
 
   <ul class="c-dropdown__tabs" tab-list>
-    <li class="c-dropdown__tab" tab><a href="#uniforme">Uniforeme</a> </li>
+    <li class="c-dropdown__tab" tab tab-default><a href="#uniforme">Uniforeme</a> </li>
     <li class="c-dropdown__tab" tab><a href="#binomial">Binomial</a></li>
-    <li class="c-dropdown__tab" tab tab-default><a href="#normal">Normal</a></li>
+    <li class="c-dropdown__tab" tab><a href="#normal">Normal</a></li>
   </ul>
   <div class="c-dropdown__boxes" content-list>
     <form class="c-dropdown__box" id="uniforme" data-uniform>
@@ -387,7 +387,7 @@
     </div>
     <div class="c-help-box__holder">
       <h3 class="c-help-box__holder-title">Dicas de uso</h3>
-      <ul class="c-help-box__holder-list">
+      <ul class="c-help-box__holder-list" data-change-box>
        <li class="c-help-box__holder-item">
          <h4 class="c-help-box__item-title" data-item>Tipo do processo</h4>
          <div data-height="isClosed" class="c-help-box__height-box">
@@ -429,7 +429,7 @@
          </div>
        </li>
      </ul>
-     <ul class="c-help-box__holder-list">
+     <ul class="c-help-box__holder-list" data-change-box style="display: none">
       <li class="c-help-box__holder-item">
          <h4 class="c-help-box__item-title" data-item>Distribuição Uniforme</h4>
          <div data-height="isClosed" class="c-help-box__height-box">
@@ -484,7 +484,7 @@
          </div>
        </li>
       </ul>
-      <ul class="c-help-box__holder-list">
+      <ul class="c-help-box__holder-list" data-change-box style="display: none">
         <li class="c-help-box__holder-item">
         <h4 class="c-help-box__item-title" data-item>Correlação e Regressão</h4>
         <div data-height="isClosed" class="c-help-box__height-box">
@@ -498,7 +498,7 @@
         </div>
       </li>
       </ul>
-    <button data-button-close>Close</button>
+    <button class="o-button o-button--helpbox" data-button-close>Close</button>
     </div>
   </div>
 </div>

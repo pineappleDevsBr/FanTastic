@@ -9,7 +9,8 @@
 
   &--calculate,
   &--login,
-  &--result {
+  &--result,
+  &--helpbox {
     color: $color-white;
     line-height: 1;
     border-radius: 10px;
@@ -44,13 +45,39 @@
     margin-right: 10px;
   }
 
+  &--helpbox {
+    @include ac(background, color-gray-minimal);
+    @include ac(color, color-black, color-white);
+  }
+
   &--file {
     display: inline-block;
+    position: relative;
 
     &:hover {
       .o-button_label {
         box-shadow: 0 0 2px $color-black;
         text-shadow: 0 0 1px $color-white;
+      }
+    }
+
+    &::after {
+      @include ac(background, gradient-purple);
+
+      content: '';
+      display: none;
+      position: absolute;
+      width: 25%;
+      height: 2px;
+      left: 10px;
+      bottom: -7px;
+      transform: translateX(0);
+      animation: 1s animateFile infinite;
+    }
+
+    &.is-active {
+      &::after {
+        display: block;
       }
     }
 
@@ -77,6 +104,20 @@
   margin: 10px auto;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+@keyframes animateFile {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(260%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @include respond-to((max-width: 580px)) {

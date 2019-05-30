@@ -12,16 +12,20 @@
 }
 
 .c-projection__input {
+  border: none;
+
+  @include ac(border-bottom-color, color-green-water);
+
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
   display: inline-block;
   width: 60px;
-  border: none;
-  border-bottom: solid 1px #00cc7e;
   outline: none;
   padding: 0 10px;
   text-align: center;
   box-sizing: border-box;
 
   &:focus {
-    border-bottom: solid 2px #00cc7e;
+    border-bottom-width: 2px; // No lint reported
   }
 }

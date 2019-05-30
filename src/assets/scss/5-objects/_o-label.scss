@@ -26,8 +26,6 @@
     }
 
     &:focus {
-      border-color: $color-purple;
-
       @include ac(border-color, color-purple);
 
       border-width: 2px;
@@ -38,6 +36,7 @@
 .o-label--radio {
   display: block;
   margin: 20px 0;
+  cursor: pointer;
 }
 
 .o-label--radio {
@@ -54,22 +53,20 @@
 
     &:checked + .o-label-title::before {
       //background: $color-purple;
-
-      @include ac(background, gradient-purple);
-
-      border-color: $color-orange;
-
-      @include ac(border-color, gradient-orange);
+      @include ac(background, color-purple);
+      @include ac(border-color, color-orange);
     }
   }
 
   .o-label-title {
+    cursor: pointer;
+
     &::before {
+      @include ac(border-color, color-purple);
+
       content: " ";
-      border: 4px solid $color-purple;
-
-      @include ac(border-color, gradient-purple);
-
+      border-width: 4px;
+      border-style: solid;
       width: 6px;
       height: 6px;
       display: inline-block;
@@ -80,12 +77,13 @@
 }
 
 .o-label-select__holder {
-  display: inline-block;
-  position: relative;
-  border: 2px solid $color-purple;
-
   @include ac(border-color, color-purple);
 
+  display: inline-block;
+  position: relative;
+  // border: 2px solid $color-purple;
+  border-width: 2px;
+  border-style: solid;
   border-radius: 15px;
   padding: 3px 10px;
 }

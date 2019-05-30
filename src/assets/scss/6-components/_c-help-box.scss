@@ -84,6 +84,10 @@
   &:not(:last-child) {
     margin-bottom: 15px;
   }
+
+  &:hover {
+    box-shadow: 0 0 4px $color-gray-mid;
+  }
 }
 
 .c-help-box__item-title {
