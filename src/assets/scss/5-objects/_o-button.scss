@@ -10,7 +10,8 @@
   &--calculate,
   &--login,
   &--result,
-  &--helpbox {
+  &--helpbox,
+  &--logon {
     color: $color-white;
     line-height: 1;
     border-radius: 10px;
@@ -96,6 +97,33 @@
       line-height: 1;
       cursor: pointer;
       box-sizing: border-box;
+    }
+  }
+
+  &--logon {
+    border: 2px solid white;
+    margin: 2px;
+
+    &:hover {
+      background: white;
+      color: $color-blue-dark;
+      box-shadow: none;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:disabled {
+      border-color: $color-gray-ease;
+      color: $color-gray-ease;
+      cursor: auto;
+      text-shadow: none;
+
+      &:hover {
+        background: none;
+        color: $color-gray-ease;
+      }
     }
   }
 }
