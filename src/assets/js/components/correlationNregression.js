@@ -224,17 +224,13 @@ class CorrelationNRegression {
     this.canvasHolder.innerHTML = '';
 
     const canvas = document.createElement('canvas');
-    let xMenor = this.dataX.value[0];
     let yMenor = this.dataY.value[0];
     let yMaior = 0;
-    let xMaior = 0;
     const scatter = [];
 
     for (let index = 0; index < this.dataX.value.length; index += 1) {
       scatter.push({ x: this.dataX.value[index], y: this.dataY.value[index] });
 
-      if (this.dataX.value[index] > xMaior) { xMaior = this.dataX.value[index]; }
-      if (this.dataX.value[index] < xMenor) { xMenor = this.dataX.value[index]; }
       if (this.dataY.value[index] < yMenor) { yMenor = this.dataY.value[index]; }
       if (this.dataY.value[index] > yMaior) { yMaior = this.dataY.value[index]; }
     }
@@ -250,7 +246,14 @@ class CorrelationNRegression {
         {
           type: 'line',
           label: 'Projeção',
-          data: [{ x: xMenor, y: yMenor }, { x: xMaior, y: yMaior }],
+          data: [{
+            x: (yMaior - this.dataB) / this.dataA,
+            y: yMaior,
+          },
+          {
+            x: (yMenor - this.dataB) / this.dataA,
+            y: yMenor,
+          }],
           showLine: true,
           backgroundColor: 'rgba(0,0,255,0)',
           pointBorderColor: 'rgba(0,0,255,0)',
