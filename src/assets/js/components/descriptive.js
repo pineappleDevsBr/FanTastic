@@ -172,7 +172,7 @@ class Descriptive {
   }
 
   convertArray() {
-    this.data = this.data.replace(/,/, '.');
+    this.data = this.data.replace(/,/g, '.');
     this.data = this.data.split(/;/);
     this.orderOrdinal = this.orderOrdinal.split(/;/);
     this.dataConverted = this.data.map(num => parseFloat(num, 10));

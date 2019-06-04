@@ -70,8 +70,8 @@ class CorrelationNRegression {
   recoverData() {
     this.dataX.name = document.querySelector('[data-cr-name-x]').value;
     this.dataY.name = document.querySelector('[data-cr-name-y]').value;
-    this.dataX.value = document.querySelector('[data-cr-x]').value.replace(/,/, '.');
-    this.dataY.value = document.querySelector('[data-cr-y]').value.replace(/,/, '.');
+    this.dataX.value = document.querySelector('[data-cr-x]').value.replace(/,/g, '.');
+    this.dataY.value = document.querySelector('[data-cr-y]').value.replace(/,/g, '.');
   }
 
   validateData() {

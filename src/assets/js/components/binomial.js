@@ -64,9 +64,9 @@ class Binomial {
   }
 
   convertData() {
-    this.size = parseFloat(this.size.replace(/,/, '.'));
-    this.sucess = parseFloat(this.sucess.replace(/,/, '.'));
-    this.failure = parseFloat(this.failure.replace(/,/, '.'));
+    this.size = parseFloat(this.size.replace(/,/g, '.'));
+    this.sucess = parseFloat(this.sucess.replace(/,/g, '.'));
+    this.failure = parseFloat(this.failure.replace(/,/g, '.'));
 
     this.event = this.event.split(/;/);
     this.event = this.event.map(num => parseFloat(num));
