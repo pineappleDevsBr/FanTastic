@@ -31,3 +31,22 @@ body::-webkit-scrollbar-thumb {
 .c-form__box::-webkit-scrollbar-thumb {
   background-color: #766e63;
 }
+
+.c-help-box__holder::-webkit-scrollbar-thumb {
+  background-color: #766e63;
+  border-radius: 4px;
+}
+
+.c-help-box__holder::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.c-help-box__holder::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+.c-help-box__holder::-webkit-scrollbar-thumb {
+  background-color: #766e63;
+  border-radius: 4px;
+}

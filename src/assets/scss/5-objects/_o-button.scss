@@ -49,6 +49,9 @@
   &--helpbox {
     @include ac(background, color-gray-minimal);
     @include ac(color, color-black, color-white);
+
+    position: absolute;
+    bottom: 10px;
   }
 
   &--file {

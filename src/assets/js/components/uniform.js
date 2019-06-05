@@ -112,6 +112,7 @@ class Uniform {
 
   generateCoefficientOfVariation() {
     this.coefficientOfVariation = (this.standartDeviation / this.media) * 100;
+    this.coefficientOfVariation = (Math.round(this.coefficientOfVariation * 100)) / 100;
   }
 
   generateLayout() {

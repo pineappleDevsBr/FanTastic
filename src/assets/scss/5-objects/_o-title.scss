@@ -5,10 +5,10 @@
   margin-bottom: 40px;
   font-size: 102px;
   font-family: $font-family-main;
+}
 
-  span {
-    color: $color-white;
-  }
+.o-title--highlight {
+  color: $color-white;
 }
 
 @include respond-to(mobile) {

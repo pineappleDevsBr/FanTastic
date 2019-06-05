@@ -111,6 +111,7 @@ class Binomial {
 
   standardDeviation() {
     this.standardDeviationValue = Math.sqrt(this.size * this.sucess * this.failure);
+    this.standardDeviationValue = (Math.round(this.standardDeviationValue * 100)) / 100;
   }
 
   createLayout() {

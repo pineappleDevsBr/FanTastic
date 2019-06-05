@@ -217,6 +217,7 @@ class Normal {
   }
 
   generateResult() {
+    this.numbersZ = (Math.round(this.numbersZ * 100)) / 100;
     this.result = this.normalTemplate({ result: this.numbersZ });
   }
 
