@@ -12,3 +12,9 @@
     margin-bottom: 10vw;
   }
 }
+
+@include respond-to((max-width: 384px)) {
+  .o-description {
+    font-size: 14px;
+  }
+}

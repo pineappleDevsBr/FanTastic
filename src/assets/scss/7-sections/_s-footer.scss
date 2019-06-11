@@ -31,3 +31,9 @@
 .s-footer__copy {
   font-family: $font-family-script;
 }
+
+@include respond-to(mobile) {
+  .s-footer {
+    padding-bottom: 40px;
+  }
+}
