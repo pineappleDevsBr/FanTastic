@@ -8,6 +8,12 @@ Fantastic é uma ferramenta que tem com objetivo principal realizar cálculos de
 Com um layout simples e moderno, Fantastic tende a ser bem atrativo a qualquer público que necessite usá-lo.
 Desenvolvido com as linguagens HTML5, ECMAScript6 e CCS3, ele proporciona uma grande ferramenta e uma ótima fonte de estudos para futuros projetos.
 
+### Documentação
+
+Você pode ter acesso a documentação entrando na Wiki do projeto <a href="https://github.com/pineappleDevsBr/FanTastic/wiki">clicando aqui</a>;
+
+Pode também entrando na pasta Documentação ou fazendo o download <a href="">clicando aqui</a> 
+
 ### Uso
 Se você interessou no projeto e quiser fazer um fork, para rodá-lo em sua máquina, você irá precisar instalar os seguintes pacotes:
 

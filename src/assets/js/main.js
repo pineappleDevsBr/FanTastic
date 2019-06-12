@@ -30,4 +30,3 @@ window.onload = (() => {
     callback: (dataTabs) => { ChangeBox.create(dataTabs); },
   });
 });
-
