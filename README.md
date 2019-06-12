@@ -12,7 +12,7 @@ Desenvolvido com as linguagens HTML5, ECMAScript6 e CCS3, ele proporciona uma gr
 
 Você pode ter acesso a documentação entrando na Wiki do projeto <a href="https://github.com/pineappleDevsBr/FanTastic/wiki">clicando aqui</a>;
 
-Pode também entrando na pasta Documentação ou fazendo o download <a href="">clicando aqui</a> 
+Pode também entrando na pasta Documentação ou fazendo o download <a href="https://github.com/pineappleDevsBr/FanTastic/blob/master/Documenta%C3%A7%C3%A3o/Documenta%C3%A7%C3%A3o%20Estatistica.docx" download>clicando aqui</a> 
 
 ### Uso
 Se você interessou no projeto e quiser fazer um fork, para rodá-lo em sua máquina, você irá precisar instalar os seguintes pacotes:
