@@ -6,6 +6,7 @@ class Binomial {
   constructor() {
     this.elm = document.querySelector('[data-binomial]');
     this.buttonSubmit = this.elm.querySelector('[data-button-binomial]');
+    this.buttonEmpty = document.querySelector('[button-binomial-empty]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.binomialTemplate = doT.template('<div class="c-prob-result"><p class="c-prob-result__cell">Probabilidade: {{=it.probabilidade }}%</p><p class="c-prob-result__cell">Média: {{=it.media}}</p><p class="c-prob-result__cell">Desvio Padrão: {{=it.desvioPadrao }}</p></div>');
     this.holderResult = document.querySelector('[data-result-holder]');
@@ -27,12 +28,22 @@ class Binomial {
   }
 
   setupListeners() {
+    this.buttonEmpty.addEventListener('click', () => Binomial.setEmpty());
     this.buttonSubmit.addEventListener('click', (evt) => {
       evt.preventDefault();
 
       this.recoverData();
       this.validateData();
     });
+  }
+
+  static setEmpty() {
+    const bigData = document.querySelector('[data-binomial]');
+
+    bigData.querySelector('[data-size]').value = '';
+    bigData.querySelector('[data-sucess]').value = '';
+    bigData.querySelector('[data-failure]').value = '';
+    bigData.querySelector('[data-event]').value = '';
   }
 
   recoverData() {

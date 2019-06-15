@@ -9,6 +9,7 @@ class Descriptive {
   constructor() {
     this.button = document.querySelector('[data-button-descriptive]');
     this.buttonFile = document.querySelector('[data-descriptive-file]');
+    this.buttonEmpty = document.querySelector('[button-descriptive-empty]');
     this.holderResult = document.querySelector('[data-result-holder]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.elm = null;
@@ -30,6 +31,12 @@ class Descriptive {
     Descriptive.disableLabel();
     Descriptive.changeRange();
     this.setupListener();
+  }
+
+  static setEmpty() {
+    document.querySelector('[data-dados]').value = '';
+    document.querySelector('[data-name]').value = '';
+    document.querySelector('[data-order]').value = '';
   }
 
   static changeRange() {
@@ -68,6 +75,7 @@ class Descriptive {
   }
 
   setupListener() {
+    this.buttonEmpty.addEventListener('click', () => Descriptive.setEmpty());
     this.buttonFile.addEventListener('change', () => { this.readFile(); });
     this.button.addEventListener('click', (evt) => {
       evt.preventDefault();
@@ -150,11 +158,14 @@ class Descriptive {
 
   validateCharacter() {
     const regExpNumber = /^[\d]+([;,.][\d]+)*$/;
-    const regExpText = /^[\w]+([;][\w]+)*$/;
+    const regExpText = /^[\w]+([;\s][\w]+)*$/;
 
     if (this.listRadio[0].checked || this.listRadio[1].checked) {
       if (!regExpText.test(this.data)) {
         this.modalMessage.innerHTML = 'Parece que seus dados estão com um probemas, seus dados nao podem iniciar nem terminar com \';\', tambem nao pode contem separações seguidas!';
+        MicroModal.show('modal-1');
+      } else if (this.listRadio[1].checked && !regExpText.test(this.orderOrdinal)) {
+        this.modalMessage.innerHTML = 'Parece que sua ordem está com problemas, verifique espaços desnecessarios ou separação incorreta.';
         MicroModal.show('modal-1');
       } else {
         this.convertArray();

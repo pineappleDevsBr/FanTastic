@@ -13,7 +13,7 @@
   </div>
 
   <div class="o-label--radio-holder" data-radios>
-    <h3>Tipo de variavel</h3>
+    <h3>Tipo de variável</h3>
     <div class="o-label--radio">
       <input type="radio" id="nominal" name="type" class="o-label-radio" checked="checked">
       <label for="nominal" class="o-label-title">Qualitativa Nominal</label>
@@ -35,7 +35,7 @@
   </div>
 
   <div class="o-label--input">
-    <label for="order" class="o-label-title">Ordenação das variaveis ordinais</label>
+    <label for="order" class="o-label-title">Ordenação das variáveis ordinais</label>
     <input type="text" id="order" class="o-label-input" placeholder=" Ex: bom; pessimo; regular" disabled="true" data-order>
   </div>
 
@@ -68,14 +68,16 @@
 
   <h3>Entrada de Dados</h3>
   <div class="o-label--input">
-    <label for="name" class="o-label-title">Nome da variavel</label>
+    <label for="name" class="o-label-title">Nome da variável</label>
     <input type="text" id="name" class="o-label-input" required="true" data-name>
   </div>
 
   <div class="o-label--input o-label--data">
     <label for="data" class="o-label-title">Dados</label>
-    <input type="text" id="data" class="o-label-input" required="true" data-dados>
+    <input type="text" id="data" class="o-label-input" required="true" data-dados placeholder="Somente utilize ';' para separas os dados, nao use acentuação nem espaços depois das palavras.">
   </div>
+
+  <button type="button" class="o-button o-button--calculate" button-descriptive-empty>Limpar os campos</button>
 
   <div class="o-button o-button--file">
     <input type="file" id="file" accept=".csv,.txt" data-descriptive-file></input>

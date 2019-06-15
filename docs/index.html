@@ -108,7 +108,7 @@
   </div>
 
   <div class="o-label--input">
-    <label for="order" class="o-label-title">Ordenação das variaveis ordinais</label>
+    <label for="order" class="o-label-title">Ordenação das variáveis ordinais</label>
     <input type="text" id="order" class="o-label-input" placeholder=" Ex: bom; pessimo; regular" disabled="true" data-order>
   </div>
 
@@ -147,8 +147,10 @@
 
   <div class="o-label--input o-label--data">
     <label for="data" class="o-label-title">Dados</label>
-    <input type="text" id="data" class="o-label-input" required="true" data-dados>
+    <input type="text" id="data" class="o-label-input" required="true" data-dados placeholder="Somente utilize ';' para separas os dados, nao use acentuação nem espaços depois das palavras.">
   </div>
+
+  <button type="button" class="o-button o-button--calculate" button-descriptive-empty>Limpar os campos</button>
 
   <div class="o-button o-button--file">
     <input type="file" id="file" accept=".csv,.txt" data-descriptive-file></input>
@@ -161,12 +163,12 @@
       <form id="correlationAndRegression" class="c-form__box" data-cr>
   <h2>Entrada de dados</h2>
   <div class="o-label--input">
-    <label for="cr-name-independente" class="o-label-title">Nome da variável independente (X)</label>
+    <label for="cr-name-independente" class="o-label-title">Nome da variavel independente (X)</label>
     <input type="text" id="cr-name-independente" class="o-label-input" required="true" data-cr-name-x>
   </div>
 
   <div class="o-label--input">
-    <label for="cr-name-dependente" class="o-label-title">Nome da variável dependente (Y)</label>
+    <label for="cr-name-dependente" class="o-label-title">Nome da variavel dependente (Y)</label>
     <input type="text" id="cr-name-dependente" class="o-label-input" required="true" data-cr-name-y>
   </div>
 
@@ -180,6 +182,8 @@
     <input type="text" id="cr-dependente" class="o-label-input" required="true" data-cr-y>
   </div>
 
+  <button type="button" class="o-button o-button--calculate" button-cr-empty>Limpar os campos</button>
+
   <div class="o-button o-button--file">
     <input type="file" id="file-cr" accept=".csv,.txt" data-cr-file></input>
     <label class="o-button_label" for="file-cr" >Escolha o arquivo</label>
@@ -191,7 +195,7 @@
       <div id="probability" class="c-form__box" data-form>
 
   <ul class="c-dropdown__tabs" tab-list>
-    <li class="c-dropdown__tab" tab tab-default><a href="#uniforme">Uniforeme</a> </li>
+    <li class="c-dropdown__tab" tab tab-default><a href="#uniforme">Uniforme</a> </li>
     <li class="c-dropdown__tab" tab><a href="#binomial">Binomial</a></li>
     <li class="c-dropdown__tab" tab><a href="#normal">Normal</a></li>
   </ul>
@@ -228,7 +232,7 @@
   </div>
 
   <br>
-
+  <button type="button" class="o-button o-button--calculate" button-uniform-empty>Limpar os campos</button>
   <button type="submit" class="o-button o-button--calculate" data-button-uniform>Calcular</button>
 
 </form>
@@ -255,7 +259,7 @@
     <label for="binomial-failure" class="o-label-title">Fracasso (q)</label>
     <input type="number" id="binomial-failure" class="o-label-input" required="true" data-failure>
   </div>
-
+  <button type="button" class="o-button o-button--calculate" button-binomial-empty>Limpar os campos</button>
   <button type="submit" class="o-button o-button--calculate" data-button-binomial>Calcular</button>
 </form>
     <form class="c-dropdown__box" id="normal" data-normal>
@@ -289,7 +293,7 @@
     <label class="o-label-title" for="normal-value">Dado(s)</label>
     <input type="text" class="o-label-input" id="normal-value" required="true" data-interval>
   </div>
-
+  <button type="button" class="o-button o-button--calculate" button-normal-empty>Limpar os campos</button>
   <button type="submit" class="o-button o-button--calculate" data-button-normal>Calcular</button>
 
 </form>

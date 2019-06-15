@@ -6,6 +6,7 @@ class Normal {
   constructor() {
     this.elm = document.querySelector('[data-normal]');
     this.submitbutton = this.elm.querySelector('[data-button-normal]');
+    this.buttonEmpty = document.querySelector('[button-normal-empty]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.normalTemplate = doT.template('<div class="c-prob-result"><p class="c-prob-result__cell">Probabilidade: {{=it.result}}%</p></div>');
     this.media = null;
@@ -27,6 +28,7 @@ class Normal {
   }
 
   setupListeners() {
+    this.buttonEmpty.addEventListener('click', () => Normal.setEmpty());
     this.intervalAnalysis.select.addEventListener('change', () => { this.changeSelect(); });
     this.submitbutton.addEventListener('click', (evt) => {
       evt.preventDefault();
@@ -44,6 +46,14 @@ class Normal {
     } else {
       this.elm.querySelector('[data-interval]').type = 'text';
     }
+  }
+
+  static setEmpty() {
+    const holder = document.querySelector('[data-normal]');
+
+    holder.querySelector('[data-normal-media]').value = '';
+    holder.querySelector('[data-normal-dp]').value = '';
+    holder.querySelector('[data-interval]').value = '';
   }
 
   recoverData() {

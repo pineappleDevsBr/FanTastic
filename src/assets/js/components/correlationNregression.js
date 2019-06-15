@@ -7,6 +7,7 @@ class CorrelationNRegression {
   constructor() {
     this.submitButton = document.querySelector('[data-button-cr]');
     this.fileButton = document.querySelector('[data-cr-file]');
+    this.buttonEmpty = document.querySelector('[button-cr-empty]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
     this.holderResult = document.querySelector('[data-result-holder]');
     this.canvasHolder = document.querySelector('[data-canvas]');
@@ -34,6 +35,8 @@ class CorrelationNRegression {
   }
 
   setupListeners() {
+    this.buttonEmpty.addEventListener('click', () => CorrelationNRegression.setEmpty());
+
     this.fileButton.addEventListener('change', () => this.readFile());
 
     this.submitButton.addEventListener('click', (evt) => {
@@ -41,6 +44,13 @@ class CorrelationNRegression {
       this.recoverData();
       this.validateData();
     });
+  }
+
+  static setEmpty() {
+    document.querySelector('[data-cr-name-x]').value = '';
+    document.querySelector('[data-cr-name-y]').value = '';
+    document.querySelector('[data-cr-x]').value = '';
+    document.querySelector('[data-cr-y]').value = '';
   }
 
   readFile() {

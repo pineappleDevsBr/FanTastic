@@ -7,6 +7,7 @@ class Uniform {
     this.elm = document.querySelector('[data-uniform]');
     this.buttonSubmit = this.elm.querySelector('[data-button-uniform]');
     this.modalMessage = document.querySelector('[data-modal]').querySelector('[data-modal-message]');
+    this.buttonEmpty = document.querySelector('[button-uniform-empty]');
     this.holderResult = document.querySelector('[data-result-holder]');
     this.canvasHolder = document.querySelector('[data-canvas]');
     this.uniformTemplate = doT.template('<div class="c-prob-result"> <p class="c-prob-result__cell">Probabilidade: {{=it.probabilidade}}%</p><p class="c-prob-result__cell">Desvio Padrão: {{=it.desvioPadrao}}</p><p class="c-prob-result__cell">Média: {{=it.media}}</p><p class="c-prob-result__cell">Coeficiente de Variação: {{=it.coeficienteVaricao}}</p></div>');
@@ -31,12 +32,19 @@ class Uniform {
   }
 
   setupListeners() {
+    this.buttonEmpty.addEventListener('click', () => Uniform.setEmpty());
     this.intervalAnalysis.select.addEventListener('change', () => { this.changeSelect(); });
     this.buttonSubmit.addEventListener('click', (evt) => {
       evt.preventDefault();
       this.recoverData();
       this.validateData();
     });
+  }
+
+  static setEmpty() {
+    document.querySelector('[data-max]').value = '';
+    document.querySelector('[data-min]').value = '';
+    document.querySelector('[data-interval]').value = '';
   }
 
   changeSelect() {
